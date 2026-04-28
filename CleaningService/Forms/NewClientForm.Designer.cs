@@ -41,8 +41,6 @@
             label8 = new Label();
             textBox3 = new TextBox();
             label10 = new Label();
-            textBox5 = new TextBox();
-            label11 = new Label();
             label12 = new Label();
             label13 = new Label();
             button1 = new Button();
@@ -53,6 +51,8 @@
             comboBox3 = new ComboBox();
             comboBox4 = new ComboBox();
             comboBox2 = new ComboBox();
+            comboBox5 = new ComboBox();
+            textBox5 = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -107,7 +107,6 @@
             // 
             textBox2.Location = new Point(236, 142);
             textBox2.Name = "textBox2";
-            textBox2.RightToLeft = RightToLeft.Yes;
             textBox2.Size = new Size(282, 34);
             textBox2.TabIndex = 5;
             // 
@@ -175,28 +174,11 @@
             label10.TabIndex = 15;
             label10.Text = "Адреса:";
             // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(237, 650);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(282, 34);
-            textBox5.TabIndex = 20;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label11.Location = new Point(121, 627);
-            label11.Name = "label11";
-            label11.Size = new Size(87, 24);
-            label11.TabIndex = 18;
-            label11.Text = "Вартість";
-            // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label12.Location = new Point(100, 584);
+            label12.Location = new Point(100, 640);
             label12.Name = "label12";
             label12.Size = new Size(131, 24);
             label12.TabIndex = 17;
@@ -206,19 +188,19 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label13.Location = new Point(102, 658);
+            label13.Location = new Point(61, 589);
             label13.Name = "label13";
-            label13.Size = new Size(130, 24);
+            label13.Size = new Size(169, 24);
             label13.TabIndex = 21;
-            label13.Text = "прибирання:";
+            label13.Text = "Час прибирання:";
             // 
             // button1
             // 
-            button1.Location = new Point(263, 716);
+            button1.Location = new Point(204, 725);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(200, 35);
             button1.TabIndex = 22;
-            button1.Text = "button1";
+            button1.Text = "Додати клієнта";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -271,7 +253,7 @@
             // 
             comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(237, 579);
+            comboBox4.Location = new Point(237, 635);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(282, 35);
             comboBox4.TabIndex = 27;
@@ -285,12 +267,29 @@
             comboBox2.Size = new Size(282, 35);
             comboBox2.TabIndex = 28;
             // 
+            // comboBox5
+            // 
+            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Location = new Point(237, 584);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(282, 35);
+            comboBox5.TabIndex = 29;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(488, 203);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(10, 34);
+            textBox5.TabIndex = 30;
+            // 
             // NewClientForm
             // 
             AutoScaleDimensions = new SizeF(14F, 27F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(630, 870);
+            ClientSize = new Size(630, 800);
+            Controls.Add(comboBox5);
             Controls.Add(comboBox2);
             Controls.Add(comboBox4);
             Controls.Add(comboBox3);
@@ -299,8 +298,6 @@
             Controls.Add(label14);
             Controls.Add(button1);
             Controls.Add(label13);
-            Controls.Add(textBox5);
-            Controls.Add(label11);
             Controls.Add(label12);
             Controls.Add(textBox3);
             Controls.Add(label10);
@@ -316,6 +313,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Controls.Add(textBox5);
             Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(5, 4, 5, 4);
             Name = "NewClientForm";
@@ -339,8 +337,6 @@
         private Label label8;
         private TextBox textBox3;
         private Label label10;
-        private TextBox textBox5;
-        private Label label11;
         private Label label12;
         private Label label13;
         private Button button1;
@@ -351,5 +347,7 @@
         private ComboBox comboBox3;
         private ComboBox comboBox4;
         private ComboBox comboBox2;
+        private ComboBox comboBox5;
+        private TextBox textBox5;
     }
 }

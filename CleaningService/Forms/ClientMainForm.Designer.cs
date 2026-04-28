@@ -77,7 +77,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1412, 28);
+            menuStrip.Size = new Size(1412, 26);
             menuStrip.TabIndex = 2;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -87,7 +87,7 @@
             fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveMenuItem, loadMenuItem, exitMenuItem });
             fileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(66, 24);
+            fileMenuItem.Size = new Size(66, 22);
             fileMenuItem.Text = "Файл";
             // 
             // saveMenuItem
@@ -118,7 +118,7 @@
             policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, переглядВсіхToolStripMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
             policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             policiesMenuItem.Name = "policiesMenuItem";
-            policiesMenuItem.Size = new Size(244, 24);
+            policiesMenuItem.Size = new Size(244, 22);
             policiesMenuItem.Text = "Управління замовленнями";
             // 
             // newPolicyMenuItem
@@ -186,7 +186,7 @@
             reportsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { statisticsMenuItem, incomeReportMenuItem });
             reportsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             reportsMenuItem.Name = "reportsMenuItem";
-            reportsMenuItem.Size = new Size(178, 24);
+            reportsMenuItem.Size = new Size(178, 22);
             reportsMenuItem.Text = "Аналіз та звітність";
             // 
             // statisticsMenuItem
@@ -210,7 +210,7 @@
             toolStrip.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip.ImageScalingSize = new Size(20, 20);
             toolStrip.Items.AddRange(new ToolStripItem[] { newPolicyToolStripButton, deletePolicyToolStripButton, editPolicyToolStripButton, changeStatusToolStripButton, saveToolStripButton, loadToolStripButton });
-            toolStrip.Location = new Point(0, 28);
+            toolStrip.Location = new Point(0, 26);
             toolStrip.Name = "toolStrip";
             toolStrip.Size = new Size(1412, 27);
             toolStrip.TabIndex = 7;
@@ -256,6 +256,7 @@
             changeStatusToolStripButton.Size = new Size(141, 24);
             changeStatusToolStripButton.Text = "Змінити статус";
             changeStatusToolStripButton.ToolTipText = "Змінити статус полісу (Ctrl+T)";
+            changeStatusToolStripButton.Click += changeStatusToolStripButton_Click;
             // 
             // saveToolStripButton
             // 

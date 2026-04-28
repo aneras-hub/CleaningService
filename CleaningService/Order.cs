@@ -17,6 +17,7 @@ namespace CleaningService
         public string Employee { get; set; }
         public string PaymentStatus { get; set; }
         public double Price { get; set; }
+        public string TimeSlot { get; set; } 
 
         public Order()
         {
@@ -25,7 +26,7 @@ namespace CleaningService
 
         public Order(DateTime orderDate, string fullNameClient, string phoneNumber,
             string address, double roomArea,
-            List<CleaningService> services, string employee, string paymentStatus)
+            List<CleaningService> services, string employee, string paymentStatus, string timeSlot)
         {
             OrderDate = orderDate;
             FullNameClient = fullNameClient;
@@ -37,6 +38,7 @@ namespace CleaningService
             PaymentStatus = paymentStatus;
 
             Price = CalculatePrice();
+            TimeSlot = timeSlot;
         }
 
         public double CalculatePrice()
@@ -67,7 +69,7 @@ namespace CleaningService
                     case "Хімчистка килимів": total += 700; break;
                     case "Чистка м’яких крісел та стільців": total += 400; break;
                 }
-            }
+            } 
 
             return total;
         }
