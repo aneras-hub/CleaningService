@@ -161,7 +161,7 @@ namespace CleaningService
 
             dateTimePicker1.Value = order.OrderDate;
         }
-
+        // Кнопка "Зберегти"
         private void button1_Click(object sender, EventArgs e)
         {
             if (!IsValid()) return;
@@ -206,7 +206,14 @@ namespace CleaningService
             //додаємо основного клієнта
             if (this.Owner is ClientMainForm mainForm)
             {
-                mainForm.AddOrderFromForm(NewOrder);
+                bool added = false;
+
+                if (this.Owner is ClientMainForm ClientMainForm)
+                {
+                    added = mainForm.AddOrderFromForm(NewOrder);
+                }
+
+                if (!added) return;
             }
 
             //питаємо чи ще нада додавати клієнта
@@ -221,8 +228,9 @@ namespace CleaningService
             {
                 ClearForm(); // новий клієнт
             }
-            if (result == DialogResult.No)
+            else
             {
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }

@@ -178,41 +178,13 @@ namespace CleaningService
 
         private void newPolicyToolStripButton_Click_1(object sender, EventArgs e)
         {
-            while (true) // дозволяє додати кілька клієнтів підряд
+            while (true)
             {
                 using NewClientForm form = new NewClientForm();
                 form.Owner = this;
-                form.ShowDialog();
 
                 if (form.ShowDialog() != DialogResult.OK)
                     break;
-
-                var newOrder = form.NewOrder;
-
-                // --- перевірка: максимум 3 замовлення на день ---
-                var sameDayOrders = company.Orders.Where(o =>
-                    o.Employee == newOrder.Employee &&
-                    o.OrderDate.Date == newOrder.OrderDate.Date);
-
-                if (sameDayOrders.Count() >= 3)
-                {
-                    MessageBox.Show("У цього фахівця вже є 3 замовлення на цей день!", "Помилка");
-                    continue;
-                }
-
-                // --- перевірка: чи зайнятий слот ---
-                bool isBusy = sameDayOrders.Any(o =>
-                    o.TimeSlot == newOrder.TimeSlot);
-
-                if (isBusy)
-                {
-                    MessageBox.Show("У цього фахівця цей час вже зайнятий!", "Помилка");
-                    continue;
-                }
-
-                // --- додаємо ---
-                company.AddOrder(newOrder);
-                RefreshGrid();
             }
         }
 
@@ -288,7 +260,7 @@ namespace CleaningService
                 }
             }
         }
-        public void AddOrderFromForm(Order order)
+        public bool AddOrderFromForm(Order order)
         {
             // перевірка зайнятості слоту
             bool isBusy = company.Orders.Any(o =>
@@ -299,7 +271,7 @@ namespace CleaningService
             if (isBusy)
             {
                 MessageBox.Show("У цього фахівця цей час вже зайнятий!", "Помилка");
-                return;
+                return false; // 🔥 ВАЖЛИВО
             }
 
             // перевірка 3 замовлення на день
@@ -310,11 +282,13 @@ namespace CleaningService
             if (countPerDay >= 3)
             {
                 MessageBox.Show("На цього фахівця вже є 3 замовлення!", "Помилка");
-                return;
+                return false; // 🔥 ВАЖЛИВО
             }
 
             company.AddOrder(order);
             RefreshGrid();
+
+            return true; // 🔥 УСПІХ
         }
     }
 }
