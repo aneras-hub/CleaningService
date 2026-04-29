@@ -178,27 +178,42 @@ namespace CleaningService
 
         private void newPolicyToolStripButton_Click_1(object sender, EventArgs e)
         {
-            using NewClientForm form = new NewClientForm();
-
-            if (form.ShowDialog() != DialogResult.OK) return;
-
-            var newOrder = form.NewOrder;
-
-            bool isBusy = company.Orders.Any(o =>
-                o.Employee == newOrder.Employee &&
-                o.OrderDate.Date == newOrder.OrderDate.Date &&
-                o.TimeSlot == newOrder.TimeSlot);
-
-            if (isBusy)
+            while (true) // дозволяє додати кілька клієнтів підряд
             {
-                MessageBox.Show("У цього фахівця цей час вже зайнятий!", "Помилка");
-                return;
-            }
+                using NewClientForm form = new NewClientForm();
+                form.Owner = this;
+                form.ShowDialog();
 
-            company.AddOrder(newOrder);
-            RefreshGrid();
-            company.AddOrder(form.NewOrder);
-            RefreshGrid();
+                if (form.ShowDialog() != DialogResult.OK)
+                    break;
+
+                var newOrder = form.NewOrder;
+
+                // --- перевірка: максимум 3 замовлення на день ---
+                var sameDayOrders = company.Orders.Where(o =>
+                    o.Employee == newOrder.Employee &&
+                    o.OrderDate.Date == newOrder.OrderDate.Date);
+
+                if (sameDayOrders.Count() >= 3)
+                {
+                    MessageBox.Show("У цього фахівця вже є 3 замовлення на цей день!", "Помилка");
+                    continue;
+                }
+
+                // --- перевірка: чи зайнятий слот ---
+                bool isBusy = sameDayOrders.Any(o =>
+                    o.TimeSlot == newOrder.TimeSlot);
+
+                if (isBusy)
+                {
+                    MessageBox.Show("У цього фахівця цей час вже зайнятий!", "Помилка");
+                    continue;
+                }
+
+                // --- додаємо ---
+                company.AddOrder(newOrder);
+                RefreshGrid();
+            }
         }
 
         private void editPolicyToolStripButton_Click(object sender, EventArgs e)
@@ -272,6 +287,34 @@ namespace CleaningService
                     }
                 }
             }
+        }
+        public void AddOrderFromForm(Order order)
+        {
+            // перевірка зайнятості слоту
+            bool isBusy = company.Orders.Any(o =>
+                o.Employee == order.Employee &&
+                o.OrderDate.Date == order.OrderDate.Date &&
+                o.TimeSlot == order.TimeSlot);
+
+            if (isBusy)
+            {
+                MessageBox.Show("У цього фахівця цей час вже зайнятий!", "Помилка");
+                return;
+            }
+
+            // перевірка 3 замовлення на день
+            int countPerDay = company.Orders.Count(o =>
+                o.Employee == order.Employee &&
+                o.OrderDate.Date == order.OrderDate.Date);
+
+            if (countPerDay >= 3)
+            {
+                MessageBox.Show("На цього фахівця вже є 3 замовлення!", "Помилка");
+                return;
+            }
+
+            company.AddOrder(order);
+            RefreshGrid();
         }
     }
 }

@@ -82,7 +82,7 @@ namespace CleaningService
             SetDefault(comboBox2);
             SetDefault(comboBox3);
             SetDefault(comboBox4);
-            SetDefault(comboBox5); // 🔥 додано
+            SetDefault(comboBox5);
         }
 
         private void SetDefault(ComboBox cb)
@@ -198,14 +198,33 @@ namespace CleaningService
                 NewOrder.Services = services;
                 NewOrder.Employee = comboBox2.Text;
                 NewOrder.PaymentStatus = comboBox4.Text;
-                NewOrder.TimeSlot = comboBox5.Text;
                 NewOrder.OrderDate = dateTimePicker1.Value;
 
                 NewOrder.Price = NewOrder.CalculatePrice();
             }
 
-            MessageBox.Show($"Ціна: {NewOrder.Price} грн");
-            DialogResult = DialogResult.OK;
+            //додаємо основного клієнта
+            if (this.Owner is ClientMainForm mainForm)
+            {
+                mainForm.AddOrderFromForm(NewOrder);
+            }
+
+            //питаємо чи ще нада додавати клієнта
+            var result = MessageBox.Show(
+                $"Ціна: {NewOrder.Price} грн\n\nДодати ще клієнта?",
+                "Готово",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                ClearForm(); // новий клієнт
+            }
+            if (result == DialogResult.No)
+            {
+                this.Close();
+            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -223,6 +242,21 @@ namespace CleaningService
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBox4_TextChanged(null, null);
+        }
+        private void ClearForm()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0;
+            comboBox4.SelectedIndex = 0;
+            comboBox5.SelectedIndex = 0;
+
+            dateTimePicker1.Value = DateTime.Now;
         }
     }
 }
