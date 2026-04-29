@@ -47,30 +47,74 @@ namespace CleaningService
                 return 0;
 
             string mainService = Services[0].CategoryService;
+            double total = 0;
 
-            double basePricePerMeter = mainService switch
+            //Основні послуги (comboBox1)
+            switch (mainService)
             {
-                "Підтримувальне прибирання" => 30,
-                "Генеральне прибирання" => 60,
-                "Прибирання після ремонту" => 100,
-                _ => 40
-            };
+                case "Генеральне прибирання":
+                    total = 60 * RoomArea;
+                    break;
 
-            double total = basePricePerMeter * RoomArea;
+                case "Підтримувальне прибирання":
+                    total = 30 * RoomArea;
+                    break;
 
-            //додаткові послуги
-            foreach (var s in Services)
+                case "Прибирання після ремонту":
+                    total = 100 * RoomArea;
+                    break;
+
+                case "Прибирання будинку":
+                    total = 80 * RoomArea;
+                    break;
+
+                case "Прибирання котеджу":
+                    total = 90 * RoomArea;
+                    break;
+
+                case "Прибирання офісу":
+                    total = 50 * RoomArea;
+                    break;
+
+                case "Прибирання ресторану":
+                    total = 70 * RoomArea;
+                    break;
+
+                case "Прибирання магазинів":
+                    total = 55 * RoomArea;
+                    break;
+
+                default:
+                    total = 40 * RoomArea;
+                    break;
+            }
+
+            //Додаткові послуги (comboBox3)
+            foreach (var service in Services)
             {
-                switch (s.OtherService)
+                switch (service.OtherService)
                 {
-                    case "Миття вікон": total += 500; break;
-                    case "Хімчистка диванів": total += 800; break;
-                    case "Полірування паркету": total += 600; break;
-                    case "Хімчистка килимів": total += 700; break;
-                    case "Чистка м’яких крісел та стільців": total += 400; break;
-                }
-            } 
+                    case "Миття вікон":
+                        total += 500;
+                        break;
 
+                    case "Хімчистка диванів":
+                        total += 800;
+                        break;
+
+                    case "Полірування паркету":
+                        total += 600;
+                        break;
+
+                    case "Хімчистка килимів":
+                        total += 700;
+                        break;
+
+                    case "Чистка м’яких крісел та стільців":
+                        total += 400;
+                        break;
+                }
+            }
             return total;
         }
 

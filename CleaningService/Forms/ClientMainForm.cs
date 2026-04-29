@@ -71,7 +71,6 @@ namespace CleaningService
 
         private void RefreshGrid(IEnumerable<Order> data = null)
         {
-            // 🔥 Автоматична зміна статусу
             foreach (var order in company.Orders)
             {
                 if (order.PaymentStatus == "Очікує оплати" &&
@@ -183,6 +182,21 @@ namespace CleaningService
 
             if (form.ShowDialog() != DialogResult.OK) return;
 
+            var newOrder = form.NewOrder;
+
+            bool isBusy = company.Orders.Any(o =>
+                o.Employee == newOrder.Employee &&
+                o.OrderDate.Date == newOrder.OrderDate.Date &&
+                o.TimeSlot == newOrder.TimeSlot);
+
+            if (isBusy)
+            {
+                MessageBox.Show("У цього фахівця цей час вже зайнятий!", "Помилка");
+                return;
+            }
+
+            company.AddOrder(newOrder);
+            RefreshGrid();
             company.AddOrder(form.NewOrder);
             RefreshGrid();
         }

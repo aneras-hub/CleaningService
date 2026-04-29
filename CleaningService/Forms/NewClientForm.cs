@@ -121,7 +121,7 @@ namespace CleaningService
             if (comboBox2.SelectedIndex <= 0)
                 return ShowError("Оберіть фахівця.");
 
-            // Час 🔥
+            // Час прибиррання
             if (comboBox5.SelectedIndex <= 0)
                 return ShowError("Оберіть час.");
 
