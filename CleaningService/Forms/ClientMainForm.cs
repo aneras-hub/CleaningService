@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CleaningService
 {
@@ -24,7 +25,15 @@ namespace CleaningService
             InitToolStrip();
             InitGrid();
             InitContextMenu();
-
+            searchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
+            //щоб текст в колонках автоматично підлаштовувався
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            // посередині текст
+            dataGridView1.Columns["Column3"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column5"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column6"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             LoadDataOnStartup();
         }
 
@@ -35,7 +44,6 @@ namespace CleaningService
             exitMenuItem.Click += (s, e) => Application.Exit();
 
             newPolicyMenuItem.Click += newPolicyToolStripButton_Click_1;
-            переглядВсіхToolStripMenuItem.Click += (s, e) => RefreshGrid();
             changeStatusMenuItem.Click += editPolicyToolStripButton_Click;
 
             statisticsMenuItem.Click += statisticsMenuItem_Click;

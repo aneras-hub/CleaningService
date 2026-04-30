@@ -39,7 +39,7 @@ namespace CleaningService
                 return;
             }
 
-            if (textBox1.Text == "admin" && textBox2.Text == "1234")
+            if (textBox1.Text == "admin" || textBox1.Text == "фвьшт" && textBox2.Text == "1234")
             {
                 // Успішний вхід
                 button1.BackColor = Color.DarkSeaGreen;

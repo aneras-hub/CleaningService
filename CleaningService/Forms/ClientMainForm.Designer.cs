@@ -36,7 +36,6 @@
             exitMenuItem = new ToolStripMenuItem();
             policiesMenuItem = new ToolStripMenuItem();
             newPolicyMenuItem = new ToolStripMenuItem();
-            переглядВсіхToolStripMenuItem = new ToolStripMenuItem();
             searchMenuItem = new ToolStripMenuItem();
             changeStatusMenuItem = new ToolStripMenuItem();
             filterMenuItem = new ToolStripMenuItem();
@@ -117,7 +116,7 @@
             // policiesMenuItem
             // 
             policiesMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, переглядВсіхToolStripMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
+            policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
             policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             policiesMenuItem.Name = "policiesMenuItem";
             policiesMenuItem.Size = new Size(244, 22);
@@ -127,28 +126,21 @@
             // 
             newPolicyMenuItem.Name = "newPolicyMenuItem";
             newPolicyMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            newPolicyMenuItem.Size = new Size(365, 26);
+            newPolicyMenuItem.Size = new Size(312, 26);
             newPolicyMenuItem.Text = "Нове замовлення";
-            // 
-            // переглядВсіхToolStripMenuItem
-            // 
-            переглядВсіхToolStripMenuItem.Name = "переглядВсіхToolStripMenuItem";
-            переглядВсіхToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.P;
-            переглядВсіхToolStripMenuItem.Size = new Size(365, 26);
-            переглядВсіхToolStripMenuItem.Text = "Перегляд всіх замовлень";
             // 
             // searchMenuItem
             // 
             searchMenuItem.Name = "searchMenuItem";
             searchMenuItem.ShortcutKeys = Keys.Control | Keys.F;
-            searchMenuItem.Size = new Size(365, 26);
+            searchMenuItem.Size = new Size(312, 26);
             searchMenuItem.Text = "Пошук замовлення";
             // 
             // changeStatusMenuItem
             // 
             changeStatusMenuItem.Name = "changeStatusMenuItem";
             changeStatusMenuItem.ShortcutKeys = Keys.Control | Keys.T;
-            changeStatusMenuItem.Size = new Size(365, 26);
+            changeStatusMenuItem.Size = new Size(312, 26);
             changeStatusMenuItem.Text = "Зміна замовлення";
             // 
             // filterMenuItem
@@ -156,7 +148,7 @@
             filterMenuItem.DropDownItems.AddRange(new ToolStripItem[] { filterAllMenuItem, filterActiveMenuItem, filterExpiredMenuItem, очікуєОплатиToolStripMenuItem, filterCancelledMenuItem });
             filterMenuItem.Image = (Image)resources.GetObject("filterMenuItem.Image");
             filterMenuItem.Name = "filterMenuItem";
-            filterMenuItem.Size = new Size(365, 26);
+            filterMenuItem.Size = new Size(312, 26);
             filterMenuItem.Text = "Фільтрація";
             // 
             // filterAllMenuItem
@@ -305,7 +297,7 @@
             Column7.HeaderText = "Дата";
             Column7.MinimumWidth = 6;
             Column7.Name = "Column7";
-            Column7.Width = 90;
+            Column7.Width = 85;
             // 
             // Column1
             // 
@@ -321,7 +313,7 @@
             Column2.HeaderText = "Адреса";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
-            Column2.Width = 210;
+            Column2.Width = 200;
             // 
             // Column9
             // 
@@ -329,7 +321,7 @@
             Column9.HeaderText = "Номер";
             Column9.MinimumWidth = 6;
             Column9.Name = "Column9";
-            Column9.Width = 125;
+            Column9.Width = 145;
             // 
             // Column8
             // 
@@ -344,7 +336,7 @@
             Column3.HeaderText = "Площа приміщення";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
-            Column3.Width = 150;
+            Column3.Width = 125;
             // 
             // Column4
             // 
@@ -359,7 +351,7 @@
             Column5.HeaderText = "Вартість послуги";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
-            Column5.Width = 150;
+            Column5.Width = 125;
             // 
             // Column6
             // 
@@ -367,7 +359,7 @@
             Column6.HeaderText = "Стан оплати";
             Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
-            Column6.Width = 150;
+            Column6.Width = 120;
             // 
             // searchBox
             // 
@@ -377,8 +369,8 @@
             searchBox.ForeColor = Color.DarkOliveGreen;
             searchBox.Location = new Point(12, 59);
             searchBox.Name = "searchBox";
-            searchBox.PlaceholderText = "Пошук за номером або клієнтом";
-            searchBox.Size = new Size(290, 28);
+            searchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
+            searchBox.Size = new Size(324, 28);
             searchBox.TabIndex = 9;
             searchBox.TextChanged += searchBox_TextChanged;
             // 
