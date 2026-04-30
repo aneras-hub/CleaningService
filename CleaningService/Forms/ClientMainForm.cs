@@ -36,6 +36,7 @@ namespace CleaningService
 
             newPolicyMenuItem.Click += newPolicyToolStripButton_Click_1;
             переглядВсіхToolStripMenuItem.Click += (s, e) => RefreshGrid();
+            changeStatusMenuItem.Click += editPolicyToolStripButton_Click;
 
             statisticsMenuItem.Click += statisticsMenuItem_Click;
             incomeReportMenuItem.Click += incomeReportMenuItem_Click;
@@ -43,6 +44,7 @@ namespace CleaningService
             filterAllMenuItem.Click += (s, e) => RefreshGrid();
             filterActiveMenuItem.Click += (s, e) => FilterOrders("Оплачено");
             filterExpiredMenuItem.Click += (s, e) => FilterOrders("Частково сплачено");
+            очікуєОплатиToolStripMenuItem.Click += (s, e) => FilterOrders("Очікує оплати");
             filterCancelledMenuItem.Click += (s, e) => FilterOrders("Неоплачено");
         }
 
@@ -118,9 +120,8 @@ namespace CleaningService
 
         private void FilterOrders(string status)
         {
-            RefreshGrid(company.Orders.Where(o => o.PaymentStatus == status));
+            RefreshGrid(company.FilterByStatus(status));
         }
-
         private void LoadDataOnStartup()
         {
             if (!File.Exists(path)) return;
@@ -282,13 +283,62 @@ namespace CleaningService
             if (countPerDay >= 3)
             {
                 MessageBox.Show("На цього фахівця вже є 3 замовлення!", "Помилка");
-                return false; // 🔥 ВАЖЛИВО
+                return false;
             }
 
             company.AddOrder(order);
             RefreshGrid();
 
-            return true; // 🔥 УСПІХ
+            return true;
+        }
+        private void SearchMenuItem_Click(object sender, EventArgs e)
+        {
+            string name = Microsoft.VisualBasic.Interaction.InputBox(
+                "Введіть ПІБ клієнта:",
+                "Пошук",
+                ""
+            );
+
+            if (string.IsNullOrWhiteSpace(name)) return;
+
+            var result = company.FindByClient(name);
+
+            if (result.Count == 0)
+            {
+                MessageBox.Show("Нічого не знайдено");
+                return;
+            }
+
+            RefreshGrid(result);
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            string search = searchBox.Text.Trim().ToLower();
+
+            var filtered = company.Orders
+                .Where(o =>
+                    string.IsNullOrEmpty(search) ||
+
+                    // ПІБ клієнта
+                    (o.FullNameClient != null &&
+                     o.FullNameClient.ToLower().Contains(search)) ||
+
+                    // Телефон
+                    (o.PhoneNumber != null &&
+                     o.PhoneNumber.ToLower().Contains(search)) ||
+
+                    // Фахівець
+                    (o.Employee != null &&
+                     o.Employee.ToLower().Contains(search)) ||
+
+                    // Статус
+                    (o.PaymentStatus != null &&
+                     o.PaymentStatus.ToLower().Contains(search))
+                )
+                .ToList();
+
+            RefreshGrid(filtered);
         }
     }
 }

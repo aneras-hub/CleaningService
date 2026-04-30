@@ -43,6 +43,7 @@
             filterAllMenuItem = new ToolStripMenuItem();
             filterActiveMenuItem = new ToolStripMenuItem();
             filterExpiredMenuItem = new ToolStripMenuItem();
+            очікуєОплатиToolStripMenuItem = new ToolStripMenuItem();
             filterCancelledMenuItem = new ToolStripMenuItem();
             reportsMenuItem = new ToolStripMenuItem();
             statisticsMenuItem = new ToolStripMenuItem();
@@ -64,6 +65,7 @@
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
+            searchBox = new TextBox();
             menuStrip.SuspendLayout();
             toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -151,7 +153,7 @@
             // 
             // filterMenuItem
             // 
-            filterMenuItem.DropDownItems.AddRange(new ToolStripItem[] { filterAllMenuItem, filterActiveMenuItem, filterExpiredMenuItem, filterCancelledMenuItem });
+            filterMenuItem.DropDownItems.AddRange(new ToolStripItem[] { filterAllMenuItem, filterActiveMenuItem, filterExpiredMenuItem, очікуєОплатиToolStripMenuItem, filterCancelledMenuItem });
             filterMenuItem.Image = (Image)resources.GetObject("filterMenuItem.Image");
             filterMenuItem.Name = "filterMenuItem";
             filterMenuItem.Size = new Size(365, 26);
@@ -160,26 +162,32 @@
             // filterAllMenuItem
             // 
             filterAllMenuItem.Name = "filterAllMenuItem";
-            filterAllMenuItem.Size = new Size(201, 40);
+            filterAllMenuItem.Size = new Size(254, 26);
             filterAllMenuItem.Text = "усі";
             // 
             // filterActiveMenuItem
             // 
             filterActiveMenuItem.Name = "filterActiveMenuItem";
-            filterActiveMenuItem.Size = new Size(201, 40);
-            filterActiveMenuItem.Text = "Активний\n";
+            filterActiveMenuItem.Size = new Size(254, 26);
+            filterActiveMenuItem.Text = "Оплачено";
             // 
             // filterExpiredMenuItem
             // 
             filterExpiredMenuItem.Name = "filterExpiredMenuItem";
-            filterExpiredMenuItem.Size = new Size(201, 40);
-            filterExpiredMenuItem.Text = "Закінчився";
+            filterExpiredMenuItem.Size = new Size(254, 26);
+            filterExpiredMenuItem.Text = "Частково сплачено";
+            // 
+            // очікуєОплатиToolStripMenuItem
+            // 
+            очікуєОплатиToolStripMenuItem.Name = "очікуєОплатиToolStripMenuItem";
+            очікуєОплатиToolStripMenuItem.Size = new Size(254, 26);
+            очікуєОплатиToolStripMenuItem.Text = "Очікує оплати";
             // 
             // filterCancelledMenuItem
             // 
             filterCancelledMenuItem.Name = "filterCancelledMenuItem";
-            filterCancelledMenuItem.Size = new Size(201, 40);
-            filterCancelledMenuItem.Text = "Анульований";
+            filterCancelledMenuItem.Size = new Size(254, 26);
+            filterCancelledMenuItem.Text = "Неоплачено";
             // 
             // reportsMenuItem
             // 
@@ -253,8 +261,8 @@
             changeStatusToolStripButton.Image = (Image)resources.GetObject("changeStatusToolStripButton.Image");
             changeStatusToolStripButton.ImageTransparentColor = Color.Magenta;
             changeStatusToolStripButton.Name = "changeStatusToolStripButton";
-            changeStatusToolStripButton.Size = new Size(141, 24);
-            changeStatusToolStripButton.Text = "Змінити статус";
+            changeStatusToolStripButton.Size = new Size(184, 24);
+            changeStatusToolStripButton.Text = "Змінити стан оплати";
             changeStatusToolStripButton.ToolTipText = "Змінити статус полісу (Ctrl+T)";
             changeStatusToolStripButton.Click += changeStatusToolStripButton_Click;
             // 
@@ -285,10 +293,10 @@
             dataGridView1.BackgroundColor = Color.SeaShell;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column7, Column1, Column2, Column9, Column8, Column3, Column4, Column5, Column6 });
-            dataGridView1.Location = new Point(0, 53);
+            dataGridView1.Location = new Point(0, 93);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1416, 513);
+            dataGridView1.Size = new Size(1416, 455);
             dataGridView1.TabIndex = 1;
             // 
             // Column7
@@ -361,12 +369,26 @@
             Column6.Name = "Column6";
             Column6.Width = 150;
             // 
+            // searchBox
+            // 
+            searchBox.BackColor = Color.Ivory;
+            searchBox.BorderStyle = BorderStyle.FixedSingle;
+            searchBox.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            searchBox.ForeColor = Color.DarkOliveGreen;
+            searchBox.Location = new Point(12, 59);
+            searchBox.Name = "searchBox";
+            searchBox.PlaceholderText = "Пошук за номером або клієнтом";
+            searchBox.Size = new Size(290, 28);
+            searchBox.TabIndex = 9;
+            searchBox.TextChanged += searchBox_TextChanged;
+            // 
             // ClientMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
             ClientSize = new Size(1412, 536);
+            Controls.Add(searchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
             Controls.Add(dataGridView1);
@@ -417,5 +439,7 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
+        private ToolStripMenuItem очікуєОплатиToolStripMenuItem;
+        private TextBox searchBox;
     }
 }
