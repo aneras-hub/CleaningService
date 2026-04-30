@@ -242,15 +242,20 @@ namespace CleaningService
 
         private void changeStatusToolStripButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null) return;
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Оберіть замовлення!");
+                return;
+            }
 
-            var order = (Order)dataGridView1.CurrentRow.DataBoundItem;
+            Order order = (Order)dataGridView1.CurrentRow.DataBoundItem;
 
-            order.PaymentStatus = order.PaymentStatus == "Оплачено"
-                ? "Неоплачено"
-                : "Оплачено";
+            ChangePayment form = new ChangePayment(order);
 
-            RefreshGrid();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                dataGridView1.Refresh();
+            }
         }
 
         private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
