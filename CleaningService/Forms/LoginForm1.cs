@@ -45,7 +45,7 @@ namespace CleaningService
                 button1.BackColor = Color.DarkSeaGreen;
                 this.Text = "¬х≥д";
 
-                AdminMainForm form = new AdminMainForm();
+               ClientMainForm form = new ClientMainForm();
                 form.Show();
 
                 this.Hide(); // ’оваЇмо в≥кно т≥льки €кщо дан≥ в≥рн≥
@@ -60,7 +60,7 @@ namespace CleaningService
                 {
                     MessageBox.Show("¬и 3 рази ввели нев≥рний пароль!  нопка входу заблокована.");
                     button1.Enabled = false; // ЅлокуЇмо кнопку
-                                             // јбо можна закрити програму: Application.Exit();
+                    Application.Exit();
                 }
                 else
                 {
