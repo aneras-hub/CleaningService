@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace CleaningService
+{
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string EmployeeName { get; set; }
+        public string EmployeeNumber { get; set; }
+
+        // список замовлень
+        public List<Order> Orders { get; set; } = new List<Order>();
+
+        public Employee() { }
+
+        public Employee(int id, string name, string number)
+        {
+            Id = id;
+            EmployeeName = name;
+            EmployeeNumber = number;
+        }
+
+        // кількість замовлень
+        public int GetOrdersCount()
+        {
+            return Orders.Count;
+        }
+
+        // зарплата
+        public double GetSalary()
+        {
+            return Orders.Sum(o => o.Price) * 0.4;
+        }
+
+        // фільтр
+        public static List<Employee> FilterByOrdersCount(List<Employee> employees, int minOrders)
+        {
+            return employees
+                .Where(e => e.GetOrdersCount() >= minOrders)
+                .ToList();
+        }
+
+        public override string ToString()
+        {
+            return $"{EmployeeName} | Замовлень: {GetOrdersCount()} | Зарплата: {GetSalary()} грн";
+        }
+    }
+}

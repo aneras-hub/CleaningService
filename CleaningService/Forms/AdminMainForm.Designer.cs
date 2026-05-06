@@ -31,6 +31,7 @@
             label1 = new Label();
             button1 = new Button();
             button3 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -46,7 +47,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(130, 170);
+            button1.Location = new Point(130, 142);
             button1.Name = "button1";
             button1.Size = new Size(292, 35);
             button1.TabIndex = 3;
@@ -56,12 +57,21 @@
             // 
             // button3
             // 
-            button3.Location = new Point(130, 262);
+            button3.Location = new Point(130, 210);
             button3.Name = "button3";
             button3.Size = new Size(292, 35);
             button3.TabIndex = 5;
             button3.Text = "Статистика";
             button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(130, 272);
+            button2.Name = "button2";
+            button2.Size = new Size(292, 35);
+            button2.TabIndex = 6;
+            button2.Text = "Фахівці";
+            button2.UseVisualStyleBackColor = true;
             // 
             // AdminMainForm
             // 
@@ -69,6 +79,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
             ClientSize = new Size(549, 406);
+            Controls.Add(button2);
             Controls.Add(button3);
             Controls.Add(button1);
             Controls.Add(label1);
@@ -85,5 +96,6 @@
         private Label label1;
         private Button button1;
         private Button button3;
+        private Button button2;
     }
 }

@@ -11,10 +11,12 @@ namespace CleaningService
     {
         public Order NewOrder { get; set; }
         private bool isEdit = false;
+        private OrderEmployee employeeManager;
 
         public NewClientForm()
         {
             InitializeComponent();
+            employeeManager = manager;
 
             BackColor = Color.Honeydew;
             StartPosition = FormStartPosition.CenterScreen;
@@ -45,14 +47,8 @@ namespace CleaningService
                 "Прибирання магазинів"
             });
 
-            comboBox2.Items.AddRange(new[]
-            {
-                "Вербицький Артем Олександрович",
-                "Зима Марія Віталіївна",
-                "Мельниченко Владислав Ігорович",
-                "Озерська Анна Костянтинівна",
-                "Яворівський Максим Юрійович"
-            });
+            comboBox2.DataSource = employeeManager.Employees;
+            comboBox2.DisplayMember = "EmployeeName";
 
             comboBox3.Items.AddRange(new[]
             {
@@ -79,7 +75,6 @@ namespace CleaningService
             });
 
             SetDefault(comboBox1);
-            SetDefault(comboBox2);
             SetDefault(comboBox3);
             SetDefault(comboBox4);
             SetDefault(comboBox5);
@@ -101,7 +96,7 @@ namespace CleaningService
                 return ShowError("ПІБ має містити рівно 3 слова.");
 
             // Телефон
-            string phonePattern = @"^\+380\s\d{2}\s\d{3}\s\d{4}$";
+            string phonePattern = @"^\+380\s\d{10}$";
             if (!Regex.IsMatch(textBox2.Text.Trim(), phonePattern))
                 return ShowError("Телефон у форматі +380 99 790 8190");
 
@@ -110,7 +105,7 @@ namespace CleaningService
                 return ShowError("Введіть адресу.");
 
             // Послуга
-            if (comboBox1.SelectedIndex <= 0)
+            if (comboBox1.SelectedIndex < 0)
                 return ShowError("Оберіть тип послуг.");
 
             // Площа
@@ -118,15 +113,15 @@ namespace CleaningService
                 return ShowError("Площа має бути більше 0.");
 
             // Фахівець
-            if (comboBox2.SelectedIndex <= 0)
+            if (comboBox2.SelectedIndex <= null)
                 return ShowError("Оберіть фахівця.");
 
             // Час прибиррання
-            if (comboBox5.SelectedIndex <= 0)
+            if (comboBox5.SelectedIndex < 0)
                 return ShowError("Оберіть час.");
 
             // Оплата
-            if (comboBox4.SelectedIndex <= 0)
+            if (comboBox4.SelectedIndex < 0)
                 return ShowError("Оберіть стан оплати.");
 
             return true;
@@ -149,7 +144,10 @@ namespace CleaningService
             textBox3.Text = order.Address;
             textBox4.Text = order.RoomArea.ToString();
 
-            comboBox2.SelectedItem = order.Employee;
+            comboBox2.SelectedItem = employeeManager
+               .Employees
+               .FirstOrDefault(e => e.Id == order.Employee?.Id);
+
             comboBox4.SelectedItem = order.PaymentStatus;
             comboBox5.SelectedItem = order.TimeSlot;
 
@@ -174,6 +172,7 @@ namespace CleaningService
             );
 
             var services = new List<CleaningService> { service };
+            Employee selectedEmployee = (Employee)comboBox2.SelectedItem;
 
             if (!isEdit)
             {
@@ -184,10 +183,11 @@ namespace CleaningService
                     textBox3.Text,
                     area,
                     services,
-                    comboBox2.Text,
+                    selectedEmployee,
                     comboBox4.Text,
                     comboBox5.Text
                 );
+                selectedEmployee.Orders.Add(NewOrder);
             }
             else
             {
@@ -196,7 +196,7 @@ namespace CleaningService
                 NewOrder.Address = textBox3.Text;
                 NewOrder.RoomArea = area;
                 NewOrder.Services = services;
-                NewOrder.Employee = comboBox2.Text;
+                NewOrder.Employee = selectedEmployee;
                 NewOrder.PaymentStatus = comboBox4.Text;
                 NewOrder.OrderDate = dateTimePicker1.Value;
 

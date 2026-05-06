@@ -353,5 +353,25 @@ namespace CleaningService
 
             RefreshGrid(filtered);
         }
+
+        private void ClientMainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ClientMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show(
+              "Зберегти дані перед виходом?",
+              "Вихід",
+              MessageBoxButtons.YesNoCancel,
+              MessageBoxIcon.Question);
+            Application.Exit();
+        }
     }
 }

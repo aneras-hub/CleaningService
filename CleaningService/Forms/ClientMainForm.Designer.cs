@@ -78,7 +78,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1338, 28);
+            menuStrip.Size = new Size(1336, 26);
             menuStrip.TabIndex = 2;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -88,7 +88,7 @@
             fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveMenuItem, loadMenuItem, exitMenuItem });
             fileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(66, 24);
+            fileMenuItem.Size = new Size(66, 22);
             fileMenuItem.Text = "Файл";
             // 
             // saveMenuItem
@@ -112,6 +112,7 @@
             exitMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
             exitMenuItem.Size = new Size(291, 26);
             exitMenuItem.Text = "Вихід";
+            exitMenuItem.Click += exitMenuItem_Click;
             // 
             // policiesMenuItem
             // 
@@ -119,7 +120,7 @@
             policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
             policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             policiesMenuItem.Name = "policiesMenuItem";
-            policiesMenuItem.Size = new Size(244, 24);
+            policiesMenuItem.Size = new Size(244, 22);
             policiesMenuItem.Text = "Управління замовленнями";
             // 
             // newPolicyMenuItem
@@ -186,7 +187,7 @@
             reportsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { statisticsMenuItem, incomeReportMenuItem });
             reportsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             reportsMenuItem.Name = "reportsMenuItem";
-            reportsMenuItem.Size = new Size(178, 24);
+            reportsMenuItem.Size = new Size(178, 22);
             reportsMenuItem.Text = "Аналіз та звітність";
             // 
             // statisticsMenuItem
@@ -210,9 +211,9 @@
             toolStrip.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip.ImageScalingSize = new Size(20, 20);
             toolStrip.Items.AddRange(new ToolStripItem[] { newPolicyToolStripButton, deletePolicyToolStripButton, editPolicyToolStripButton, changeStatusToolStripButton, saveToolStripButton, loadToolStripButton });
-            toolStrip.Location = new Point(0, 28);
+            toolStrip.Location = new Point(0, 26);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1338, 27);
+            toolStrip.Size = new Size(1336, 27);
             toolStrip.TabIndex = 7;
             toolStrip.Text = "toolStrip1";
             // 
@@ -288,7 +289,7 @@
             dataGridView1.Location = new Point(0, 93);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1416, 455);
+            dataGridView1.Size = new Size(1337, 455);
             dataGridView1.TabIndex = 1;
             // 
             // Column7
@@ -379,13 +380,16 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(1338, 536);
+            ClientSize = new Size(1336, 536);
+            ControlBox = false;
             Controls.Add(searchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
             Controls.Add(dataGridView1);
             Name = "ClientMainForm";
             Text = "MainForm";
+            FormClosing += ClientMainForm_FormClosing;
+            Load += ClientMainForm_Load;
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             toolStrip.ResumeLayout(false);

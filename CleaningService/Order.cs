@@ -14,7 +14,7 @@ namespace CleaningService
         public string Address { get; set; }
         public double RoomArea { get; set; }
         public List<CleaningService> Services { get; set; }
-        public string Employee { get; set; }
+        public Employee Employee { get; set; }
         public string PaymentStatus { get; set; }
         public double Price { get; set; }
         public string TimeSlot { get; set; } 
@@ -26,7 +26,7 @@ namespace CleaningService
 
         public Order(DateTime orderDate, string fullNameClient, string phoneNumber,
             string address, double roomArea,
-            List<CleaningService> services, string employee, string paymentStatus, string timeSlot)
+            List<CleaningService> services, Employee employee, string paymentStatus, string timeSlot)
         {
             OrderDate = orderDate;
             FullNameClient = fullNameClient;
