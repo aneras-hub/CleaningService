@@ -14,8 +14,11 @@ namespace CleaningService
         // Додавання замовлення
         public void AddOrder(Order order)
         {
-            if (order != null)
-                Orders.Add(order);
+            Orders.Add(order);
+
+            //автоматично додаємо працівнику
+            if (order.Employee != null)
+                order.Employee.Orders.Add(order);
         }
 
         // Видалення замовлення
@@ -77,11 +80,9 @@ namespace CleaningService
                 .Sum(o => o.Price);
         }
         // Зарплата працівника (40% від замовлень)
-        public double CalculateEmployeeSalary(string employee)
+        public double CalculateEmployeeSalary(Employee emp)
         {
-            return Orders
-                .Where(o => o.Employee == employee)
-                .Sum(o => o.Price) * 0.4;
+            return emp.GetSalary();
         }
         // Запис у XML
         public void WriteToFile(string fileName)

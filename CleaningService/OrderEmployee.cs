@@ -47,8 +47,15 @@ namespace CleaningService
                 .OrderByDescending(e => e.GetOrdersCount())
                 .ToList();
         }
+        // 🔥 найзайнятіший
+        public Employee GetMostBusyEmployee()
+        {
+            return Employees
+                .OrderByDescending(e => e.GetOrdersCount())
+                .FirstOrDefault();
+        }
 
-        // 🆕 Вільні працівники
+        // 🔥 вільні🆕 Вільні працівники
         public List<Employee> GetFreeEmployees()
         {
             return Employees

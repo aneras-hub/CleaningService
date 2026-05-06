@@ -12,8 +12,7 @@ namespace CleaningService
         public Order NewOrder { get; set; }
         private bool isEdit = false;
         private OrderEmployee employeeManager;
-
-        public NewClientForm()
+        public NewClientForm(OrderEmployee manager)
         {
             InitializeComponent();
             employeeManager = manager;
@@ -28,7 +27,7 @@ namespace CleaningService
         private void InitPlaceholders()
         {
             textBox1.PlaceholderText = "Петренко Петра Петрівна";
-            textBox2.PlaceholderText = "+380 99 790 8190";
+            textBox2.PlaceholderText = "+38 099 790 8190";
             textBox3.PlaceholderText = "вул. Петра, 14";
             textBox4.PlaceholderText = "10";
         }
@@ -96,7 +95,7 @@ namespace CleaningService
                 return ShowError("ПІБ має містити рівно 3 слова.");
 
             // Телефон
-            string phonePattern = @"^\+380\s\d{10}$";
+            string phonePattern = @"^\+380\s\d{9}$";
             if (!Regex.IsMatch(textBox2.Text.Trim(), phonePattern))
                 return ShowError("Телефон у форматі +380 99 790 8190");
 
@@ -113,7 +112,7 @@ namespace CleaningService
                 return ShowError("Площа має бути більше 0.");
 
             // Фахівець
-            if (comboBox2.SelectedIndex <= null)
+            if (comboBox2.SelectedIndex < 0)
                 return ShowError("Оберіть фахівця.");
 
             // Час прибиррання
@@ -134,7 +133,7 @@ namespace CleaningService
         }
 
         // --- РЕДАГУВАННЯ ---
-        public NewClientForm(Order order) : this()
+        public NewClientForm(Order order, OrderEmployee manager) : this(manager)
         {
             NewOrder = order;
             isEdit = true;
@@ -187,7 +186,10 @@ namespace CleaningService
                     comboBox4.Text,
                     comboBox5.Text
                 );
-                selectedEmployee.Orders.Add(NewOrder);
+                if (this.Owner is ClientMainForm mainForm)
+                {
+                    if (!mainForm.AddOrderFromForm(NewOrder)) return;
+                }
             }
             else
             {
@@ -203,36 +205,23 @@ namespace CleaningService
                 NewOrder.Price = NewOrder.CalculatePrice();
             }
 
-            //додаємо основного клієнта
-            if (this.Owner is ClientMainForm mainForm)
-            {
-                bool added = false;
+                //питаємо чи ще нада додавати клієнта
+                var result = MessageBox.Show(
+                    $"Ціна: {NewOrder.Price} грн\n\nДодати ще клієнта?",
+                    "Готово",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
 
-                if (this.Owner is ClientMainForm ClientMainForm)
+                if (result == DialogResult.Yes)
                 {
-                    added = mainForm.AddOrderFromForm(NewOrder);
+                    ClearForm(); // новий клієнт
                 }
-
-                if (!added) return;
-            }
-
-            //питаємо чи ще нада додавати клієнта
-            var result = MessageBox.Show(
-                $"Ціна: {NewOrder.Price} грн\n\nДодати ще клієнта?",
-                "Готово",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (result == DialogResult.Yes)
-            {
-                ClearForm(); // новий клієнт
-            }
-            else
-            {
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
+                else
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)

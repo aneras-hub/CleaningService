@@ -13,7 +13,7 @@ namespace CleaningService
         private CleaningCompany company = new CleaningCompany();
         private string path = "orders.xml";
         private ContextMenuStrip gridContextMenu;
-
+        private OrderEmployee employeeManager = new OrderEmployee();
         public ClientMainForm()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace CleaningService
             InitToolStrip();
             InitGrid();
             InitContextMenu();
+            InitEmployees();
             searchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
             //щоб текст в колонках автоматично підлаштовувався
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -79,6 +80,16 @@ namespace CleaningService
             dataGridView1.ContextMenuStrip = gridContextMenu;
         }
 
+        private void InitEmployees()
+        {
+            employeeManager.AddEmployee(new Employee(1, "Вербицький Артем Олександрович", "0990000001"));
+            employeeManager.AddEmployee(new Employee(2, "Зима Марія Віталіївна", "0990000002"));
+            employeeManager.AddEmployee(new Employee(3, "Мельниченко Владислав Ігорович", "0990000003"));
+            employeeManager.AddEmployee(new Employee(4, "Озерська Анна Костянтинівна", "0990000004"));
+            employeeManager.AddEmployee(new Employee(5, "Яворівський Максим Юрійович", "0990000005"));
+        }
+
+        // таблиця
         private void RefreshGrid(IEnumerable<Order> data = null)
         {
             foreach (var order in company.Orders)
@@ -103,7 +114,8 @@ namespace CleaningService
                 if (row.DataBoundItem is not Order order) continue;
 
                 // Фахівець
-                row.Cells["Column8"].Value = order.Employee ?? "Не призначено";
+                row.Cells["Column8"].Value =
+                    order.Employee != null ? order.Employee.EmployeeName : "Не призначено";
 
                 // Послуги
                 if (order.Services?.Count > 0)
@@ -135,6 +147,18 @@ namespace CleaningService
             if (!File.Exists(path)) return;
 
             company.ReadFromFile(path);
+            foreach (var order in company.Orders)
+            {
+                var emp = employeeManager.Employees
+                    .FirstOrDefault(e => e.EmployeeName == order.Employee?.EmployeeName);
+
+                if (emp != null)
+                {
+                    order.Employee = emp;
+                    emp.Orders.Add(order);
+                }
+            }
+
             RefreshGrid();
         }
 
@@ -184,31 +208,31 @@ namespace CleaningService
 
             MessageBox.Show("Дані збережено!", "Успіх");
         }
-
+        //створення нового замовлення
         private void newPolicyToolStripButton_Click_1(object sender, EventArgs e)
         {
             while (true)
             {
-                using NewClientForm form = new NewClientForm();
+                using NewClientForm form = new NewClientForm(employeeManager);
                 form.Owner = this;
 
                 if (form.ShowDialog() != DialogResult.OK)
                     break;
             }
         }
-
+        //редагування вибраного замовлення
         private void editPolicyToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
 
             var order = (Order)dataGridView1.CurrentRow.DataBoundItem;
 
-            using NewClientForm form = new NewClientForm(order);
+            using NewClientForm form = new NewClientForm(order, employeeManager);
 
             if (form.ShowDialog() == DialogResult.OK)
                 RefreshGrid();
         }
-
+        //видалення вибраного замовлення
         private void deletePolicyToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
@@ -221,11 +245,13 @@ namespace CleaningService
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
+            if (order.Employee != null)
+                order.Employee.Orders.Remove(order);
 
             company.RemoveOrder(order);
             RefreshGrid();
         }
-
+        //статистика по замовленням
         private void statisticsMenuItem_Click(object sender, EventArgs e)
         {
             int total = company.Orders.Count;
@@ -233,13 +259,13 @@ namespace CleaningService
 
             MessageBox.Show($"Всього: {total}\nОплачено: {paid}", "Статистика");
         }
-
+        //загальний дохід
         private void incomeReportMenuItem_Click(object sender, EventArgs e)
         {
             double income = company.Orders.Sum(o => o.Price);
             MessageBox.Show($"Дохід: {income:F2} грн", "Звіт");
         }
-
+        //зміна статусу оплати
         private void changeStatusToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null)
@@ -257,7 +283,7 @@ namespace CleaningService
                 dataGridView1.Refresh();
             }
         }
-
+        // підсвічування неоплачених замовлень
         private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             FillExtraColumns();
@@ -274,6 +300,7 @@ namespace CleaningService
                 }
             }
         }
+        // метод для додавання замовлення з форми, який повертає false, якщо не вдалося додати через зайнятість слоту або перевищення ліміту замовлень на день
         public bool AddOrderFromForm(Order order)
         {
             // перевірка зайнятості слоту
@@ -285,7 +312,7 @@ namespace CleaningService
             if (isBusy)
             {
                 MessageBox.Show("У цього фахівця цей час вже зайнятий!", "Помилка");
-                return false; // 🔥 ВАЖЛИВО
+                return false;
             }
 
             // перевірка 3 замовлення на день
@@ -304,6 +331,8 @@ namespace CleaningService
 
             return true;
         }
+
+        // пошук за ПІБ клієнта
         private void SearchMenuItem_Click(object sender, EventArgs e)
         {
             string name = Microsoft.VisualBasic.Interaction.InputBox(
@@ -324,7 +353,7 @@ namespace CleaningService
 
             RefreshGrid(result);
         }
-
+        // пошук в реальному часі
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
             string search = searchBox.Text.Trim().ToLower();
@@ -343,7 +372,7 @@ namespace CleaningService
 
                     // Фахівець
                     (o.Employee != null &&
-                     o.Employee.ToLower().Contains(search)) ||
+                     o.Employee.EmployeeName.ToLower().Contains(search)) ||
 
                     // Статус
                     (o.PaymentStatus != null &&
@@ -367,11 +396,21 @@ namespace CleaningService
         private void ClientMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var result = MessageBox.Show(
-              "Зберегти дані перед виходом?",
-              "Вихід",
-              MessageBoxButtons.YesNoCancel,
-              MessageBoxIcon.Question);
-            Application.Exit();
+                "Зберегти дані перед виходом?",
+                "Вихід",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            if (result == DialogResult.Yes)
+            {
+                company.WriteToFile(path);
+            }
         }
     }
 }
