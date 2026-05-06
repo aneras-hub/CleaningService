@@ -39,38 +39,38 @@ namespace CleaningService
                 return;
             }
 
-            if (textBox1.Text == "admin" || textBox1.Text == "фвьшт" && textBox2.Text == "1234")
-            {
-                // Успішний вхід
-                button1.BackColor = Color.DarkSeaGreen;
-                this.Text = "Вхід";
+            /*  if (textBox1.Text == "admin" || textBox1.Text == "фвьшт" && textBox2.Text == "1234")
+              {
+                  // Успішний вхід
+                  button1.BackColor = Color.DarkSeaGreen;
+                  this.Text = "Вхід";*/
 
-               ClientMainForm form = new ClientMainForm();
-                form.Show();
+            ClientMainForm form = new ClientMainForm();
+                  form.Show();
 
-                this.Hide(); // Ховаємо вікно тільки якщо дані вірні
-            }
-            else
-            {
-                // Помилка
-                attempts++; // Збільшуємо кількість спроб
-                int remaining = 3 - attempts;
+                  this.Hide(); // Ховаємо вікно тільки якщо дані вірні
+              /*}
+              else
+              {
+                  // Помилка
+                  attempts++; // Збільшуємо кількість спроб
+                  int remaining = 3 - attempts;
 
-                if (attempts >= 3)
-                {
-                    MessageBox.Show("Ви 3 рази ввели невірний пароль! Кнопка входу заблокована.");
-                    button1.Enabled = false; // Блокуємо кнопку
-                    Application.Exit();
-                }
-                else
-                {
-                    MessageBox.Show($"Невірний логін або пароль! Залишилося спроб: {remaining}");
+                  if (attempts >= 3)
+                  {
+                      MessageBox.Show("Ви 3 рази ввели невірний пароль! Кнопка входу заблокована.");
+                      button1.Enabled = false; // Блокуємо кнопку
+                      Application.Exit();
+                  }
+                  else
+                  {
+                      MessageBox.Show($"Невірний логін або пароль! Залишилося спроб: {remaining}");
 
-                    // Очищаємо поля для нового введення (опціонально)
-                    textBox2.Clear();
-                    textBox2.Focus();
-                }
-            }
+                      // Очищаємо поля для нового введення (опціонально)
+                      textBox2.Clear();
+                      textBox2.Focus();
+                  }
+              }*/
         }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {

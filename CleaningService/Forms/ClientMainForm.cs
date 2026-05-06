@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleaningService.Forms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -35,6 +36,10 @@ namespace CleaningService
             dataGridView1.Columns["Column5"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["Column6"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // прибрати першу колонку
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             LoadDataOnStartup();
         }
 
@@ -383,11 +388,6 @@ namespace CleaningService
             RefreshGrid(filtered);
         }
 
-        private void ClientMainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void exitMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -411,6 +411,13 @@ namespace CleaningService
             {
                 company.WriteToFile(path);
             }
+        }
+
+        private void reportsMenuItem_Click(object sender, EventArgs e)
+        {
+            Statistics form = new Statistics();
+            this.Hide();
+            form.ShowDialog();
         }
     }
 }

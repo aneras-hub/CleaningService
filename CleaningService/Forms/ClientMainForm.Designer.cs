@@ -44,6 +44,10 @@
             filterExpiredMenuItem = new ToolStripMenuItem();
             очікуєОплатиToolStripMenuItem = new ToolStripMenuItem();
             filterCancelledMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            редагуватиФахівцяToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripMenuItem();
             reportsMenuItem = new ToolStripMenuItem();
             statisticsMenuItem = new ToolStripMenuItem();
             incomeReportMenuItem = new ToolStripMenuItem();
@@ -75,7 +79,7 @@
             menuStrip.BackColor = Color.Ivory;
             menuStrip.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, reportsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, toolStripMenuItem1, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1336, 26);
@@ -182,6 +186,35 @@
             filterCancelledMenuItem.Size = new Size(254, 26);
             filterCancelledMenuItem.Text = "Неоплачено";
             // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, редагуватиФахівцяToolStripMenuItem, toolStripMenuItem3 });
+            toolStripMenuItem1.ForeColor = Color.FromArgb(26, 26, 46);
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(212, 22);
+            toolStripMenuItem1.Text = "Управління фахівцями";
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.ShortcutKeys = Keys.Control | Keys.N;
+            toolStripMenuItem2.Size = new Size(301, 26);
+            toolStripMenuItem2.Text = "Новий фахівець";
+            // 
+            // редагуватиФахівцяToolStripMenuItem
+            // 
+            редагуватиФахівцяToolStripMenuItem.Name = "редагуватиФахівцяToolStripMenuItem";
+            редагуватиФахівцяToolStripMenuItem.Size = new Size(301, 26);
+            редагуватиФахівцяToolStripMenuItem.Text = "Редагувати фахівця";
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.ShortcutKeys = Keys.Control | Keys.F;
+            toolStripMenuItem3.Size = new Size(301, 26);
+            toolStripMenuItem3.Text = "Видалити фахівця";
+            // 
             // reportsMenuItem
             // 
             reportsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { statisticsMenuItem, incomeReportMenuItem });
@@ -189,6 +222,7 @@
             reportsMenuItem.Name = "reportsMenuItem";
             reportsMenuItem.Size = new Size(178, 22);
             reportsMenuItem.Text = "Аналіз та звітність";
+            reportsMenuItem.Click += reportsMenuItem_Click;
             // 
             // statisticsMenuItem
             // 
@@ -389,7 +423,6 @@
             Name = "ClientMainForm";
             Text = "MainForm";
             FormClosing += ClientMainForm_FormClosing;
-            Load += ClientMainForm_Load;
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             toolStrip.ResumeLayout(false);
@@ -437,5 +470,9 @@
         private DataGridViewTextBoxColumn Column6;
         private ToolStripMenuItem очікуєОплатиToolStripMenuItem;
         private TextBox searchBox;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem редагуватиФахівцяToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem3;
     }
 }
