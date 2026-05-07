@@ -9,6 +9,7 @@ namespace CleaningService
         public int Id { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeeNumber { get; set; }
+        public DateTime BirthDate { get; set; }
 
         // список замовлень
         public List<Order> Orders { get; set; } = new List<Order>();
@@ -45,6 +46,24 @@ namespace CleaningService
         public override string ToString()
         {
             return $"{EmployeeName} | Замовлень: {GetOrdersCount()} | Зарплата: {GetSalary()} грн";
+        }
+        // автоматичний підрахунок замовлень
+        public int CompletedOrdersPerMonth
+        {
+            get
+            {
+                return Orders.Count(o =>
+                    o.OrderDate.Month == DateTime.Now.Month &&
+                    o.OrderDate.Year == DateTime.Now.Year);
+            }
+        }
+        // автоматичний підрахунок зарплати
+        public double Salary
+        {
+            get
+            {
+                return Orders.Sum(o => o.Price * 0.4);
+            }
         }
     }
 }

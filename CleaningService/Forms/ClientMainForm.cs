@@ -415,7 +415,7 @@ namespace CleaningService
 
         private void reportsMenuItem_Click(object sender, EventArgs e)
         {
-            Statistics form = new Statistics();
+            Statistics form = new Statistics(employeeManager);
             this.Hide();
             form.ShowDialog();
         }
@@ -425,11 +425,13 @@ namespace CleaningService
 
         }
 
-        private void OrderEmployeeMenuItem_Click(object sender, EventArgs e)
-        {
-            EmployeeMainForm form = new EmployeeMainForm();
+        private void OrderEmployeeMenuItem_Click(object sender, EventArgs e) {
+            // Замініть: EmployeeMainForm form = new EmployeeMainForm();
+            // На:
+            EmployeeMainForm form = new EmployeeMainForm(employeeManager);
             this.Hide();
             form.ShowDialog();
+            this.Show(); // Додайте це, щоб головна форма знову з'являлася після закриття
         }
     }
 }

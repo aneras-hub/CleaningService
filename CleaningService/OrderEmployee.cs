@@ -8,14 +8,14 @@ namespace CleaningService
     {
         public List<Employee> Employees { get; set; } = new List<Employee>();
 
-        // ➕ ДОДАТИ
+        //ДОДАТИ
         public void AddEmployee(Employee emp)
         {
             if (emp != null)
                 Employees.Add(emp);
         }
 
-        // ✏️ РЕДАГУВАТИ
+        //РЕДАГУВАТИ
         public void EditEmployee(int id, string newName, string newPhone)
         {
             var emp = Employees.FirstOrDefault(e => e.Id == id);
@@ -35,9 +35,12 @@ namespace CleaningService
         }
 
         // 🔍 ЗНАЙТИ
-        public Employee FindById(int id)
+        public List<Employee> Search(string query)
         {
-            return Employees.FirstOrDefault(e => e.Id == id);
+            return Employees.Where(e =>
+                    e.EmployeeName.Contains(query, StringComparison.OrdinalIgnoreCase) || // замінено на query
+                    e.EmployeeNumber.Contains(query) // замінено на query
+                ).ToList();
         }
 
         // 📊 ТОП працівники

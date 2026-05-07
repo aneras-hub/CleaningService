@@ -12,11 +12,14 @@ using System.Windows.Forms.DataVisualization.Charting;
 namespace CleaningService.Forms
 {
     // якщо замовлення 10 , то оплата має бути вже 9
+
     public partial class Statistics : Form
     {
-        public Statistics()
+        private OrderEmployee employeeManager;
+        public Statistics(OrderEmployee manager)
         {
             InitializeComponent();
+            this.employeeManager = manager;
             this.BackColor = Color.Honeydew;
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -79,16 +82,14 @@ namespace CleaningService.Forms
 
         private void OrderEmployeeMenuItem_Click(object sender, EventArgs e)
         {
-            EmployeeMainForm form = new EmployeeMainForm();
+            EmployeeMainForm form = new EmployeeMainForm(employeeManager);
             this.Hide();
             form.ShowDialog();
         }
 
         private void OrderAdministrationMenuItem_Click(object sender, EventArgs e)
         {
-            ClientMainForm form = new ClientMainForm();
-            this.Hide();
-            form.ShowDialog();
+            this.Close();
         }
 
         private void Statistics_Load(object sender, EventArgs e)

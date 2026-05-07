@@ -59,6 +59,7 @@
             statisticsMenuItem = new ToolStripMenuItem();
             incomeReportMenuItem = new ToolStripMenuItem();
             dataGridView1 = new DataGridView();
+            BirthDate = new DataGridViewTextBoxColumn();
             EmployeeName = new DataGridViewTextBoxColumn();
             EmployeeNumber = new DataGridViewTextBoxColumn();
             EmployeeSalary = new DataGridViewTextBoxColumn();
@@ -77,6 +78,7 @@
             newPolicyToolStripButton.Size = new Size(87, 24);
             newPolicyToolStripButton.Text = "Додати";
             newPolicyToolStripButton.ToolTipText = "Додати новий поліс (Ctrl+N)";
+            newPolicyToolStripButton.Click += newPolicyToolStripButton_Click;
             // 
             // editPolicyToolStripButton
             // 
@@ -87,6 +89,7 @@
             editPolicyToolStripButton.Size = new Size(118, 24);
             editPolicyToolStripButton.Text = "Редагувати";
             editPolicyToolStripButton.ToolTipText = "Редагувати вибраний поліс";
+            editPolicyToolStripButton.Click += editPolicyToolStripButton_Click;
             // 
             // saveToolStripButton
             // 
@@ -117,6 +120,7 @@
             deletePolicyToolStripButton.Size = new Size(103, 24);
             deletePolicyToolStripButton.Text = "Видалити";
             deletePolicyToolStripButton.ToolTipText = "Видалити вибраний поліс";
+            deletePolicyToolStripButton.Click += deletePolicyToolStripButton_Click;
             // 
             // searchBox
             // 
@@ -129,6 +133,7 @@
             searchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
             searchBox.Size = new Size(324, 28);
             searchBox.TabIndex = 13;
+            searchBox.TextChanged += searchBox_TextChanged_1;
             // 
             // OrderEmployeeMenuItem
             // 
@@ -138,7 +143,6 @@
             OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
             OrderEmployeeMenuItem.Size = new Size(212, 22);
             OrderEmployeeMenuItem.Text = "Управління фахівцями";
-            OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -169,7 +173,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { newPolicyToolStripButton, deletePolicyToolStripButton, editPolicyToolStripButton, saveToolStripButton, loadToolStripButton });
             toolStrip.Location = new Point(0, 26);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(802, 27);
+            toolStrip.Size = new Size(1216, 27);
             toolStrip.TabIndex = 12;
             toolStrip.Text = "toolStrip1";
             // 
@@ -181,7 +185,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(802, 26);
+            menuStrip.Size = new Size(1216, 26);
             menuStrip.TabIndex = 11;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -314,12 +318,19 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = Color.SeaShell;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { EmployeeName, EmployeeNumber, EmployeeSalary, CompletedOrders });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { BirthDate, EmployeeName, EmployeeNumber, EmployeeSalary, CompletedOrders });
             dataGridView1.Location = new Point(0, 90);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(802, 455);
+            dataGridView1.Size = new Size(1047, 455);
             dataGridView1.TabIndex = 10;
+            // 
+            // BirthDate
+            // 
+            BirthDate.HeaderText = "Дата народження";
+            BirthDate.MinimumWidth = 6;
+            BirthDate.Name = "BirthDate";
+            BirthDate.Width = 125;
             // 
             // EmployeeName
             // 
@@ -358,7 +369,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(802, 547);
+            ClientSize = new Size(1216, 547);
             Controls.Add(searchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
@@ -406,6 +417,7 @@
         private ToolStripMenuItem statisticsMenuItem;
         private ToolStripMenuItem incomeReportMenuItem;
         private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn BirthDate;
         private DataGridViewTextBoxColumn EmployeeName;
         private DataGridViewTextBoxColumn EmployeeNumber;
         private DataGridViewTextBoxColumn EmployeeSalary;
