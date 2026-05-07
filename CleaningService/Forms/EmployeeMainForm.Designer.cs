@@ -31,12 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeMainForm));
             newPolicyToolStripButton = new ToolStripButton();
             editPolicyToolStripButton = new ToolStripButton();
-            changeStatusToolStripButton = new ToolStripButton();
             saveToolStripButton = new ToolStripButton();
             loadToolStripButton = new ToolStripButton();
             deletePolicyToolStripButton = new ToolStripButton();
             searchBox = new TextBox();
-            toolStripMenuItem1 = new ToolStripMenuItem();
+            OrderEmployeeMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             редагуватиФахівцяToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
@@ -46,7 +45,7 @@
             saveMenuItem = new ToolStripMenuItem();
             loadMenuItem = new ToolStripMenuItem();
             exitMenuItem = new ToolStripMenuItem();
-            policiesMenuItem = new ToolStripMenuItem();
+            OrderAdministrationMenuItem = new ToolStripMenuItem();
             newPolicyMenuItem = new ToolStripMenuItem();
             searchMenuItem = new ToolStripMenuItem();
             changeStatusMenuItem = new ToolStripMenuItem();
@@ -88,16 +87,6 @@
             editPolicyToolStripButton.Size = new Size(118, 24);
             editPolicyToolStripButton.Text = "Редагувати";
             editPolicyToolStripButton.ToolTipText = "Редагувати вибраний поліс";
-            // 
-            // changeStatusToolStripButton
-            // 
-            changeStatusToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
-            changeStatusToolStripButton.Image = (Image)resources.GetObject("changeStatusToolStripButton.Image");
-            changeStatusToolStripButton.ImageTransparentColor = Color.Magenta;
-            changeStatusToolStripButton.Name = "changeStatusToolStripButton";
-            changeStatusToolStripButton.Size = new Size(184, 24);
-            changeStatusToolStripButton.Text = "Змінити стан оплати";
-            changeStatusToolStripButton.ToolTipText = "Змінити статус полісу (Ctrl+T)";
             // 
             // saveToolStripButton
             // 
@@ -141,14 +130,15 @@
             searchBox.Size = new Size(324, 28);
             searchBox.TabIndex = 13;
             // 
-            // toolStripMenuItem1
+            // OrderEmployeeMenuItem
             // 
-            toolStripMenuItem1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, редагуватиФахівцяToolStripMenuItem, toolStripMenuItem3 });
-            toolStripMenuItem1.ForeColor = Color.FromArgb(26, 26, 46);
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(212, 22);
-            toolStripMenuItem1.Text = "Управління фахівцями";
+            OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, редагуватиФахівцяToolStripMenuItem, toolStripMenuItem3 });
+            OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
+            OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
+            OrderEmployeeMenuItem.Size = new Size(212, 22);
+            OrderEmployeeMenuItem.Text = "Управління фахівцями";
+            OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -176,10 +166,10 @@
             toolStrip.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             toolStrip.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip.ImageScalingSize = new Size(20, 20);
-            toolStrip.Items.AddRange(new ToolStripItem[] { newPolicyToolStripButton, deletePolicyToolStripButton, editPolicyToolStripButton, changeStatusToolStripButton, saveToolStripButton, loadToolStripButton });
+            toolStrip.Items.AddRange(new ToolStripItem[] { newPolicyToolStripButton, deletePolicyToolStripButton, editPolicyToolStripButton, saveToolStripButton, loadToolStripButton });
             toolStrip.Location = new Point(0, 26);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(722, 27);
+            toolStrip.Size = new Size(802, 27);
             toolStrip.TabIndex = 12;
             toolStrip.Text = "toolStrip1";
             // 
@@ -188,10 +178,10 @@
             menuStrip.BackColor = Color.Ivory;
             menuStrip.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, toolStripMenuItem1, reportsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(722, 26);
+            menuStrip.Size = new Size(802, 26);
             menuStrip.TabIndex = 11;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -226,14 +216,15 @@
             exitMenuItem.Size = new Size(291, 26);
             exitMenuItem.Text = "Вихід";
             // 
-            // policiesMenuItem
+            // OrderAdministrationMenuItem
             // 
-            policiesMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
-            policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
-            policiesMenuItem.Name = "policiesMenuItem";
-            policiesMenuItem.Size = new Size(244, 22);
-            policiesMenuItem.Text = "Управління замовленнями";
+            OrderAdministrationMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            OrderAdministrationMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
+            OrderAdministrationMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
+            OrderAdministrationMenuItem.Name = "OrderAdministrationMenuItem";
+            OrderAdministrationMenuItem.Size = new Size(244, 22);
+            OrderAdministrationMenuItem.Text = "Управління замовленнями";
+            OrderAdministrationMenuItem.Click += OrderAdministrationMenuItem_Click;
             // 
             // newPolicyMenuItem
             // 
@@ -301,6 +292,7 @@
             reportsMenuItem.Name = "reportsMenuItem";
             reportsMenuItem.Size = new Size(178, 22);
             reportsMenuItem.Text = "Аналіз та звітність";
+            reportsMenuItem.Click += reportsMenuItem_Click;
             // 
             // statisticsMenuItem
             // 
@@ -326,7 +318,7 @@
             dataGridView1.Location = new Point(0, 90);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(722, 455);
+            dataGridView1.Size = new Size(802, 455);
             dataGridView1.TabIndex = 10;
             // 
             // EmployeeName
@@ -335,7 +327,7 @@
             EmployeeName.HeaderText = "ПІБ";
             EmployeeName.MinimumWidth = 6;
             EmployeeName.Name = "EmployeeName";
-            EmployeeName.Width = 210;
+            EmployeeName.Width = 230;
             // 
             // EmployeeNumber
             // 
@@ -343,7 +335,7 @@
             EmployeeNumber.HeaderText = "Номер телефону";
             EmployeeNumber.MinimumWidth = 6;
             EmployeeNumber.Name = "EmployeeNumber";
-            EmployeeNumber.Width = 155;
+            EmployeeNumber.Width = 160;
             // 
             // EmployeeSalary
             // 
@@ -351,7 +343,7 @@
             EmployeeSalary.HeaderText = "Зарплата";
             EmployeeSalary.MinimumWidth = 6;
             EmployeeSalary.Name = "EmployeeSalary";
-            EmployeeSalary.Width = 125;
+            EmployeeSalary.Width = 140;
             // 
             // CompletedOrders
             // 
@@ -359,14 +351,14 @@
             CompletedOrders.HeaderText = "Кількість виконаних замовлень";
             CompletedOrders.MinimumWidth = 6;
             CompletedOrders.Name = "CompletedOrders";
-            CompletedOrders.Width = 180;
+            CompletedOrders.Width = 220;
             // 
             // EmployeeMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(722, 547);
+            ClientSize = new Size(802, 547);
             Controls.Add(searchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
@@ -386,12 +378,11 @@
 
         private ToolStripButton newPolicyToolStripButton;
         private ToolStripButton editPolicyToolStripButton;
-        private ToolStripButton changeStatusToolStripButton;
         private ToolStripButton saveToolStripButton;
         private ToolStripButton loadToolStripButton;
         private ToolStripButton deletePolicyToolStripButton;
         private TextBox searchBox;
-        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem OrderEmployeeMenuItem;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem редагуватиФахівцяToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem3;
@@ -401,7 +392,7 @@
         private ToolStripMenuItem saveMenuItem;
         private ToolStripMenuItem loadMenuItem;
         private ToolStripMenuItem exitMenuItem;
-        private ToolStripMenuItem policiesMenuItem;
+        private ToolStripMenuItem OrderAdministrationMenuItem;
         private ToolStripMenuItem newPolicyMenuItem;
         private ToolStripMenuItem searchMenuItem;
         private ToolStripMenuItem changeStatusMenuItem;

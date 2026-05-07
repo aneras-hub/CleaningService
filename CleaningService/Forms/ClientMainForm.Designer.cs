@@ -44,7 +44,7 @@
             filterExpiredMenuItem = new ToolStripMenuItem();
             очікуєОплатиToolStripMenuItem = new ToolStripMenuItem();
             filterCancelledMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
+            OrderEmployeeMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             редагуватиФахівцяToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
@@ -79,7 +79,7 @@
             menuStrip.BackColor = Color.Ivory;
             menuStrip.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, toolStripMenuItem1, reportsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1336, 26);
@@ -92,7 +92,7 @@
             fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveMenuItem, loadMenuItem, exitMenuItem });
             fileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(66, 22);
+            fileMenuItem.Size = new Size(66, 24);
             fileMenuItem.Text = "Файл";
             // 
             // saveMenuItem
@@ -124,7 +124,7 @@
             policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
             policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             policiesMenuItem.Name = "policiesMenuItem";
-            policiesMenuItem.Size = new Size(244, 22);
+            policiesMenuItem.Size = new Size(244, 24);
             policiesMenuItem.Text = "Управління замовленнями";
             // 
             // newPolicyMenuItem
@@ -186,14 +186,15 @@
             filterCancelledMenuItem.Size = new Size(254, 26);
             filterCancelledMenuItem.Text = "Неоплачено";
             // 
-            // toolStripMenuItem1
+            // OrderEmployeeMenuItem
             // 
-            toolStripMenuItem1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, редагуватиФахівцяToolStripMenuItem, toolStripMenuItem3 });
-            toolStripMenuItem1.ForeColor = Color.FromArgb(26, 26, 46);
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(212, 22);
-            toolStripMenuItem1.Text = "Управління фахівцями";
+            OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, редагуватиФахівцяToolStripMenuItem, toolStripMenuItem3 });
+            OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
+            OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
+            OrderEmployeeMenuItem.Size = new Size(212, 24);
+            OrderEmployeeMenuItem.Text = "Управління фахівцями";
+            OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -220,7 +221,7 @@
             reportsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { statisticsMenuItem, incomeReportMenuItem });
             reportsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             reportsMenuItem.Name = "reportsMenuItem";
-            reportsMenuItem.Size = new Size(178, 22);
+            reportsMenuItem.Size = new Size(178, 24);
             reportsMenuItem.Text = "Аналіз та звітність";
             reportsMenuItem.Click += reportsMenuItem_Click;
             // 
@@ -471,7 +472,7 @@
         private DataGridViewTextBoxColumn Column6;
         private ToolStripMenuItem очікуєОплатиToolStripMenuItem;
         private TextBox searchBox;
-        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem OrderEmployeeMenuItem;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem редагуватиФахівцяToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem3;

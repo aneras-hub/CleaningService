@@ -76,5 +76,24 @@ namespace CleaningService.Forms
         {
 
         }
+
+        private void OrderEmployeeMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeMainForm form = new EmployeeMainForm();
+            this.Hide();
+            form.ShowDialog();
+        }
+
+        private void OrderAdministrationMenuItem_Click(object sender, EventArgs e)
+        {
+            ClientMainForm form = new ClientMainForm();
+            this.Hide();
+            form.ShowDialog();
+        }
+
+        private void Statistics_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

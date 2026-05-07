@@ -424,5 +424,12 @@ namespace CleaningService
         {
 
         }
+
+        private void OrderEmployeeMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeMainForm form = new EmployeeMainForm();
+            this.Hide();
+            form.ShowDialog();
+        }
     }
 }

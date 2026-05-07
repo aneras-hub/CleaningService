@@ -28,76 +28,76 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Statistics));
             tabPage2 = new TabPage();
-            label21 = new Label();
-            label20 = new Label();
-            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            label19 = new Label();
-            label18 = new Label();
+            panel3 = new Panel();
             label17 = new Label();
+            label21 = new Label();
             comboBox1 = new ComboBox();
+            label20 = new Label();
+            label18 = new Label();
+            label19 = new Label();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            panel2 = new Panel();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label16 = new Label();
+            label15 = new Label();
+            panel1 = new Panel();
+            label2 = new Label();
+            label1 = new Label();
+            label3 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
             label22 = new Label();
             chart5 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            label16 = new Label();
-            label15 = new Label();
-            label14 = new Label();
-            label13 = new Label();
-            label12 = new Label();
-            label11 = new Label();
-            label10 = new Label();
             label9 = new Label();
             label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
             chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
             menuStrip = new MenuStrip();
             fileMenuItem = new ToolStripMenuItem();
             saveMenuItem = new ToolStripMenuItem();
             loadMenuItem = new ToolStripMenuItem();
             exitMenuItem = new ToolStripMenuItem();
-            policiesMenuItem = new ToolStripMenuItem();
+            OrderAdministrationMenuItem = new ToolStripMenuItem();
+            OrderEmployeeMenuItem = new ToolStripMenuItem();
             newPolicyMenuItem = new ToolStripMenuItem();
+            редагуватиФахівцяToolStripMenuItem = new ToolStripMenuItem();
             searchMenuItem = new ToolStripMenuItem();
             reportsMenuItem = new ToolStripMenuItem();
             statisticsMenuItem = new ToolStripMenuItem();
             incomeReportMenuItem = new ToolStripMenuItem();
-            редагуватиФахівцяToolStripMenuItem = new ToolStripMenuItem();
-            управлінняЗамовленнямиToolStripMenuItem = new ToolStripMenuItem();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
             tabPage2.SuspendLayout();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
             menuStrip.SuspendLayout();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // tabPage2
@@ -112,55 +112,19 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Фахівці";
             // 
-            // label21
+            // panel3
             // 
-            label21.AutoSize = true;
-            label21.Location = new Point(238, 104);
-            label21.Name = "label21";
-            label21.Size = new Size(58, 20);
-            label21.TabIndex = 6;
-            label21.Text = "label21";
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Location = new Point(238, 63);
-            label20.Name = "label20";
-            label20.Size = new Size(58, 20);
-            label20.TabIndex = 5;
-            label20.Text = "label20";
-            // 
-            // chart1
-            // 
-            chartArea11.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea11);
-            chart1.Location = new Point(498, 25);
-            chart1.Name = "chart1";
-            chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series11.ChartArea = "ChartArea1";
-            series11.Name = "Series1";
-            chart1.Series.Add(series11);
-            chart1.Size = new Size(447, 214);
-            chart1.TabIndex = 4;
-            chart1.Text = "chart1";
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Location = new Point(14, 104);
-            label19.Name = "label19";
-            label19.Size = new Size(73, 20);
-            label19.TabIndex = 3;
-            label19.Text = "Зарплата";
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(14, 63);
-            label18.Name = "label18";
-            label18.Size = new Size(165, 20);
-            label18.TabIndex = 2;
-            label18.Text = "Виконаних замовлень";
+            panel3.BackColor = Color.AliceBlue;
+            panel3.Controls.Add(label17);
+            panel3.Controls.Add(label21);
+            panel3.Controls.Add(comboBox1);
+            panel3.Controls.Add(label20);
+            panel3.Controls.Add(label18);
+            panel3.Controls.Add(label19);
+            panel3.Location = new Point(29, 59);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(423, 151);
+            panel3.TabIndex = 7;
             // 
             // label17
             // 
@@ -171,6 +135,15 @@
             label17.TabIndex = 1;
             label17.Text = "Оберіть працівника";
             // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(238, 104);
+            label21.Name = "label21";
+            label21.Size = new Size(58, 20);
+            label21.TabIndex = 6;
+            label21.Text = "label21";
+            // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
@@ -178,6 +151,47 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(229, 28);
             comboBox1.TabIndex = 0;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(238, 63);
+            label20.Name = "label20";
+            label20.Size = new Size(58, 20);
+            label20.TabIndex = 5;
+            label20.Text = "label20";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(14, 63);
+            label18.Name = "label18";
+            label18.Size = new Size(165, 20);
+            label18.TabIndex = 2;
+            label18.Text = "Виконаних замовлень";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(14, 104);
+            label19.Name = "label19";
+            label19.Size = new Size(73, 20);
+            label19.TabIndex = 3;
+            label19.Text = "Зарплата";
+            // 
+            // chart1
+            // 
+            chartArea6.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea6);
+            chart1.Location = new Point(498, 25);
+            chart1.Name = "chart1";
+            chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series6.ChartArea = "ChartArea1";
+            series6.Name = "Series1";
+            chart1.Series.Add(series6);
+            chart1.Size = new Size(447, 214);
+            chart1.TabIndex = 4;
+            chart1.Text = "chart1";
             // 
             // tabControl1
             // 
@@ -210,61 +224,76 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Замовлення";
             // 
-            // label22
+            // panel2
             // 
-            label22.AutoSize = true;
-            label22.Location = new Point(598, 12);
-            label22.Name = "label22";
-            label22.Size = new Size(270, 20);
-            label22.TabIndex = 20;
-            label22.Text = "ГРАФІКИ ПО ЗАГАЛЬНІЙ СТАТИСТИці";
-            label22.Click += label22_Click;
+            panel2.BackColor = Color.AliceBlue;
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label13);
+            panel2.Controls.Add(label14);
+            panel2.Controls.Add(label16);
+            panel2.Controls.Add(label15);
+            panel2.Location = new Point(33, 210);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(333, 138);
+            panel2.TabIndex = 22;
             // 
-            // chart5
+            // label4
             // 
-            chart5.BackColor = Color.AliceBlue;
-            chartArea12.Name = "ChartArea1";
-            chart5.ChartAreas.Add(chartArea12);
-            chart5.Location = new Point(740, 232);
-            chart5.Name = "chart5";
-            chart5.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series12.ChartArea = "ChartArea1";
-            series12.Name = "Series1";
-            chart5.Series.Add(series12);
-            chart5.Size = new Size(230, 166);
-            chart5.TabIndex = 19;
-            chart5.Text = "chart5";
-            chart5.Click += chart5_Click;
+            label4.AutoSize = true;
+            label4.Location = new Point(20, 10);
+            label4.Name = "label4";
+            label4.Size = new Size(74, 20);
+            label4.TabIndex = 3;
+            label4.Text = "Оплачені";
+            label4.Click += label4_Click_2;
             // 
-            // chart4
+            // label5
             // 
-            chart4.BackColor = Color.AliceBlue;
-            chartArea13.Name = "ChartArea1";
-            chart4.ChartAreas.Add(chartArea13);
-            chart4.Location = new Point(489, 232);
-            chart4.Name = "chart4";
-            chart4.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series13.ChartArea = "ChartArea1";
-            series13.Name = "Series1";
-            chart4.Series.Add(series13);
-            chart4.Size = new Size(230, 166);
-            chart4.TabIndex = 18;
-            chart4.Text = "chart4";
+            label5.AutoSize = true;
+            label5.Location = new Point(20, 43);
+            label5.Name = "label5";
+            label5.Size = new Size(91, 20);
+            label5.TabIndex = 5;
+            label5.Text = "Неоплачені";
             // 
-            // chart3
+            // label6
             // 
-            chart3.BackColor = Color.AliceBlue;
-            chartArea14.Name = "ChartArea1";
-            chart3.ChartAreas.Add(chartArea14);
-            chart3.Location = new Point(740, 41);
-            chart3.Name = "chart3";
-            chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series14.ChartArea = "ChartArea1";
-            series14.Name = "Series1";
-            chart3.Series.Add(series14);
-            chart3.Size = new Size(230, 166);
-            chart3.TabIndex = 17;
-            chart3.Text = "chart3";
+            label6.AutoSize = true;
+            label6.Location = new Point(20, 77);
+            label6.Name = "label6";
+            label6.Size = new Size(138, 20);
+            label6.TabIndex = 6;
+            label6.Text = "Частково сплачені";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(20, 109);
+            label7.Name = "label7";
+            label7.Size = new Size(176, 20);
+            label7.TabIndex = 7;
+            label7.Text = "З очікуванною оплатою";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(233, 10);
+            label13.Name = "label13";
+            label13.Size = new Size(58, 20);
+            label13.TabIndex = 13;
+            label13.Text = "label13";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(233, 47);
+            label14.Name = "label14";
+            label14.Size = new Size(58, 20);
+            label14.TabIndex = 14;
+            label14.Text = "label14";
             // 
             // label16
             // 
@@ -284,131 +313,19 @@
             label15.TabIndex = 15;
             label15.Text = "label15";
             // 
-            // label14
+            // panel1
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(233, 47);
-            label14.Name = "label14";
-            label14.Size = new Size(58, 20);
-            label14.TabIndex = 14;
-            label14.Text = "label14";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(233, 10);
-            label13.Name = "label13";
-            label13.Size = new Size(58, 20);
-            label13.TabIndex = 13;
-            label13.Text = "label13";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(233, 91);
-            label12.Name = "label12";
-            label12.Size = new Size(58, 20);
-            label12.TabIndex = 12;
-            label12.Text = "label12";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(233, 57);
-            label11.Name = "label11";
-            label11.Size = new Size(58, 20);
-            label11.TabIndex = 11;
-            label11.Text = "label11";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(233, 19);
-            label10.Name = "label10";
-            label10.Size = new Size(58, 20);
-            label10.TabIndex = 10;
-            label10.Text = "label10";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(53, 178);
-            label9.Name = "label9";
-            label9.Size = new Size(294, 20);
-            label9.TabIndex = 9;
-            label9.Text = "СТАТИСТИКА ПО ОПЛАТАХ ЗАМОВЛЕНЬ";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(105, 12);
-            label8.Name = "label8";
-            label8.Size = new Size(181, 20);
-            label8.TabIndex = 8;
-            label8.Text = "ЗАГАЛЬНА СТАТИСТИКА";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(20, 109);
-            label7.Name = "label7";
-            label7.Size = new Size(176, 20);
-            label7.TabIndex = 7;
-            label7.Text = "З очікуванною оплатою";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(20, 77);
-            label6.Name = "label6";
-            label6.Size = new Size(138, 20);
-            label6.TabIndex = 6;
-            label6.Text = "Частково сплачені";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(20, 43);
-            label5.Name = "label5";
-            label5.Size = new Size(91, 20);
-            label5.TabIndex = 5;
-            label5.Text = "Неоплачені";
-            // 
-            // chart2
-            // 
-            chart2.BackColor = Color.AliceBlue;
-            chart2.BackSecondaryColor = Color.White;
-            chartArea15.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea15);
-            chart2.Location = new Point(489, 41);
-            chart2.Name = "chart2";
-            chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series15.ChartArea = "ChartArea1";
-            series15.Name = "Series1";
-            chart2.Series.Add(series15);
-            chart2.Size = new Size(230, 166);
-            chart2.TabIndex = 4;
-            chart2.Text = "chart2";
-            chart2.Click += chart2_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(20, 10);
-            label4.Name = "label4";
-            label4.Size = new Size(74, 20);
-            label4.TabIndex = 3;
-            label4.Text = "Оплачені";
-            label4.Click += label4_Click_2;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(20, 57);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 20);
-            label3.TabIndex = 2;
-            label3.Text = "Середній чек";
+            panel1.BackColor = Color.AliceBlue;
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label10);
+            panel1.Controls.Add(label11);
+            panel1.Controls.Add(label12);
+            panel1.Location = new Point(33, 41);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(333, 125);
+            panel1.TabIndex = 21;
             // 
             // label2
             // 
@@ -429,15 +346,142 @@
             label1.TabIndex = 0;
             label1.Text = "Всього замовлень";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(20, 57);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 20);
+            label3.TabIndex = 2;
+            label3.Text = "Середній чек";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(233, 19);
+            label10.Name = "label10";
+            label10.Size = new Size(58, 20);
+            label10.TabIndex = 10;
+            label10.Text = "label10";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(233, 57);
+            label11.Name = "label11";
+            label11.Size = new Size(58, 20);
+            label11.TabIndex = 11;
+            label11.Text = "label11";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(233, 91);
+            label12.Name = "label12";
+            label12.Size = new Size(58, 20);
+            label12.TabIndex = 12;
+            label12.Text = "label12";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(598, 12);
+            label22.Name = "label22";
+            label22.Size = new Size(270, 20);
+            label22.TabIndex = 20;
+            label22.Text = "ГРАФІКИ ПО ЗАГАЛЬНІЙ СТАТИСТИці";
+            label22.Click += label22_Click;
+            // 
+            // chart5
+            // 
+            chart5.BackColor = Color.AliceBlue;
+            chartArea7.Name = "ChartArea1";
+            chart5.ChartAreas.Add(chartArea7);
+            chart5.Location = new Point(740, 232);
+            chart5.Name = "chart5";
+            chart5.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series7.ChartArea = "ChartArea1";
+            series7.Name = "Series1";
+            chart5.Series.Add(series7);
+            chart5.Size = new Size(230, 166);
+            chart5.TabIndex = 19;
+            chart5.Text = "chart5";
+            chart5.Click += chart5_Click;
+            // 
+            // chart4
+            // 
+            chart4.BackColor = Color.AliceBlue;
+            chartArea8.Name = "ChartArea1";
+            chart4.ChartAreas.Add(chartArea8);
+            chart4.Location = new Point(489, 232);
+            chart4.Name = "chart4";
+            chart4.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series8.ChartArea = "ChartArea1";
+            series8.Name = "Series1";
+            chart4.Series.Add(series8);
+            chart4.Size = new Size(230, 166);
+            chart4.TabIndex = 18;
+            chart4.Text = "chart4";
+            // 
+            // chart3
+            // 
+            chart3.BackColor = Color.AliceBlue;
+            chartArea9.Name = "ChartArea1";
+            chart3.ChartAreas.Add(chartArea9);
+            chart3.Location = new Point(740, 41);
+            chart3.Name = "chart3";
+            chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series9.ChartArea = "ChartArea1";
+            series9.Name = "Series1";
+            chart3.Series.Add(series9);
+            chart3.Size = new Size(230, 166);
+            chart3.TabIndex = 17;
+            chart3.Text = "chart3";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(53, 178);
+            label9.Name = "label9";
+            label9.Size = new Size(294, 20);
+            label9.TabIndex = 9;
+            label9.Text = "СТАТИСТИКА ПО ОПЛАТАХ ЗАМОВЛЕНЬ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(105, 12);
+            label8.Name = "label8";
+            label8.Size = new Size(181, 20);
+            label8.TabIndex = 8;
+            label8.Text = "ЗАГАЛЬНА СТАТИСТИКА";
+            // 
+            // chart2
+            // 
+            chart2.BackColor = Color.AliceBlue;
+            chart2.BackSecondaryColor = Color.White;
+            chartArea10.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea10);
+            chart2.Location = new Point(489, 41);
+            chart2.Name = "chart2";
+            chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
+            series10.ChartArea = "ChartArea1";
+            series10.Name = "Series1";
+            chart2.Series.Add(series10);
+            chart2.Size = new Size(230, 166);
+            chart2.TabIndex = 4;
+            chart2.Text = "chart2";
+            chart2.Click += chart2_Click;
+            // 
             // menuStrip
             // 
             menuStrip.BackColor = Color.Ivory;
             menuStrip.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, управлінняЗамовленнямиToolStripMenuItem, reportsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(999, 26);
+            menuStrip.Size = new Size(999, 28);
             menuStrip.TabIndex = 3;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -447,7 +491,7 @@
             fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveMenuItem, loadMenuItem, exitMenuItem });
             fileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(66, 22);
+            fileMenuItem.Size = new Size(66, 24);
             fileMenuItem.Text = "Файл";
             // 
             // saveMenuItem
@@ -472,14 +516,22 @@
             exitMenuItem.Size = new Size(291, 26);
             exitMenuItem.Text = "Вихід";
             // 
-            // policiesMenuItem
+            // OrderAdministrationMenuItem
             // 
-            policiesMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, редагуватиФахівцяToolStripMenuItem, searchMenuItem });
-            policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
-            policiesMenuItem.Name = "policiesMenuItem";
-            policiesMenuItem.Size = new Size(212, 22);
-            policiesMenuItem.Text = "Управління фахівцями";
+            OrderAdministrationMenuItem.Name = "OrderAdministrationMenuItem";
+            OrderAdministrationMenuItem.Size = new Size(244, 24);
+            OrderAdministrationMenuItem.Text = "Управління замовленнями";
+            OrderAdministrationMenuItem.Click += OrderAdministrationMenuItem_Click;
+            // 
+            // OrderEmployeeMenuItem
+            // 
+            OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, редагуватиФахівцяToolStripMenuItem, searchMenuItem });
+            OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
+            OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
+            OrderEmployeeMenuItem.Size = new Size(212, 24);
+            OrderEmployeeMenuItem.Text = "Управління фахівцями";
+            OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
             // 
             // newPolicyMenuItem
             // 
@@ -487,6 +539,12 @@
             newPolicyMenuItem.ShortcutKeys = Keys.Control | Keys.N;
             newPolicyMenuItem.Size = new Size(301, 26);
             newPolicyMenuItem.Text = "Новий фахівець";
+            // 
+            // редагуватиФахівцяToolStripMenuItem
+            // 
+            редагуватиФахівцяToolStripMenuItem.Name = "редагуватиФахівцяToolStripMenuItem";
+            редагуватиФахівцяToolStripMenuItem.Size = new Size(301, 26);
+            редагуватиФахівцяToolStripMenuItem.Text = "Редагувати фахівця";
             // 
             // searchMenuItem
             // 
@@ -501,7 +559,7 @@
             reportsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { statisticsMenuItem, incomeReportMenuItem });
             reportsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             reportsMenuItem.Name = "reportsMenuItem";
-            reportsMenuItem.Size = new Size(178, 22);
+            reportsMenuItem.Size = new Size(178, 24);
             reportsMenuItem.Text = "Аналіз та звітність";
             // 
             // statisticsMenuItem
@@ -518,62 +576,6 @@
             incomeReportMenuItem.Size = new Size(386, 26);
             incomeReportMenuItem.Text = "Звіт по доходах";
             // 
-            // редагуватиФахівцяToolStripMenuItem
-            // 
-            редагуватиФахівцяToolStripMenuItem.Name = "редагуватиФахівцяToolStripMenuItem";
-            редагуватиФахівцяToolStripMenuItem.Size = new Size(301, 26);
-            редагуватиФахівцяToolStripMenuItem.Text = "Редагувати фахівця";
-            // 
-            // управлінняЗамовленнямиToolStripMenuItem
-            // 
-            управлінняЗамовленнямиToolStripMenuItem.Name = "управлінняЗамовленнямиToolStripMenuItem";
-            управлінняЗамовленнямиToolStripMenuItem.Size = new Size(244, 22);
-            управлінняЗамовленнямиToolStripMenuItem.Text = "Управління замовленнями";
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.AliceBlue;
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label10);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(label12);
-            panel1.Location = new Point(33, 41);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(333, 125);
-            panel1.TabIndex = 21;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.AliceBlue;
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label7);
-            panel2.Controls.Add(label13);
-            panel2.Controls.Add(label14);
-            panel2.Controls.Add(label16);
-            panel2.Controls.Add(label15);
-            panel2.Location = new Point(33, 210);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(333, 138);
-            panel2.TabIndex = 22;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.AliceBlue;
-            panel3.Controls.Add(label17);
-            panel3.Controls.Add(label21);
-            panel3.Controls.Add(comboBox1);
-            panel3.Controls.Add(label20);
-            panel3.Controls.Add(label18);
-            panel3.Controls.Add(label19);
-            panel3.Location = new Point(29, 59);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(423, 151);
-            panel3.TabIndex = 7;
-            // 
             // Statistics
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -584,23 +586,24 @@
             Controls.Add(tabControl1);
             Name = "Statistics";
             Text = "Statistics";
+            Load += Statistics_Load;
             tabPage2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart5).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart4).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart3).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -639,7 +642,7 @@
         private ToolStripMenuItem saveMenuItem;
         private ToolStripMenuItem loadMenuItem;
         private ToolStripMenuItem exitMenuItem;
-        private ToolStripMenuItem policiesMenuItem;
+        private ToolStripMenuItem OrderEmployeeMenuItem;
         private ToolStripMenuItem newPolicyMenuItem;
         private ToolStripMenuItem searchMenuItem;
         private ToolStripMenuItem reportsMenuItem;
@@ -650,7 +653,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
         private Label label22;
         private ToolStripMenuItem редагуватиФахівцяToolStripMenuItem;
-        private ToolStripMenuItem управлінняЗамовленнямиToolStripMenuItem;
+        private ToolStripMenuItem OrderAdministrationMenuItem;
         private Panel panel1;
         private Panel panel3;
         private Panel panel2;
