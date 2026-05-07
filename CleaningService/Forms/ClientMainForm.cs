@@ -43,6 +43,19 @@ namespace CleaningService
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             LoadDataOnStartup();
+            // Розтягуємо колонки на всю ширину
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Вирівнюємо заголовки по центру (обов'язково вимкнути візуальні стилі заголовків)
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory; // можна додати колір як у меню
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.LightBlue; // М'який колір виділення
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Прибрати візуальний індикатор (маленький трикутник) зліва
+            dataGridView1.RowHeadersVisible = false;
         }
 
         private void InitMenu()

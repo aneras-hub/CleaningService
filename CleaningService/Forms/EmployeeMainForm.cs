@@ -38,7 +38,9 @@ namespace CleaningService.Forms
             dataGridView1.Columns["EmployeeSalary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["CompletedOrders"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+            dataGridView1.EnableHeadersVisualStyles = false; // Дозволяє міняти стиль заголовків
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
             InitGrid();
             InitControls();
             RefreshGrid();
@@ -49,57 +51,77 @@ namespace CleaningService.Forms
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Clear();
 
+            // 1. Створення колонок
             // Дата народження
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
             {
+                Name = "BirthDate",
                 HeaderText = "Дата народження",
                 DataPropertyName = "BirthDate",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy" }, // Формат 27.10.1988
-                Width = 120
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy" },
+                FillWeight = 90 // трохи вужча
             });
+
             // ПІБ
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
             {
+                Name = "EmployeeName",
                 HeaderText = "ПІБ фахівця",
                 DataPropertyName = "EmployeeName",
-                Width = 250
+                FillWeight = 200 // найширша колонка
             });
 
             // Телефон
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
             {
+                Name = "EmployeeNumber",
                 HeaderText = "Телефон",
                 DataPropertyName = "EmployeeNumber",
-                Width = 150
+                FillWeight = 110
             });
 
-            // Кількість замовлень (Розрахункове поле)
+            // Кількість замовлень
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 HeaderText = "Замовлень",
                 Name = "OrdersCount",
-                Width = 100
+                FillWeight = 70 // вузька колонка для цифр
             });
 
-            // Зарплата (Розрахункове поле)
+            // Зарплата
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 HeaderText = "Зарплата (грн)",
                 Name = "Salary",
-                Width = 120
+                FillWeight = 100
             });
 
-            // Налаштування вигляду
+            // 2. Налаштування глобального вигляду
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            // Центрування тексту в колонках
-            dataGridView1.Columns["OrdersCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["Salary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // Розтягування на всю ширину вікна
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            // 3. Стилізація заголовків (щоб працював колір та вирівнювання)
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+
+            // 4. Центрування вмісту клітинок (крім ПІБ)
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                if (col.Name != "EmployeeName")
+                {
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+            }
+
+            // 5. Підписка на події (якщо ще не підписані в дизайнері)
+            dataGridView1.CellFormatting -= DataGridView1_CellFormatting; // запобігаємо дублюванню
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
         }
         private void InitControls()

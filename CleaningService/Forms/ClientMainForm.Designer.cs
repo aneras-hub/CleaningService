@@ -82,7 +82,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1336, 26);
+            menuStrip.Size = new Size(1337, 26);
             menuStrip.TabIndex = 2;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -249,7 +249,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { newPolicyToolStripButton, deletePolicyToolStripButton, editPolicyToolStripButton, changeStatusToolStripButton, saveToolStripButton, loadToolStripButton });
             toolStrip.Location = new Point(0, 26);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1336, 27);
+            toolStrip.Size = new Size(1337, 27);
             toolStrip.TabIndex = 7;
             toolStrip.Text = "toolStrip1";
             // 
@@ -325,7 +325,7 @@
             dataGridView1.Location = new Point(0, 93);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1337, 455);
+            dataGridView1.Size = new Size(1337, 443);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -417,7 +417,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(1336, 536);
+            ClientSize = new Size(1337, 536);
             Controls.Add(searchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
