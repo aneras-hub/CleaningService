@@ -102,11 +102,11 @@ namespace CleaningService
 
         private void InitEmployees()
         {
-            employeeManager.AddEmployee(new Employee(1, "Вербицький Артем Олександрович", "0990000001"));
-            employeeManager.AddEmployee(new Employee(2, "Зима Марія Віталіївна", "0990000002"));
-            employeeManager.AddEmployee(new Employee(3, "Мельниченко Владислав Ігорович", "0990000003"));
-            employeeManager.AddEmployee(new Employee(4, "Озерська Анна Костянтинівна", "0990000004"));
-            employeeManager.AddEmployee(new Employee(5, "Яворівський Максим Юрійович", "0990000005"));
+            employeeManager.AddEmployee(new Employee(1, "Вербицький Артем Олександрович", "0990000001", new DateTime(1988, 10, 27)));
+            employeeManager.AddEmployee(new Employee(2, "Зима Марія Віталіївна", "0990000002", new DateTime(1995, 3, 12)));
+            employeeManager.AddEmployee(new Employee(3, "Мельниченко Владислав Ігорович", "0990000003", new DateTime(1992, 7, 5)));
+            employeeManager.AddEmployee(new Employee(4, "Озерська Анна Костянтинівна", "0990000004", new DateTime(1998, 12, 18)));
+            employeeManager.AddEmployee(new Employee(5, "Яворівський Максим Юрійович", "0990000005", new DateTime(1991, 1, 30)));
         }
 
         // таблиця

@@ -173,7 +173,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { newPolicyToolStripButton, deletePolicyToolStripButton, editPolicyToolStripButton, saveToolStripButton, loadToolStripButton });
             toolStrip.Location = new Point(0, 26);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1216, 27);
+            toolStrip.Size = new Size(928, 27);
             toolStrip.TabIndex = 12;
             toolStrip.Text = "toolStrip1";
             // 
@@ -185,7 +185,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1216, 26);
+            menuStrip.Size = new Size(928, 26);
             menuStrip.TabIndex = 11;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -322,7 +322,7 @@
             dataGridView1.Location = new Point(0, 90);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1047, 455);
+            dataGridView1.Size = new Size(929, 321);
             dataGridView1.TabIndex = 10;
             // 
             // BirthDate
@@ -369,7 +369,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(1216, 547);
+            ClientSize = new Size(928, 411);
             Controls.Add(searchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);

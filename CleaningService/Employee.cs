@@ -16,11 +16,12 @@ namespace CleaningService
 
         public Employee() { }
 
-        public Employee(int id, string name, string number)
+        public Employee(int id, string name, string number, DateTime birthDate)
         {
             Id = id;
             EmployeeName = name;
             EmployeeNumber = number;
+            BirthDate = birthDate;
         }
 
         // кількість замовлень

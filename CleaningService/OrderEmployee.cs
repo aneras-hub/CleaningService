@@ -16,17 +16,18 @@ namespace CleaningService
         }
 
         //РЕДАГУВАТИ
-        public void EditEmployee(int id, string newName, string newPhone)
+        public void EditEmployee(int id, string newName, string newPhone, DateTime newBirthDate)
         {
             var emp = Employees.FirstOrDefault(e => e.Id == id);
             if (emp != null)
             {
                 emp.EmployeeName = newName;
                 emp.EmployeeNumber = newPhone;
+                emp.BirthDate = newBirthDate;
             }
         }
 
-        // ❌ ВИДАЛИТИ
+        //ВИДАЛИТИ
         public void RemoveEmployee(int id)
         {
             var emp = Employees.FirstOrDefault(e => e.Id == id);
@@ -34,7 +35,7 @@ namespace CleaningService
                 Employees.Remove(emp);
         }
 
-        // 🔍 ЗНАЙТИ
+        //пошук
         public List<Employee> Search(string query)
         {
             return Employees.Where(e =>
@@ -43,14 +44,14 @@ namespace CleaningService
                 ).ToList();
         }
 
-        // 📊 ТОП працівники
+        //ТОП працівники
         public List<Employee> GetTopEmployees()
         {
             return Employees
                 .OrderByDescending(e => e.GetOrdersCount())
                 .ToList();
         }
-        // 🔥 найзайнятіший
+        //найзайнятіший
         public Employee GetMostBusyEmployee()
         {
             return Employees
@@ -58,7 +59,7 @@ namespace CleaningService
                 .FirstOrDefault();
         }
 
-        // 🔥 вільні🆕 Вільні працівники
+        //Вільні працівники
         public List<Employee> GetFreeEmployees()
         {
             return Employees

@@ -21,7 +21,7 @@ namespace CleaningService.Forms
             InitializeComponent();
             employeeManager = manager ?? new OrderEmployee();
 
-            // ПРАВИЛЬНЕ ПРИСВОЄННЯ:
+            //ПРИСВОЄННЯ:
             this._company = company;
             this._savePath = path;
 
@@ -38,7 +38,8 @@ namespace CleaningService.Forms
             dataGridView1.Columns["EmployeeSalary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["CompletedOrders"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.EnableHeadersVisualStyles = false; // Дозволяє міняти стиль заголовків
+            // Дозволяє міняти стиль заголовків
+            dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
             InitGrid();
@@ -229,6 +230,7 @@ namespace CleaningService.Forms
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         RefreshGrid();
+
                     }
                 }
             }
