@@ -16,9 +16,14 @@ namespace CleaningService.Forms
     public partial class Statistics : Form
     {
         private OrderEmployee employeeManager;
-        public Statistics(OrderEmployee manager)
+        private CleaningCompany _company;
+        private string _savePath;
+        public Statistics(OrderEmployee manager, CleaningCompany company, string path)
         {
             InitializeComponent();
+            this.employeeManager = manager;
+            this._company = company;
+            this._savePath = path;
             this.employeeManager = manager;
             this.BackColor = Color.Honeydew;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -82,9 +87,11 @@ namespace CleaningService.Forms
 
         private void OrderEmployeeMenuItem_Click(object sender, EventArgs e)
         {
-            EmployeeMainForm form = new EmployeeMainForm(employeeManager);
+            // ТЕПЕР ПЕРЕДАЄМО ВСІ ТРИ АРГУМЕНТИ
+            EmployeeMainForm form = new EmployeeMainForm(employeeManager, _company, _savePath);
             this.Hide();
             form.ShowDialog();
+            this.Show();
         }
 
         private void OrderAdministrationMenuItem_Click(object sender, EventArgs e)

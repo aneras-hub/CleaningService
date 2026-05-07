@@ -6,13 +6,15 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text.Json;
+
 
 namespace CleaningService
 {
     public partial class ClientMainForm : Form
     {
         private CleaningCompany company = new CleaningCompany();
-        private string path = "orders.xml";
+        private string path = "orders.json";
         private ContextMenuStrip gridContextMenu;
         private OrderEmployee employeeManager = new OrderEmployee();
         public ClientMainForm()
@@ -173,7 +175,7 @@ namespace CleaningService
         {
             using OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "XML файли (*.xml)|*.xml|Усі файли (*.*)|*.*"
+                Filter = "JSON файли (*.json)|*.json|Усі файли (*.*)|*.*"
             };
 
             if (ofd.ShowDialog() != DialogResult.OK) return;
@@ -202,8 +204,8 @@ namespace CleaningService
         {
             using SaveFileDialog sfd = new SaveFileDialog
             {
-                Filter = "XML файли (*.xml)|*.xml",
-                FileName = "orders.xml"
+                Filter = "JSON файли (*.json)|*.json",
+                FileName = "orders.json"
             };
 
             if (sfd.ShowDialog() != DialogResult.OK) return;
@@ -395,29 +397,35 @@ namespace CleaningService
 
         private void ClientMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var result = MessageBox.Show(
-                "Зберегти дані перед виходом?",
-                "Вихід",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-
-            if (result == DialogResult.Cancel)
-            {
-                e.Cancel = true;
-                return;
-            }
+            DialogResult result = MessageBox.Show(
+                    "Ви дійсно хочете вийти?\nУсі незбережені зміни будуть втрачені.",
+                    "Підтвердження виходу",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button3 // Фокус на "Скасувати" для безпеки
+                );
 
             if (result == DialogResult.Yes)
             {
+                // Користувач хоче зберегти і вийти
                 company.WriteToFile(path);
+            }
+            else if (result == DialogResult.No)
+            {
+                // Користувач хоче вийти БЕЗ збереження — форма закриється сама
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                e.Cancel = true;
             }
         }
 
         private void reportsMenuItem_Click(object sender, EventArgs e)
         {
-            Statistics form = new Statistics(employeeManager);
+            Statistics form = new Statistics(employeeManager, company, path);
             this.Hide();
             form.ShowDialog();
+            this.Show();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -425,13 +433,19 @@ namespace CleaningService
 
         }
 
-        private void OrderEmployeeMenuItem_Click(object sender, EventArgs e) {
-            // Замініть: EmployeeMainForm form = new EmployeeMainForm();
-            // На:
-            EmployeeMainForm form = new EmployeeMainForm(employeeManager);
+        private void OrderEmployeeMenuItem_Click(object sender, EventArgs e)
+        {
+            EmployeeMainForm form = new EmployeeMainForm(employeeManager, company, path);
+
             this.Hide();
             form.ShowDialog();
-            this.Show(); // Додайте це, щоб головна форма знову з'являлася після закриття
+            this.Show();
+            RefreshGrid();
+        }
+
+        private void policiesMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

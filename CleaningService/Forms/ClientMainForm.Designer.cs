@@ -92,7 +92,7 @@
             fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveMenuItem, loadMenuItem, exitMenuItem });
             fileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(66, 24);
+            fileMenuItem.Size = new Size(66, 22);
             fileMenuItem.Text = "Файл";
             // 
             // saveMenuItem
@@ -124,8 +124,9 @@
             policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
             policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             policiesMenuItem.Name = "policiesMenuItem";
-            policiesMenuItem.Size = new Size(244, 24);
+            policiesMenuItem.Size = new Size(244, 22);
             policiesMenuItem.Text = "Управління замовленнями";
+            policiesMenuItem.Click += policiesMenuItem_Click;
             // 
             // newPolicyMenuItem
             // 
@@ -192,7 +193,7 @@
             OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem2, редагуватиФахівцяToolStripMenuItem, toolStripMenuItem3 });
             OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
-            OrderEmployeeMenuItem.Size = new Size(212, 24);
+            OrderEmployeeMenuItem.Size = new Size(212, 22);
             OrderEmployeeMenuItem.Text = "Управління фахівцями";
             OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
             // 
@@ -221,7 +222,7 @@
             reportsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { statisticsMenuItem, incomeReportMenuItem });
             reportsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             reportsMenuItem.Name = "reportsMenuItem";
-            reportsMenuItem.Size = new Size(178, 24);
+            reportsMenuItem.Size = new Size(178, 22);
             reportsMenuItem.Text = "Аналіз та звітність";
             reportsMenuItem.Click += reportsMenuItem_Click;
             // 
@@ -417,7 +418,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
             ClientSize = new Size(1336, 536);
-            ControlBox = false;
             Controls.Add(searchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);

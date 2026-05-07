@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,16 @@ namespace CleaningService.Forms
     public partial class EmployeeMainForm : Form
     {
         private OrderEmployee employeeManager;
-        public EmployeeMainForm(OrderEmployee manager)
+        private CleaningCompany _company;
+        private string _savePath;
+        public EmployeeMainForm(OrderEmployee manager, CleaningCompany company, string path)
         {
             InitializeComponent();
             employeeManager = manager ?? new OrderEmployee();
+
+            // ПРАВИЛЬНЕ ПРИСВОЄННЯ:
+            this._company = company;
+            this._savePath = path;
 
             this.BackColor = Color.Honeydew;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -42,6 +49,14 @@ namespace CleaningService.Forms
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Clear();
 
+            // Дата народження
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Дата народження",
+                DataPropertyName = "BirthDate",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy" }, // Формат 27.10.1988
+                Width = 120
+            });
             // ПІБ
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
             {
@@ -74,12 +89,17 @@ namespace CleaningService.Forms
                 Width = 120
             });
 
+            // Налаштування вигляду
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            // Обробник для динамічних значень (кількість замовлень і зарплата)
+            // Центрування тексту в колонках
+            dataGridView1.Columns["OrdersCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Salary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
         }
         private void InitControls()
@@ -94,6 +114,8 @@ namespace CleaningService.Forms
 
             // Пошук в реальному часі через TextBox
             searchBox.TextChanged += searchBox_TextChanged;
+
+            this.FormClosing += EmployeeMainForm_FormClosing;
         }
         private void RefreshGrid(IEnumerable<Employee> data = null)
         {
@@ -127,16 +149,15 @@ namespace CleaningService.Forms
 
         private void OrderAdministrationMenuItem_Click(object sender, EventArgs e)
         {
-            ClientMainForm form = new ClientMainForm();
-            this.Hide();
-            form.ShowDialog();
+            this.Close();
         }
 
         private void reportsMenuItem_Click(object sender, EventArgs e)
         {
-            Statistics form = new Statistics(employeeManager);
+            Statistics form = new Statistics(employeeManager, _company, _savePath);
             this.Hide();
             form.ShowDialog();
+            this.Show();
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -194,6 +215,12 @@ namespace CleaningService.Forms
         private void searchBox_TextChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void EmployeeMainForm_FormClosing(object sender, EventArgs e)
+        {
+            // Викликаємо збереження в файл автоматично
+            _company?.WriteToFile(_savePath);
         }
     }
 }

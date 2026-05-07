@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -84,38 +85,53 @@ namespace CleaningService
         {
             return emp.GetSalary();
         }
-        // Запис у XML
+        // Запис у JSON
         public void WriteToFile(string fileName)
         {
-            XmlSerializer xml = new XmlSerializer(typeof(List<Order>));
-
-            using (FileStream fs = new FileStream(fileName, FileMode.Create))
+            try
             {
-                xml.Serialize(fs, Orders);
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    // Це налаштування виправляє помилку циклу:
+                    ReferenceHandler = ReferenceHandler.IgnoreCycles
+                };
+
+                string jsonString = JsonSerializer.Serialize(Orders, options);
+                File.WriteAllText(fileName, jsonString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при збереженні JSON: {ex.Message}");
             }
         }
-        // Читання з XML
+
+        // Читання з JSON
         public void ReadFromFile(string fileName)
         {
             if (!File.Exists(fileName)) return;
 
-            XmlSerializer xml = new XmlSerializer(typeof(List<Order>));
+            FileInfo info = new FileInfo(fileName);
+            if (info.Length == 0) return;
 
-            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            try
             {
-                Orders = (List<Order>)xml.Deserialize(fs);
+                string jsonString = File.ReadAllText(fileName);
+                var options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.IgnoreCycles
+                };
+                Orders = JsonSerializer.Deserialize<List<Order>>(jsonString, options) ?? new List<Order>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при читанні JSON: {ex.Message}");
             }
         }
-        // Додаткові методи для збереження та завантаження
+
         public void Load(string path)
         {
-            if (!File.Exists(path)) return;
-
-            XmlSerializer xml = new XmlSerializer(typeof(List<Order>));
-            using (FileStream fs = new FileStream(path, FileMode.Open))
-            {
-                Orders = (List<Order>)xml.Deserialize(fs);
-            }
+            ReadFromFile(path);
         }
     }
 }
