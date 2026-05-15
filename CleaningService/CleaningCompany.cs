@@ -26,7 +26,14 @@ namespace CleaningService
         public void RemoveOrder(Order order)
         {
             if (order != null)
+            {
                 Orders.Remove(order);
+
+                if (order.Employee != null)
+                {
+                    order.Employee.Orders.Remove(order);
+                }
+            }
         }
 
         // Очистка всього списку
@@ -122,6 +129,16 @@ namespace CleaningService
                     ReferenceHandler = ReferenceHandler.IgnoreCycles
                 };
                 Orders = JsonSerializer.Deserialize<List<Order>>(jsonString, options) ?? new List<Order>();
+                foreach (var order in Orders)
+                {
+                    if (order.Employee != null)
+                    {
+                        if (order.Employee.Orders == null)
+                            order.Employee.Orders = new List<Order>();
+
+                        order.Employee.Orders.Add(order);
+                    }
+                }
             }
             catch (Exception ex)
             {
