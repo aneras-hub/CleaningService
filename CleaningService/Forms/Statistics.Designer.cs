@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Statistics));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tabPage2 = new TabPage();
             panel3 = new Panel();
             label17 = new Label();
@@ -69,6 +69,7 @@
             label22 = new Label();
             chart5 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             label9 = new Label();
             label8 = new Label();
             chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -85,7 +86,6 @@
             reportsMenuItem = new ToolStripMenuItem();
             statisticsMenuItem = new ToolStripMenuItem();
             incomeReportMenuItem = new ToolStripMenuItem();
-            chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             tabPage2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
@@ -95,9 +95,9 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chart3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
             menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chart3).BeginInit();
             SuspendLayout();
             // 
             // tabPage2
@@ -108,7 +108,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(989, 431);
+            tabPage2.Size = new Size(1363, 431);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Фахівці";
             // 
@@ -181,15 +181,15 @@
             // 
             // chart1
             // 
-            chartArea5.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea5);
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
             chart1.Location = new Point(619, 40);
             chart1.Name = "chart1";
             chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series5.ChartArea = "ChartArea1";
-            series5.Name = "Series1";
-            chart1.Series.Add(series5);
-            chart1.Size = new Size(208, 185);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
+            chart1.Size = new Size(448, 185);
             chart1.TabIndex = 4;
             chart1.Text = "chart1";
             // 
@@ -202,7 +202,7 @@
             tabControl1.Location = new Point(2, 29);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(997, 464);
+            tabControl1.Size = new Size(1371, 464);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -220,7 +220,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(989, 431);
+            tabPage1.Size = new Size(1363, 431);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Замовлення";
             // 
@@ -392,32 +392,47 @@
             // chart5
             // 
             chart5.BackColor = Color.AliceBlue;
-            chartArea6.Name = "ChartArea1";
-            chart5.ChartAreas.Add(chartArea6);
-            chart5.Location = new Point(740, 232);
+            chartArea2.Name = "ChartArea1";
+            chart5.ChartAreas.Add(chartArea2);
+            chart5.Location = new Point(921, 232);
             chart5.Name = "chart5";
             chart5.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series6.ChartArea = "ChartArea1";
-            series6.Name = "Series1";
-            chart5.Series.Add(series6);
-            chart5.Size = new Size(230, 166);
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series1";
+            chart5.Series.Add(series2);
+            chart5.Size = new Size(423, 166);
             chart5.TabIndex = 19;
             chart5.Text = "chart5";
             // 
             // chart4
             // 
             chart4.BackColor = Color.AliceBlue;
-            chartArea7.Name = "ChartArea1";
-            chart4.ChartAreas.Add(chartArea7);
-            chart4.Location = new Point(489, 232);
+            chartArea3.Name = "ChartArea1";
+            chart4.ChartAreas.Add(chartArea3);
+            chart4.Location = new Point(475, 232);
             chart4.Name = "chart4";
             chart4.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series7.ChartArea = "ChartArea1";
-            series7.Name = "Series1";
-            chart4.Series.Add(series7);
-            chart4.Size = new Size(230, 166);
+            series3.ChartArea = "ChartArea1";
+            series3.Name = "Series1";
+            chart4.Series.Add(series3);
+            chart4.Size = new Size(423, 166);
             chart4.TabIndex = 18;
             chart4.Text = "chart4";
+            // 
+            // chart3
+            // 
+            chart3.BackColor = Color.AliceBlue;
+            chartArea4.Name = "ChartArea1";
+            chart3.ChartAreas.Add(chartArea4);
+            chart3.Location = new Point(921, 41);
+            chart3.Name = "chart3";
+            chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series4.ChartArea = "ChartArea1";
+            series4.Name = "Series1";
+            chart3.Series.Add(series4);
+            chart3.Size = new Size(423, 166);
+            chart3.TabIndex = 17;
+            chart3.Text = "chart3";
             // 
             // label9
             // 
@@ -441,15 +456,15 @@
             // 
             chart2.BackColor = Color.AliceBlue;
             chart2.BackSecondaryColor = Color.White;
-            chartArea9.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea9);
-            chart2.Location = new Point(489, 41);
+            chartArea5.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea5);
+            chart2.Location = new Point(475, 41);
             chart2.Name = "chart2";
             chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series9.ChartArea = "ChartArea1";
-            series9.Name = "Series1";
-            chart2.Series.Add(series9);
-            chart2.Size = new Size(230, 166);
+            series5.ChartArea = "ChartArea1";
+            series5.Name = "Series1";
+            chart2.Series.Add(series5);
+            chart2.Size = new Size(423, 166);
             chart2.TabIndex = 4;
             chart2.Text = "chart2";
             // 
@@ -461,7 +476,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(999, 26);
+            menuStrip.Size = new Size(1380, 26);
             menuStrip.TabIndex = 3;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -555,27 +570,12 @@
             incomeReportMenuItem.Size = new Size(386, 26);
             incomeReportMenuItem.Text = "Звіт по доходах";
             // 
-            // chart3
-            // 
-            chart3.BackColor = Color.AliceBlue;
-            chartArea8.Name = "ChartArea1";
-            chart3.ChartAreas.Add(chartArea8);
-            chart3.Location = new Point(740, 41);
-            chart3.Name = "chart3";
-            chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series8.ChartArea = "ChartArea1";
-            series8.Name = "Series1";
-            chart3.Series.Add(series8);
-            chart3.Size = new Size(230, 166);
-            chart3.TabIndex = 17;
-            chart3.Text = "chart3";
-            // 
             // Statistics
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(999, 505);
+            ClientSize = new Size(1380, 505);
             Controls.Add(menuStrip);
             Controls.Add(tabControl1);
             Name = "Statistics";
@@ -593,10 +593,10 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart5).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chart3).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)chart3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
