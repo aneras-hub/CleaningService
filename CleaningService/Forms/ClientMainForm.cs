@@ -460,5 +460,10 @@ namespace CleaningService
         {
 
         }
+
+        private void ClientMainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

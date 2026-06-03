@@ -47,8 +47,6 @@ namespace CleaningService
 
             string mainService = Services[0].CategoryService;
             double total = 0;
-
-            //Основні послуги (comboBox1)
             switch (mainService)
             {
                 case "Генеральне прибирання": total = 60 * RoomArea; break;

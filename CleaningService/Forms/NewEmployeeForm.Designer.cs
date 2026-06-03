@@ -50,11 +50,11 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label14.Location = new Point(137, 228);
+            label14.Location = new Point(18, 228);
             label14.Name = "label14";
-            label14.Size = new Size(59, 24);
+            label14.Size = new Size(180, 24);
             label14.TabIndex = 48;
-            label14.Text = "Дата:";
+            label14.Text = "Дата народження:";
             label14.Click += label14_Click;
             // 
             // button1

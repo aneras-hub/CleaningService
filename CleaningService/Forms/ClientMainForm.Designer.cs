@@ -425,6 +425,7 @@
             Name = "ClientMainForm";
             Text = "MainForm";
             FormClosing += ClientMainForm_FormClosing;
+            FormClosed += ClientMainForm_FormClosed;
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             toolStrip.ResumeLayout(false);

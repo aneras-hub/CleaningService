@@ -10,12 +10,8 @@ namespace CleaningService
         public string EmployeeName { get; set; }
         public string EmployeeNumber { get; set; }
         public DateTime BirthDate { get; set; }
-
-        // список замовлень
         public List<Order> Orders { get; set; } = new List<Order>();
-
         public Employee() { }
-
         public Employee(int id, string name, string number, DateTime birthDate)
         {
             Id = id;
@@ -23,32 +19,20 @@ namespace CleaningService
             EmployeeNumber = number;
             BirthDate = birthDate;
         }
-
-        // кількість замовлень
         public int GetOrdersCount()
         {
             return Orders.Count;
         }
-
-        // зарплата
         public double GetSalary()
         {
             return Orders.Sum(o => o.Price) * 0.4;
         }
-
-        // фільтр
         public static List<Employee> FilterByOrdersCount(List<Employee> employees, int minOrders)
         {
             return employees
                 .Where(e => e.GetOrdersCount() >= minOrders)
                 .ToList();
         }
-
-        public override string ToString()
-        {
-            return $"{EmployeeName} | Замовлень: {GetOrdersCount()} | Зарплата: {GetSalary()} грн";
-        }
-        // автоматичний підрахунок замовлень
         public int CompletedOrdersPerMonth
         {
             get
@@ -58,13 +42,16 @@ namespace CleaningService
                     o.OrderDate.Year == DateTime.Now.Year);
             }
         }
-        // автоматичний підрахунок зарплати
         public double Salary
         {
             get
             {
                 return Orders.Sum(o => o.Price * 0.4);
             }
+        }
+        public override string ToString()
+        {
+            return $"{EmployeeName} | Замовлень: {GetOrdersCount()} | Зарплата: {GetSalary()} грн";
         }
     }
 }
