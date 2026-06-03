@@ -235,7 +235,7 @@
             panel2.Controls.Add(label15);
             panel2.Location = new Point(33, 210);
             panel2.Name = "panel2";
-            panel2.Size = new Size(333, 138);
+            panel2.Size = new Size(399, 138);
             panel2.TabIndex = 22;
             // 
             // label4
@@ -277,16 +277,17 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(233, 10);
+            label13.Location = new Point(286, 10);
             label13.Name = "label13";
             label13.Size = new Size(58, 20);
             label13.TabIndex = 13;
             label13.Text = "label13";
+            label13.Click += label13_Click;
             // 
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(233, 47);
+            label14.Location = new Point(286, 47);
             label14.Name = "label14";
             label14.Size = new Size(58, 20);
             label14.TabIndex = 14;
@@ -295,7 +296,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(233, 109);
+            label16.Location = new Point(286, 109);
             label16.Name = "label16";
             label16.Size = new Size(58, 20);
             label16.TabIndex = 16;
@@ -304,7 +305,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(233, 77);
+            label15.Location = new Point(286, 77);
             label15.Name = "label15";
             label15.Size = new Size(58, 20);
             label15.TabIndex = 15;
@@ -321,7 +322,7 @@
             panel1.Controls.Add(label12);
             panel1.Location = new Point(33, 41);
             panel1.Name = "panel1";
-            panel1.Size = new Size(333, 125);
+            panel1.Size = new Size(399, 125);
             panel1.TabIndex = 21;
             // 
             // label2
@@ -354,7 +355,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(233, 19);
+            label10.Location = new Point(210, 19);
             label10.Name = "label10";
             label10.Size = new Size(58, 20);
             label10.TabIndex = 10;
@@ -363,7 +364,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(233, 57);
+            label11.Location = new Point(210, 57);
             label11.Name = "label11";
             label11.Size = new Size(58, 20);
             label11.TabIndex = 11;
@@ -372,16 +373,17 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(233, 91);
+            label12.Location = new Point(256, 91);
             label12.Name = "label12";
             label12.Size = new Size(58, 20);
             label12.TabIndex = 12;
             label12.Text = "label12";
+            label12.Click += label12_Click;
             // 
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(810, 12);
+            label22.Location = new Point(738, 12);
             label22.Name = "label22";
             label22.Size = new Size(272, 20);
             label22.TabIndex = 20;
@@ -421,7 +423,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(53, 178);
+            label9.Location = new Point(35, 178);
             label9.Name = "label9";
             label9.Size = new Size(294, 20);
             label9.TabIndex = 9;

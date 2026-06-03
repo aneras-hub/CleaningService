@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangePayment));
-            comboBox4 = new ComboBox();
+            StanOplatu = new ComboBox();
             label12 = new Label();
-            button1 = new Button();
+            button = new Button();
             SuspendLayout();
             // 
-            // comboBox4
+            // StanOplatu
             // 
-            comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(165, 36);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(282, 28);
-            comboBox4.TabIndex = 29;
+            StanOplatu.DropDownStyle = ComboBoxStyle.DropDownList;
+            StanOplatu.FormattingEnabled = true;
+            StanOplatu.Location = new Point(165, 36);
+            StanOplatu.Name = "StanOplatu";
+            StanOplatu.Size = new Size(282, 28);
+            StanOplatu.TabIndex = 29;
             // 
             // label12
             // 
@@ -53,14 +53,14 @@
             label12.TabIndex = 28;
             label12.Text = "Стан оплати:";
             // 
-            // button1
+            // button
             // 
-            button1.Location = new Point(188, 99);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 30;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            button.Location = new Point(165, 99);
+            button.Name = "button";
+            button.Size = new Size(146, 37);
+            button.TabIndex = 30;
+            button.Text = "button";
+            button.UseVisualStyleBackColor = true;
             // 
             // ChangePayment
             // 
@@ -68,8 +68,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
             ClientSize = new Size(480, 160);
-            Controls.Add(button1);
-            Controls.Add(comboBox4);
+            Controls.Add(button);
+            Controls.Add(StanOplatu);
             Controls.Add(label12);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ChangePayment";
@@ -80,8 +80,8 @@
 
         #endregion
 
-        private ComboBox comboBox4;
+        private ComboBox StanOplatu;
         private Label label12;
-        private Button button1;
+        private Button button;
     }
 }

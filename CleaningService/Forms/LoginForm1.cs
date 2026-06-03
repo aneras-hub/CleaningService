@@ -5,63 +5,73 @@ namespace CleaningService
         public LoginForm1()
         {
             InitializeComponent();
+
             this.BackColor = Color.Honeydew;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Авторизація";
-            this.Font = new Font("Georgia", 11, FontStyle.Regular);
-            this.AutoScaleMode = AutoScaleMode;
-            textBox1.PlaceholderText = "Логін";
-            textBox2.PlaceholderText = "Пароль";
-            this.ActiveControl = button1;
+
+            LoginName.PlaceholderText = "Логін";
+            LoginPassword.PlaceholderText = "Пароль";
+            this.ActiveControl = button;
+
+            ApplyStyle();
         }
+
+        private void ApplyStyle()
+        {
+            Font mainFont = new Font("Georgia", 12, FontStyle.Regular);
+            Font titleFont = new Font("Georgia", 20, FontStyle.Regular);
+            Font buttonFont = new Font("Georgia", 12, FontStyle.Regular);
+
+            this.Font = mainFont;
+
+            ApplyFontToControls(this, mainFont);
+
+            label.Font = titleFont;
+            button.Font = buttonFont;
+
+            LoginName.Font = mainFont;
+            LoginPassword.Font = mainFont;
+        }
+
+        private void ApplyFontToControls(Control parent, Font font)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                control.Font = font;
+
+                if (control.HasChildren)
+                    ApplyFontToControls(control, font);
+            }
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            pictureBox1.Location = new Point((this.ClientSize.Width - pictureBox1.Width) / 2, 20);
-            pictureBox1.Anchor = AnchorStyles.Top;
+            pictureBox.Location = new Point((this.ClientSize.Width - pictureBox.Width) / 2, 20);
+            pictureBox.Anchor = AnchorStyles.Top;
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
             this.Text = "ВХІД В СИСТЕМУ";
             this.BackColor = Color.Teal;
         }
+
         int attempts = 0;
+
         private void button1_Click(object sender, EventArgs e)
         {
-         /*   if (attempts >= 3)
-                MessageBox.Show("Доступ заблоковано. Ви використали всі спроби.");
-                return;
-
-            /*  if (textBox1.Text == "admin" || textBox1.Text == "фвьшт" && textBox2.Text == "1234")
-              {
-                  button1.BackColor = Color.DarkSeaGreen;
-                  this.Text = "Вхід";*/
             ClientMainForm form = new ClientMainForm();
-                  form.Show();
+            form.Show();
 
-                  this.Hide(); // Ховаємо вікно тільки якщо дані вірні
-              /*}
-              else
-              {
-                  attempts++; // Збільшуємо кількість спроб
-                  int remaining = 3 - attempts;
-                  if (attempts >= 3)
-                  {
-                      MessageBox.Show("Ви 3 рази ввели невірний пароль! Кнопка входу заблокована.");
-                      button1.Enabled = false; // Блокуємо кнопку
-                      Application.Exit();
-                  }
-                  else
-                  {
-                      MessageBox.Show($"Невірний логін або пароль! Залишилося спроб: {remaining}");
-                      textBox2.Clear();
-                      textBox2.Focus();
-                  }
-              }*/
+            this.Hide();
         }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             this.BackColor = Color.Honeydew;
         }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             this.BackColor = Color.Honeydew;

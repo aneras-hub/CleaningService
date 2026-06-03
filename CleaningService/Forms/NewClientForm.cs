@@ -22,38 +22,70 @@ namespace CleaningService
 
             InitPlaceholders();
             InitComboBoxes();
+            ApplyStyle();
         }
         private void InitPlaceholders()
         {
-            textBox1.PlaceholderText = "Петренко Петра Петрівна";
-            textBox2.PlaceholderText = "+380997908190";
-            textBox3.PlaceholderText = "вул. Петра, 14";
-            textBox4.PlaceholderText = "10";
+            NameClient.PlaceholderText = "Петренко Петра Петрівна";
+            NumberClient.PlaceholderText = "+380997908190";
+            AdressClient.PlaceholderText = "вул. Петра, 14";
+            AreaRoom.PlaceholderText = "10";
         }
         private void InitComboBoxes()
         {
-            comboBox1.Items.AddRange(new[]
+            Posluga.Items.AddRange(new[]
             {
                 "Генеральне прибирання"," Підтримувальне прибирання", "Прибирання після ремонту", "Прибирання будинку", "Прибирання котеджу", "Прибирання офісу", "Прибирання ресторану", "Прибирання магазинів"
             });
-            comboBox2.DataSource = employeeManager.Employees;
-            comboBox2.DisplayMember = "EmployeeName";
-            comboBox3.Items.AddRange(new[]
+            EmployeeClean.DataSource = employeeManager.Employees;
+            EmployeeClean.DisplayMember = "EmployeeName";
+            PlusPosluga.Items.AddRange(new[]
             {
                 "Миття вікон", "Хімчистка диванів", "Полірування паркету", "Хімчистка килимів", "Чистка м’яких крісел та стільців"
             });
-            comboBox4.Items.AddRange(new[]
+            StanOplatu.Items.AddRange(new[]
             {
                 "Частково сплачено", "Оплачено", "Очікує оплати", "Неоплачено"
             });
-            comboBox5.Items.AddRange(new[]
+            TimeCleaning.Items.AddRange(new[]
             {
                 "Ранок", "Обід", "Вечір"
             });
-            SetDefault(comboBox1);
-            SetDefault(comboBox3);
-            SetDefault(comboBox4);
-            SetDefault(comboBox5);
+            SetDefault(Posluga);
+            SetDefault(PlusPosluga);
+            SetDefault(StanOplatu);
+            SetDefault(TimeCleaning);
+        }
+        private void ApplyStyle()
+        {
+            Font mainFont = new Font("Georgia", 12, FontStyle.Regular);
+            Font sectionFont = new Font("Georgia", 14, FontStyle.Bold);
+            Font titleFont = new Font("Georgia", 20, FontStyle.Bold);
+            Font buttonFont = new Font("Georgia", 12, FontStyle.Bold);
+
+            this.Font = mainFont;
+
+            ApplyFontToControls(this, mainFont);
+
+            // Найбільший заголовок
+            label1.Font = titleFont;
+
+            // Середні заголовки
+            label2.Font = sectionFont;
+            label5.Font = sectionFont;
+
+            // Кнопка
+            button.Font = buttonFont;
+        }
+        private void ApplyFontToControls(Control parent, Font font)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                control.Font = font;
+
+                if (control.HasChildren)
+                    ApplyFontToControls(control, font);
+            }
         }
         private void SetDefault(ComboBox cb)
         {
@@ -62,9 +94,9 @@ namespace CleaningService
         }
         private bool IsValid()
         {
-            string fullName = textBox1.Text.Trim();
-            string phone = textBox2.Text.Trim();
-            string address = textBox3.Text.Trim();
+            string fullName = NameClient.Text.Trim();
+            string phone = NumberClient.Text.Trim();
+            string address = AdressClient.Text.Trim();
             string[] nameParts = fullName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             if (nameParts.Length != 3)
                 return ShowError("ПІБ має містити рівно 3 слова: прізвище, ім’я та по батькові.");
@@ -79,29 +111,29 @@ namespace CleaningService
                 }
             }
             string phonePattern = @"^\+38\s0\d{2}\s\d{3}\s\d{4}$";
-            if (!Regex.IsMatch(textBox2.Text.Trim(), phonePattern))
+            if (!Regex.IsMatch(NumberClient.Text.Trim(), phonePattern))
                 return ShowError("Телефон у форматі +380 99 790 8190");
-            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            if (string.IsNullOrWhiteSpace(AdressClient.Text))
                 return ShowError("Введіть адресу.");
-            if (comboBox1.SelectedIndex < 0)
+            if (Posluga.SelectedIndex < 0)
                 return ShowError("Оберіть тип послуг.");
             if (string.IsNullOrWhiteSpace(address))
                 return ShowError("Введіть адресу.");
             if (address.Length < 5)
                 return ShowError("Адреса занадто коротка.");
-            if (comboBox1.SelectedIndex <= 0)
+            if (Posluga.SelectedIndex <= 0)
                 return ShowError("Оберіть тип послуги.");
-            if (!double.TryParse(textBox4.Text.Trim(), out double area) || area <= 0)
+            if (!double.TryParse(AreaRoom.Text.Trim(), out double area) || area <= 0)
                 return ShowError("Площа має бути числом більше 0.");
             if (area > 10000)
                 return ShowError("Площа приміщення занадто велика.");
-            if (comboBox2.SelectedIndex < 0 || comboBox2.SelectedItem == null)
+            if (EmployeeClean.SelectedIndex < 0 || EmployeeClean.SelectedItem == null)
                 return ShowError("Оберіть фахівця.");
-            if (comboBox5.SelectedIndex <= 0)
+            if (TimeCleaning.SelectedIndex <= 0)
                 return ShowError("Оберіть час прибирання.");
-            if (comboBox4.SelectedIndex <= 0)
+            if (StanOplatu.SelectedIndex <= 0)
                 return ShowError("Оберіть стан оплати.");
-            if (dateTimePicker1.Value.Date < DateTime.Today)
+            if (dateTimePicker.Value.Date < DateTime.Today)
                 return ShowError("Дата замовлення не може бути в минулому.");
             return true;
         }
@@ -114,41 +146,41 @@ namespace CleaningService
         {
             NewOrder = order;
             isEdit = true;
-            textBox1.Text = order.FullNameClient;
-            textBox2.Text = order.PhoneNumber;
-            textBox3.Text = order.Address;
-            textBox4.Text = order.RoomArea.ToString();
-            comboBox2.SelectedItem = employeeManager
+            NameClient.Text = order.FullNameClient;
+            NumberClient.Text = order.PhoneNumber;
+            AdressClient.Text = order.Address;
+            AreaRoom.Text = order.RoomArea.ToString();
+            EmployeeClean.SelectedItem = employeeManager
                .Employees
                .FirstOrDefault(e => e.Id == order.Employee?.Id);
-            comboBox4.SelectedItem = order.PaymentStatus;
-            comboBox5.SelectedItem = order.TimeSlot;
+            StanOplatu.SelectedItem = order.PaymentStatus;
+            TimeCleaning.SelectedItem = order.TimeSlot;
             if (order.Services?.Count > 0)
             {
-                comboBox1.SelectedItem = order.Services[0].CategoryService;
-                comboBox3.SelectedItem = order.Services[0].OtherService;
+                Posluga.SelectedItem = order.Services[0].CategoryService;
+                PlusPosluga.SelectedItem = order.Services[0].OtherService;
             }
-            dateTimePicker1.Value = order.OrderDate;
+            dateTimePicker.Value = order.OrderDate;
         }
         private void button1_Click(object sender, EventArgs e)
         {
             if (!IsValid()) return;
-            double area = double.Parse(textBox4.Text);
-            var service = new CleaningService(comboBox1.Text, comboBox3.SelectedItem?.ToString() ?? "");
+            double area = double.Parse(AreaRoom.Text);
+            var service = new CleaningService(Posluga.Text, PlusPosluga.SelectedItem?.ToString() ?? "");
             var services = new List<CleaningService> { service };
-            Employee selectedEmployee = (Employee)comboBox2.SelectedItem;
+            Employee selectedEmployee = (Employee)EmployeeClean.SelectedItem;
             if (!isEdit)
             {
                 NewOrder = new Order(
-                    dateTimePicker1.Value,
-                    textBox1.Text,
-                    textBox2.Text,
-                    textBox3.Text,
+                    dateTimePicker.Value,
+                    NameClient.Text,
+                    NumberClient.Text,
+                    AdressClient.Text,
                     area,
                     services,
                     selectedEmployee,
-                    comboBox4.Text,
-                    comboBox5.Text
+                    StanOplatu.Text,
+                    TimeCleaning.Text
                 );
                 if (this.Owner is ClientMainForm mainForm)
                 {
@@ -157,14 +189,14 @@ namespace CleaningService
             }
             else
             {
-                NewOrder.FullNameClient = textBox1.Text;
-                NewOrder.PhoneNumber = textBox2.Text;
-                NewOrder.Address = textBox3.Text;
+                NewOrder.FullNameClient = NameClient.Text;
+                NewOrder.PhoneNumber = NumberClient.Text;
+                NewOrder.Address = AdressClient.Text;
                 NewOrder.RoomArea = area;
                 NewOrder.Services = services;
                 NewOrder.Employee = selectedEmployee;
-                NewOrder.PaymentStatus = comboBox4.Text;
-                NewOrder.OrderDate = dateTimePicker1.Value;
+                NewOrder.PaymentStatus = StanOplatu.Text;
+                NewOrder.OrderDate = dateTimePicker.Value;
                 NewOrder.Price = NewOrder.CalculatePrice();
             }
                 var result = MessageBox.Show(
@@ -185,12 +217,12 @@ namespace CleaningService
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (!double.TryParse(textBox4.Text, out double area))
+            if (!double.TryParse(AreaRoom.Text, out double area))
             {
                 textBox5.Text = "0 грн"; 
                 return;
             }
-            double pricePerMeter = comboBox1.Text.Contains("ремонту") ? 180.0 : 100.0;
+            double pricePerMeter = Posluga.Text.Contains("ремонту") ? 180.0 : 100.0;
             textBox5.Text = $"{area * pricePerMeter} грн";
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -199,17 +231,17 @@ namespace CleaningService
         }
         private void ClearForm()
         {
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
-            comboBox1.SelectedIndex = 0;
-            if (comboBox2.Items.Count > 0)
-                comboBox2.SelectedIndex = 0;
-            comboBox3.SelectedIndex = 0;
-            comboBox4.SelectedIndex = 0;
-            comboBox5.SelectedIndex = 0;
-            dateTimePicker1.Value = DateTime.Now;
+            NameClient.Clear();
+            NumberClient.Clear();
+            AdressClient.Clear();
+            AreaRoom.Clear();
+            Posluga.SelectedIndex = 0;
+            if (EmployeeClean.Items.Count > 0)
+                EmployeeClean.SelectedIndex = 0;
+            PlusPosluga.SelectedIndex = 0;
+            StanOplatu.SelectedIndex = 0;
+            TimeCleaning.SelectedIndex = 0;
+            dateTimePicker.Value = DateTime.Now;
         }
     }
 }

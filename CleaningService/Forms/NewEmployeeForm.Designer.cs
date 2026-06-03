@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewEmployeeForm));
-            dateTimePicker1 = new DateTimePicker();
+            dateTimePicker = new DateTimePicker();
             label14 = new Label();
-            button1 = new Button();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            button = new Button();
+            NumberBox = new TextBox();
+            FullNameBox = new TextBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             SuspendLayout();
             // 
-            // dateTimePicker1
+            // dateTimePicker
             // 
-            dateTimePicker1.Location = new Point(204, 225);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(282, 27);
-            dateTimePicker1.TabIndex = 49;
+            dateTimePicker.Location = new Point(204, 225);
+            dateTimePicker.Name = "dateTimePicker";
+            dateTimePicker.Size = new Size(282, 27);
+            dateTimePicker.TabIndex = 49;
             // 
             // label14
             // 
@@ -58,29 +58,29 @@
             label14.Text = "Дата народження:";
             label14.Click += label14_Click;
             // 
-            // button1
+            // button
             // 
-            button1.Location = new Point(178, 294);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 35);
-            button1.TabIndex = 47;
-            button1.Text = "Додати фахівця";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button.Location = new Point(178, 294);
+            button.Name = "button";
+            button.Size = new Size(200, 35);
+            button.TabIndex = 47;
+            button.Text = "Додати фахівця";
+            button.UseVisualStyleBackColor = true;
+            button.Click += button1_Click;
             // 
-            // textBox2
+            // NumberBox
             // 
-            textBox2.Location = new Point(204, 172);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(282, 27);
-            textBox2.TabIndex = 36;
+            NumberBox.Location = new Point(204, 172);
+            NumberBox.Name = "NumberBox";
+            NumberBox.Size = new Size(282, 27);
+            NumberBox.TabIndex = 36;
             // 
-            // textBox1
+            // FullNameBox
             // 
-            textBox1.Location = new Point(204, 119);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(282, 27);
-            textBox1.TabIndex = 35;
+            FullNameBox.Location = new Point(204, 119);
+            FullNameBox.Name = "FullNameBox";
+            FullNameBox.Size = new Size(282, 27);
+            FullNameBox.TabIndex = 35;
             // 
             // label4
             // 
@@ -129,11 +129,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
             ClientSize = new Size(596, 382);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dateTimePicker);
             Controls.Add(label14);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(button);
+            Controls.Add(NumberBox);
+            Controls.Add(FullNameBox);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -147,11 +147,11 @@
 
         #endregion
 
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker;
         private Label label14;
-        private Button button1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private Button button;
+        private TextBox NumberBox;
+        private TextBox FullNameBox;
         private Label label4;
         private Label label3;
         private Label label2;

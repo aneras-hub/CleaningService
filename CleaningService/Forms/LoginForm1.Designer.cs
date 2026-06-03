@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm1));
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
+            pictureBox = new PictureBox();
+            label = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             panel1 = new Panel();
-            textBox1 = new TextBox();
+            LoginName = new TextBox();
             panel2 = new Panel();
-            textBox2 = new TextBox();
+            LoginPassword = new TextBox();
             panel3 = new Panel();
-            button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            button = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel1.SuspendLayout();
@@ -47,26 +47,26 @@
             panel3.SuspendLayout();
             SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBox
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(276, 49);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(176, 188);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pictureBox.Image = (Image)resources.GetObject("pictureBox.Image");
+            pictureBox.Location = new Point(276, 49);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(176, 188);
+            pictureBox.TabIndex = 0;
+            pictureBox.TabStop = false;
             // 
-            // label1
+            // label
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.ForeColor = Color.Teal;
-            label1.Location = new Point(214, 263);
-            label1.Name = "label1";
-            label1.Size = new Size(308, 39);
-            label1.TabIndex = 1;
-            label1.Text = "ВХІД В СИСТЕМУ";
-            label1.Click += label1_Click;
+            label.AutoSize = true;
+            label.Font = new Font("Georgia", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label.ForeColor = Color.Teal;
+            label.Location = new Point(214, 263);
+            label.Name = "label";
+            label.Size = new Size(308, 39);
+            label.TabIndex = 1;
+            label.Text = "ВХІД В СИСТЕМУ";
+            label.Click += label1_Click;
             // 
             // pictureBox3
             // 
@@ -96,58 +96,58 @@
             // 
             panel1.BackColor = Color.DarkSeaGreen;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(LoginName);
             panel1.Location = new Point(188, 317);
             panel1.Name = "panel1";
             panel1.Size = new Size(334, 42);
             panel1.TabIndex = 5;
             panel1.Paint += panel1_Paint;
             // 
-            // textBox1
+            // LoginName
             // 
-            textBox1.Location = new Point(43, 6);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(282, 28);
-            textBox1.TabIndex = 7;
+            LoginName.Location = new Point(43, 6);
+            LoginName.Name = "LoginName";
+            LoginName.Size = new Size(282, 28);
+            LoginName.TabIndex = 7;
             // 
             // panel2
             // 
             panel2.BackColor = Color.DarkSeaGreen;
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(LoginPassword);
             panel2.Location = new Point(180, 399);
             panel2.Name = "panel2";
             panel2.Size = new Size(342, 49);
             panel2.TabIndex = 6;
             panel2.Paint += panel2_Paint;
             // 
-            // textBox2
+            // LoginPassword
             // 
-            textBox2.Location = new Point(7, 9);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(273, 28);
-            textBox2.TabIndex = 8;
+            LoginPassword.Location = new Point(7, 9);
+            LoginPassword.Name = "LoginPassword";
+            LoginPassword.Size = new Size(273, 28);
+            LoginPassword.TabIndex = 8;
             // 
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(button1);
+            panel3.Controls.Add(button);
             panel3.Location = new Point(50, 28);
             panel3.Name = "panel3";
             panel3.Size = new Size(633, 507);
             panel3.TabIndex = 7;
             // 
-            // button1
+            // button
             // 
-            button1.BackColor = Color.DarkSeaGreen;
-            button1.ForeColor = SystemColors.ControlText;
-            button1.Location = new Point(268, 442);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "Вхід";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button.BackColor = Color.DarkSeaGreen;
+            button.ForeColor = SystemColors.ControlText;
+            button.Location = new Point(268, 442);
+            button.Name = "button";
+            button.Size = new Size(94, 29);
+            button.TabIndex = 0;
+            button.Text = "Вхід";
+            button.UseVisualStyleBackColor = false;
+            button.Click += button1_Click;
             // 
             // LoginForm1
             // 
@@ -157,8 +157,8 @@
             ClientSize = new Size(737, 570);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox3);
-            Controls.Add(label1);
-            Controls.Add(pictureBox1);
+            Controls.Add(label);
+            Controls.Add(pictureBox);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(panel3);
@@ -167,7 +167,7 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "LoginForm1";
             Text = "Вхід в систему";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
@@ -181,15 +181,15 @@
 
         #endregion
 
-        private PictureBox pictureBox1;
-        private Label label1;
+        private PictureBox pictureBox;
+        private Label label;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private Panel panel1;
         private Panel panel2;
-        private TextBox textBox1;
+        private TextBox LoginName;
         private Panel panel3;
-        private Button button1;
-        private TextBox textBox2;
+        private Button button;
+        private TextBox LoginPassword;
     }
 }

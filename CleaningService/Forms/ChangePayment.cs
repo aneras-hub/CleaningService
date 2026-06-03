@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace CleaningService
@@ -17,7 +18,7 @@ namespace CleaningService
 
             CurrentOrder = order;
 
-            comboBox4.Items.AddRange(new[]
+            StanOplatu.Items.AddRange(new[]
             {
                 "Частково сплачено",
                 "Оплачено",
@@ -26,22 +27,32 @@ namespace CleaningService
             });
 
             // ставимо поточний стан
-            comboBox4.SelectedItem = CurrentOrder.PaymentStatus;
+            StanOplatu.SelectedItem = CurrentOrder.PaymentStatus;
 
-            button1.Text = "Зберегти";
-            button1.Click += button1_Click;
+            button.Text = "Зберегти";
+            button.Click += button1_Click;
+            ApplyStyle();
         }
+        private void ApplyStyle()
+        {
+            Font mainFont = new Font("Georgia", 12, FontStyle.Regular);
+            Font buttonFont = new Font("Georgia", 12, FontStyle.Regular);
 
+            this.Font = mainFont;
+
+            StanOplatu.Font = mainFont;
+            button.Font = buttonFont;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox4.SelectedItem == null)
+            if (StanOplatu.SelectedItem == null)
             {
                 MessageBox.Show("Оберіть стан оплати!");
                 return;
             }
 
             // змінює стан
-            CurrentOrder.PaymentStatus = comboBox4.SelectedItem.ToString();
+            CurrentOrder.PaymentStatus = StanOplatu.SelectedItem.ToString();
 
             DialogResult = DialogResult.OK;
             Close();

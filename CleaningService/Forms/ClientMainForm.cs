@@ -29,6 +29,7 @@ namespace CleaningService
             InitGrid();
             InitContextMenu();
             InitEmployees();
+            ApplyStyle();
             searchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
             //щоб текст в колонках автоматично підлаштовувався
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -51,9 +52,10 @@ namespace CleaningService
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory; // можна додати колір як у меню
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.LightBlue; // М'який колір виділення
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             // Прибрати візуальний індикатор (маленький трикутник) зліва
             dataGridView1.RowHeadersVisible = false;
         }
@@ -89,6 +91,28 @@ namespace CleaningService
         {
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment =
+                DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font =
+                new Font(dataGridView1.Font, FontStyle.Bold);
+
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dataGridView1.GridColor = Color.Gray;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
         }
 
         private void InitContextMenu()
@@ -108,7 +132,15 @@ namespace CleaningService
             employeeManager.AddEmployee(new Employee(4, "Озерська Анна Костянтинівна", "0990000004", new DateTime(1998, 12, 18)));
             employeeManager.AddEmployee(new Employee(5, "Яворівський Максим Юрійович", "0990000005", new DateTime(1991, 1, 30)));
         }
+        private void ApplyStyle()
+        {
+            Font mainFont = new Font("Georgia", 10, FontStyle.Regular);
 
+            foreach (Control c in this.Controls)
+            {
+                c.Font = mainFont;
+            }
+        }
         // таблиця
         private void RefreshGrid(IEnumerable<Order> data = null)
         {

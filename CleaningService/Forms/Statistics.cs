@@ -22,6 +22,7 @@ namespace CleaningService.Forms
             StartPosition = FormStartPosition.CenterScreen;
             Load += Statistics_Load;
             InitLabelEvents();
+            ApplyStyle();
         }
         private void InitLabelEvents()
         {
@@ -89,6 +90,15 @@ namespace CleaningService.Forms
                 label20.Text = "0";
                 label21.Text = "0 грн";
                 ResetChart(chart1, "Статистика фахівця", "", "");
+            }
+        }
+        private void ApplyStyle()
+        {
+            Font mainFont = new Font("Georgia", 11, FontStyle.Regular);
+
+            foreach (Control c in this.Controls)
+            {
+                c.Font = mainFont;
             }
         }
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -277,7 +287,7 @@ namespace CleaningService.Forms
             series["PixelPointWidth"] = "55";
             series["LabelStyle"] = "Top";
             series.SmartLabelStyle.Enabled = false;
-            series.Font = new Font("Georgia", 8, FontStyle.Bold);
+            series.Font = new Font("Georgia", 9, FontStyle.Bold);
             Color[] colors =
             {
                 Color.DodgerBlue, Color.MediumSeaGreen, Color.Orange, Color.MediumPurple, Color.Crimson, Color.Teal, Color.Goldenrod,  Color.CornflowerBlue
@@ -569,6 +579,16 @@ namespace CleaningService.Forms
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
         {
 
         }

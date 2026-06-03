@@ -29,6 +29,7 @@ namespace CleaningService.Forms
             InitGrid();
             InitControls();
             RefreshGrid();
+            ApplyStyle();
         }
 
         private void InitGrid()
@@ -85,7 +86,8 @@ namespace CleaningService.Forms
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 if (col.Name != "EmployeeName")
@@ -112,7 +114,7 @@ namespace CleaningService.Forms
             toolStripMenuItem3.Click -= deletePolicyToolStripButton_Click;
             toolStripMenuItem3.Click += deletePolicyToolStripButton_Click;
 
-            exitMenuItem.Click += (s, e) => Close();
+            ExitMenuItem.Click += (s, e) => Close();
 
             searchBox.TextChanged -= searchBox_TextChanged;
             searchBox.TextChanged += searchBox_TextChanged;
@@ -150,7 +152,15 @@ namespace CleaningService.Forms
                 }
             }
         }
+        private void ApplyStyle()
+        {
+            Font mainFont = new Font("Georgia", 10, FontStyle.Regular);
 
+            foreach (Control c in this.Controls)
+            {
+                c.Font = mainFont;
+            }
+        }
         private void DataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;

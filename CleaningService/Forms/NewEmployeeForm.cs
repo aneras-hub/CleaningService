@@ -16,25 +16,40 @@ namespace CleaningService.Forms
         public NewEmployeeForm()
         {
             InitializeComponent();
-            dateTimePicker1.MaxDate = DateTime.Today.AddYears(-18);
-            dateTimePicker1.MinDate = DateTime.Today.AddYears(-100);
+            dateTimePicker.MaxDate = DateTime.Today.AddYears(-18);
+            dateTimePicker.MinDate = DateTime.Today.AddYears(-100);
+            ApplyStyle();
         }
-
         private void label14_Click(object sender, EventArgs e)
         {        }
         public Employee NewEmployee { get; set; }
         public NewEmployeeForm(Employee employee) : this()
         {
             this.NewEmployee = employee;
-            textBox1.Text = employee.EmployeeName;
-            textBox2.Text = employee.EmployeeNumber;
-            button1.Text = "Зберегти зміни";
+            FullNameBox.Text = employee.EmployeeName;
+            NumberBox.Text = employee.EmployeeNumber;
+            button.Text = "Зберегти зміни";
+        }
+        private void ApplyStyle()
+        {
+            label1.Font = new Font("Georgia", 14, FontStyle.Regular); // Клінінгова служба
+            label2.Font = new Font("Georgia", 11, FontStyle.Regular); // Дані фахівця
+
+            label3.Font = new Font("Georgia", 10, FontStyle.Regular);
+            label4.Font = new Font("Georgia", 10, FontStyle.Regular);
+            label14.Font = new Font("Georgia", 10, FontStyle.Regular);
+
+            FullNameBox.Font = new Font("Georgia", 10);
+            NumberBox.Font = new Font("Georgia", 10);
+            dateTimePicker.Font = new Font("Georgia", 10);
+
+            button.Font = new Font("Georgia", 10, FontStyle.Bold);
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            string fullName = textBox1.Text.Trim();
-            string phone = textBox2.Text.Trim();
-            DateTime birthDate = dateTimePicker1.Value.Date;
+            string fullName = FullNameBox.Text.Trim();
+            string phone = NumberBox.Text.Trim();
+            DateTime birthDate = dateTimePicker.Value.Date;
 
             string[] parts = fullName.Split(
                 new char[] { ' ' },
