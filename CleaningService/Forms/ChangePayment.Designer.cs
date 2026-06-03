@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangePayment));
             comboBox4 = new ComboBox();
             label12 = new Label();
             button1 = new Button();
@@ -70,8 +71,9 @@
             Controls.Add(button1);
             Controls.Add(comboBox4);
             Controls.Add(label12);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ChangePayment";
-            Text = "ChangePayment";
+            Text = "Зміна оплати";
             ResumeLayout(false);
             PerformLayout();
         }

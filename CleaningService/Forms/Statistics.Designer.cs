@@ -117,10 +117,11 @@
             panel3.Controls.Add(label20);
             panel3.Controls.Add(label18);
             panel3.Controls.Add(label19);
-            panel3.Location = new Point(29, 59);
+            panel3.Location = new Point(87, 66);
             panel3.Name = "panel3";
             panel3.Size = new Size(524, 151);
             panel3.TabIndex = 7;
+            panel3.Paint += panel3_Paint;
             // 
             // label17
             // 
@@ -180,7 +181,7 @@
             // 
             chartArea1.Name = "ChartArea1";
             chart1.ChartAreas.Add(chartArea1);
-            chart1.Location = new Point(619, 40);
+            chart1.Location = new Point(683, 39);
             chart1.Name = "chart1";
             chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series1.ChartArea = "ChartArea1";
@@ -189,6 +190,7 @@
             chart1.Size = new Size(614, 230);
             chart1.TabIndex = 4;
             chart1.Text = "chart1";
+            chart1.Click += chart1_Click;
             // 
             // tabControl1
             // 
@@ -379,18 +381,19 @@
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(598, 12);
+            label22.Location = new Point(810, 12);
             label22.Name = "label22";
-            label22.Size = new Size(270, 20);
+            label22.Size = new Size(272, 20);
             label22.TabIndex = 20;
-            label22.Text = "ГРАФІКИ ПО ЗАГАЛЬНІЙ СТАТИСТИці";
+            label22.Text = "ГРАФІКИ ПО ЗАГАЛЬНІЙ СТАТИСТИЦІ";
+            label22.Click += label22_Click;
             // 
             // chart4
             // 
             chart4.BackColor = Color.AliceBlue;
             chartArea2.Name = "ChartArea1";
             chart4.ChartAreas.Add(chartArea2);
-            chart4.Location = new Point(475, 232);
+            chart4.Location = new Point(475, 220);
             chart4.Name = "chart4";
             chart4.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series2.ChartArea = "ChartArea1";
@@ -457,7 +460,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1380, 26);
+            menuStrip.Size = new Size(1377, 26);
             menuStrip.TabIndex = 3;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -556,11 +559,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(1380, 505);
+            ClientSize = new Size(1377, 496);
             Controls.Add(menuStrip);
             Controls.Add(tabControl1);
             Name = "Statistics";
-            Text = "Statistics";
+            Text = "Статистика";
             tabPage2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

@@ -448,7 +448,7 @@ namespace CleaningService.Forms
         {
             ChartArea area = chart.ChartAreas[0];
             area.AxisY.Title = "";
-            area.AxisX.Title = "Кількість замовлень"; 
+            area.AxisX.Title = "Кількість замовлень";
             area.AxisY.LabelStyle.Angle = 0;
             area.AxisY.IsLabelAutoFit = false;
             area.AxisY.LabelStyle.Font = new Font("Georgia", 8, FontStyle.Regular);
@@ -556,6 +556,21 @@ namespace CleaningService.Forms
             label20.Text = emp.GetOrdersCount().ToString();
             label21.Text = $"{emp.GetSalary():0.00} грн";
             LoadEmployeeChart(emp);
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

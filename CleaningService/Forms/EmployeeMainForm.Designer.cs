@@ -374,8 +374,10 @@
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
             Controls.Add(dataGridView1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EmployeeMainForm";
-            Text = "EmployeeMainForm";
+            Text = "Таблиця фахівців";
+            Load += EmployeeMainForm_Load;
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
             menuStrip.ResumeLayout(false);

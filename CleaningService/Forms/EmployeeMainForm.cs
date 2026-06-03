@@ -306,5 +306,10 @@ namespace CleaningService.Forms
                 _company?.WriteToFile(_savePath);
             }
         }
+
+        private void EmployeeMainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
-}
+} 

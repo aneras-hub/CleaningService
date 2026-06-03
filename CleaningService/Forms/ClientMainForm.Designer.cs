@@ -422,8 +422,9 @@
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
             Controls.Add(dataGridView1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ClientMainForm";
-            Text = "MainForm";
+            Text = "Таблиця клієнтів";
             FormClosing += ClientMainForm_FormClosing;
             FormClosed += ClientMainForm_FormClosed;
             menuStrip.ResumeLayout(false);

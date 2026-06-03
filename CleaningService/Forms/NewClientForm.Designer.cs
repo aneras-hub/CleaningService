@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewClientForm));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -315,9 +316,10 @@
             Controls.Add(label1);
             Controls.Add(textBox5);
             Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
             Name = "NewClientForm";
-            Text = "NewClientForm";
+            Text = "Новий клієнт";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -163,6 +163,7 @@
             Controls.Add(panel1);
             Controls.Add(panel3);
             Font = new Font("Georgia", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             Name = "LoginForm1";
             Text = "Вхід в систему";
