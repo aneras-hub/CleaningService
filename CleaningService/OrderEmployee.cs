@@ -7,15 +7,11 @@ namespace CleaningService
     public class OrderEmployee
     {
         public List<Employee> Employees { get; set; } = new List<Employee>();
-
-        //ДОДАТИ
         public void AddEmployee(Employee emp)
         {
             if (emp != null)
                 Employees.Add(emp);
         }
-
-        //РЕДАГУВАТИ
         public void EditEmployee(int id, string newName, string newPhone, DateTime newBirthDate)
         {
             var emp = Employees.FirstOrDefault(e => e.Id == id);
@@ -26,40 +22,33 @@ namespace CleaningService
                 emp.BirthDate = newBirthDate;
             }
         }
-
-        //ВИДАЛИТИ
         public void RemoveEmployee(int id)
         {
             var emp = Employees.FirstOrDefault(e => e.Id == id);
             if (emp != null)
                 Employees.Remove(emp);
         }
-
-        //пошук
         public List<Employee> Search(string query)
         {
+            if (string.IsNullOrWhiteSpace(query))
+                return Employees;
             return Employees.Where(e =>
                     e.EmployeeName.Contains(query, StringComparison.OrdinalIgnoreCase) || // замінено на query
                     e.EmployeeNumber.Contains(query) // замінено на query
                 ).ToList();
         }
-
-        //ТОП працівники
         public List<Employee> GetTopEmployees()
         {
             return Employees
                 .OrderByDescending(e => e.GetOrdersCount())
                 .ToList();
         }
-        //найзайнятіший
         public Employee GetMostBusyEmployee()
         {
             return Employees
                 .OrderByDescending(e => e.GetOrdersCount())
                 .FirstOrDefault();
         }
-
-        //Вільні працівники
         public List<Employee> GetFreeEmployees()
         {
             return Employees
