@@ -81,8 +81,6 @@
             редагуватиФахівцяToolStripMenuItem = new ToolStripMenuItem();
             searchMenuItem = new ToolStripMenuItem();
             reportsMenuItem = new ToolStripMenuItem();
-            statisticsMenuItem = new ToolStripMenuItem();
-            incomeReportMenuItem = new ToolStripMenuItem();
             tabPage2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
@@ -536,25 +534,10 @@
             // 
             // reportsMenuItem
             // 
-            reportsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { statisticsMenuItem, incomeReportMenuItem });
             reportsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             reportsMenuItem.Name = "reportsMenuItem";
             reportsMenuItem.Size = new Size(178, 22);
             reportsMenuItem.Text = "Аналіз та звітність";
-            // 
-            // statisticsMenuItem
-            // 
-            statisticsMenuItem.Name = "statisticsMenuItem";
-            statisticsMenuItem.ShortcutKeys = Keys.Control | Keys.R;
-            statisticsMenuItem.Size = new Size(386, 26);
-            statisticsMenuItem.Text = "Статистика по замовленням";
-            // 
-            // incomeReportMenuItem
-            // 
-            incomeReportMenuItem.Name = "incomeReportMenuItem";
-            incomeReportMenuItem.ShortcutKeys = Keys.Control | Keys.I;
-            incomeReportMenuItem.Size = new Size(386, 26);
-            incomeReportMenuItem.Text = "Звіт по доходах";
             // 
             // Statistics
             // 
@@ -624,8 +607,6 @@
         private ToolStripMenuItem newPolicyMenuItem;
         private ToolStripMenuItem searchMenuItem;
         private ToolStripMenuItem reportsMenuItem;
-        private ToolStripMenuItem statisticsMenuItem;
-        private ToolStripMenuItem incomeReportMenuItem;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart4;
         private Label label22;
         private ToolStripMenuItem редагуватиФахівцяToolStripMenuItem;

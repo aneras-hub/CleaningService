@@ -29,18 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeMainForm));
-            NewClientToolStripButton = new ToolStripButton();
-            EditClientToolStripButton = new ToolStripButton();
-            SaveFileToolStripButton = new ToolStripButton();
-            LoadFileToolStripButton = new ToolStripButton();
-            DeleteClientToolStripButton = new ToolStripButton();
             SearchBox = new TextBox();
-            OrderEmployeeMenuItem = new ToolStripMenuItem();
-            NewEmployeeMenuItem = new ToolStripMenuItem();
-            EditEmployeeMenuItem = new ToolStripMenuItem();
-            DeleteEmployeeMenuItem = new ToolStripMenuItem();
-            toolStrip = new ToolStrip();
-            menuStrip = new MenuStrip();
+            dataGridView = new DataGridView();
+            BirthDate = new DataGridViewTextBoxColumn();
+            EmployeeName = new DataGridViewTextBoxColumn();
+            EmployeeNumber = new DataGridViewTextBoxColumn();
+            EmployeeSalary = new DataGridViewTextBoxColumn();
+            CompletedOrders = new DataGridViewTextBoxColumn();
             FileMenuItem = new ToolStripMenuItem();
             SaveMenuItem = new ToolStripMenuItem();
             LoadMenuItem = new ToolStripMenuItem();
@@ -55,72 +50,22 @@
             fHalfOplatchenoMenuItem = new ToolStripMenuItem();
             fWaitOplataMenuItem = new ToolStripMenuItem();
             fAnyOplataMenuItem = new ToolStripMenuItem();
+            OrderEmployeeMenuItem = new ToolStripMenuItem();
+            NewEmployeeMenuItem = new ToolStripMenuItem();
+            EditEmployeeMenuItem = new ToolStripMenuItem();
+            DeleteEmployeeMenuItem = new ToolStripMenuItem();
             AllStatisticMenuItem = new ToolStripMenuItem();
-            StatisticsMenuItem = new ToolStripMenuItem();
-            ZvitMenuItem = new ToolStripMenuItem();
-            dataGridView = new DataGridView();
-            BirthDate = new DataGridViewTextBoxColumn();
-            EmployeeName = new DataGridViewTextBoxColumn();
-            EmployeeNumber = new DataGridViewTextBoxColumn();
-            EmployeeSalary = new DataGridViewTextBoxColumn();
-            CompletedOrders = new DataGridViewTextBoxColumn();
-            toolStrip.SuspendLayout();
-            menuStrip.SuspendLayout();
+            menuStrip = new MenuStrip();
+            NewClientToolStripButton = new ToolStripButton();
+            DeleteClientToolStripButton = new ToolStripButton();
+            EditClientToolStripButton = new ToolStripButton();
+            SaveFileToolStripButton = new ToolStripButton();
+            LoadFileToolStripButton = new ToolStripButton();
+            toolStrip = new ToolStrip();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            menuStrip.SuspendLayout();
+            toolStrip.SuspendLayout();
             SuspendLayout();
-            // 
-            // NewClientToolStripButton
-            // 
-            NewClientToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
-            NewClientToolStripButton.Image = (Image)resources.GetObject("NewClientToolStripButton.Image");
-            NewClientToolStripButton.ImageTransparentColor = Color.Magenta;
-            NewClientToolStripButton.Name = "NewClientToolStripButton";
-            NewClientToolStripButton.Size = new Size(87, 24);
-            NewClientToolStripButton.Text = "Додати";
-            NewClientToolStripButton.ToolTipText = "Додати новий поліс (Ctrl+N)";
-            NewClientToolStripButton.Click += newPolicyToolStripButton_Click;
-            // 
-            // EditClientToolStripButton
-            // 
-            EditClientToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
-            EditClientToolStripButton.Image = (Image)resources.GetObject("EditClientToolStripButton.Image");
-            EditClientToolStripButton.ImageTransparentColor = Color.Magenta;
-            EditClientToolStripButton.Name = "EditClientToolStripButton";
-            EditClientToolStripButton.Size = new Size(118, 24);
-            EditClientToolStripButton.Text = "Редагувати";
-            EditClientToolStripButton.ToolTipText = "Редагувати вибраний поліс";
-            EditClientToolStripButton.Click += editPolicyToolStripButton_Click;
-            // 
-            // SaveFileToolStripButton
-            // 
-            SaveFileToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
-            SaveFileToolStripButton.Image = (Image)resources.GetObject("SaveFileToolStripButton.Image");
-            SaveFileToolStripButton.ImageTransparentColor = Color.Magenta;
-            SaveFileToolStripButton.Name = "SaveFileToolStripButton";
-            SaveFileToolStripButton.Size = new Size(100, 24);
-            SaveFileToolStripButton.Text = "Зберегти";
-            SaveFileToolStripButton.ToolTipText = "Зберегти дані (Ctrl+S)";
-            // 
-            // LoadFileToolStripButton
-            // 
-            LoadFileToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
-            LoadFileToolStripButton.Image = (Image)resources.GetObject("LoadFileToolStripButton.Image");
-            LoadFileToolStripButton.ImageTransparentColor = Color.Magenta;
-            LoadFileToolStripButton.Name = "LoadFileToolStripButton";
-            LoadFileToolStripButton.Size = new Size(91, 24);
-            LoadFileToolStripButton.Text = "Зчитати";
-            LoadFileToolStripButton.ToolTipText = "Зчитати дані (Ctrl+O)";
-            // 
-            // DeleteClientToolStripButton
-            // 
-            DeleteClientToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
-            DeleteClientToolStripButton.Image = (Image)resources.GetObject("DeleteClientToolStripButton.Image");
-            DeleteClientToolStripButton.ImageTransparentColor = Color.Magenta;
-            DeleteClientToolStripButton.Name = "DeleteClientToolStripButton";
-            DeleteClientToolStripButton.Size = new Size(103, 24);
-            DeleteClientToolStripButton.Text = "Видалити";
-            DeleteClientToolStripButton.ToolTipText = "Видалити вибраний поліс";
-            DeleteClientToolStripButton.Click += deletePolicyToolStripButton_Click;
             // 
             // SearchBox
             // 
@@ -135,67 +80,64 @@
             SearchBox.TabIndex = 13;
             SearchBox.TextChanged += searchBox_TextChanged_1;
             // 
-            // OrderEmployeeMenuItem
+            // dataGridView
             // 
-            OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewEmployeeMenuItem, EditEmployeeMenuItem, DeleteEmployeeMenuItem });
-            OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
-            OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
-            OrderEmployeeMenuItem.Size = new Size(212, 22);
-            OrderEmployeeMenuItem.Text = "Управління фахівцями";
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.BackgroundColor = Color.SeaShell;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { BirthDate, EmployeeName, EmployeeNumber, EmployeeSalary, CompletedOrders });
+            dataGridView.Location = new Point(0, 90);
+            dataGridView.Name = "dataGridView";
+            dataGridView.RowHeadersWidth = 51;
+            dataGridView.Size = new Size(929, 321);
+            dataGridView.TabIndex = 10;
             // 
-            // NewEmployeeMenuItem
+            // BirthDate
             // 
-            NewEmployeeMenuItem.Name = "NewEmployeeMenuItem";
-            NewEmployeeMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            NewEmployeeMenuItem.Size = new Size(301, 26);
-            NewEmployeeMenuItem.Text = "Новий фахівець";
+            BirthDate.HeaderText = "Дата народження";
+            BirthDate.MinimumWidth = 6;
+            BirthDate.Name = "BirthDate";
+            BirthDate.Width = 125;
             // 
-            // EditEmployeeMenuItem
+            // EmployeeName
             // 
-            EditEmployeeMenuItem.Name = "EditEmployeeMenuItem";
-            EditEmployeeMenuItem.Size = new Size(301, 26);
-            EditEmployeeMenuItem.Text = "Редагувати фахівця";
+            EmployeeName.DataPropertyName = "EmployeeName";
+            EmployeeName.HeaderText = "ПІБ";
+            EmployeeName.MinimumWidth = 6;
+            EmployeeName.Name = "EmployeeName";
+            EmployeeName.Width = 230;
             // 
-            // DeleteEmployeeMenuItem
+            // EmployeeNumber
             // 
-            DeleteEmployeeMenuItem.Name = "DeleteEmployeeMenuItem";
-            DeleteEmployeeMenuItem.ShortcutKeys = Keys.Control | Keys.F;
-            DeleteEmployeeMenuItem.Size = new Size(301, 26);
-            DeleteEmployeeMenuItem.Text = "Видалити фахівця";
+            EmployeeNumber.DataPropertyName = "EmployeeNumber";
+            EmployeeNumber.HeaderText = "Номер телефону";
+            EmployeeNumber.MinimumWidth = 6;
+            EmployeeNumber.Name = "EmployeeNumber";
+            EmployeeNumber.Width = 160;
             // 
-            // toolStrip
+            // EmployeeSalary
             // 
-            toolStrip.BackColor = Color.Ivory;
-            toolStrip.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            toolStrip.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip.ImageScalingSize = new Size(20, 20);
-            toolStrip.Items.AddRange(new ToolStripItem[] { NewClientToolStripButton, DeleteClientToolStripButton, EditClientToolStripButton, SaveFileToolStripButton, LoadFileToolStripButton });
-            toolStrip.Location = new Point(0, 26);
-            toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(928, 27);
-            toolStrip.TabIndex = 12;
-            toolStrip.Text = "toolStrip1";
+            EmployeeSalary.DataPropertyName = "EmployeeSalary";
+            EmployeeSalary.HeaderText = "Зарплата";
+            EmployeeSalary.MinimumWidth = 6;
+            EmployeeSalary.Name = "EmployeeSalary";
+            EmployeeSalary.Width = 140;
             // 
-            // menuStrip
+            // CompletedOrders
             // 
-            menuStrip.BackColor = Color.Ivory;
-            menuStrip.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { FileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, AllStatisticMenuItem });
-            menuStrip.Location = new Point(0, 0);
-            menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(928, 26);
-            menuStrip.TabIndex = 11;
-            menuStrip.TabStop = true;
-            menuStrip.Text = "menuStrip";
+            CompletedOrders.DataPropertyName = "CompletedOrders";
+            CompletedOrders.HeaderText = "Кількість виконаних замовлень";
+            CompletedOrders.MinimumWidth = 6;
+            CompletedOrders.Name = "CompletedOrders";
+            CompletedOrders.Width = 220;
             // 
             // FileMenuItem
             // 
             FileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { SaveMenuItem, LoadMenuItem, ExitMenuItem });
             FileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             FileMenuItem.Name = "FileMenuItem";
-            FileMenuItem.Size = new Size(66, 22);
+            FileMenuItem.Size = new Size(66, 24);
             FileMenuItem.Text = "Файл";
             // 
             // SaveMenuItem
@@ -226,7 +168,7 @@
             OrderAdministrationMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewOrderMenuItem, SearchMenuItem, ChangeStatusMenuItem, FilterMenuItem });
             OrderAdministrationMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             OrderAdministrationMenuItem.Name = "OrderAdministrationMenuItem";
-            OrderAdministrationMenuItem.Size = new Size(244, 22);
+            OrderAdministrationMenuItem.Size = new Size(244, 24);
             OrderAdministrationMenuItem.Text = "Управління замовленнями";
             OrderAdministrationMenuItem.Click += OrderAdministrationMenuItem_Click;
             // 
@@ -289,80 +231,121 @@
             fAnyOplataMenuItem.Size = new Size(254, 26);
             fAnyOplataMenuItem.Text = "Неоплачено";
             // 
+            // OrderEmployeeMenuItem
+            // 
+            OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewEmployeeMenuItem, EditEmployeeMenuItem, DeleteEmployeeMenuItem });
+            OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
+            OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
+            OrderEmployeeMenuItem.Size = new Size(212, 24);
+            OrderEmployeeMenuItem.Text = "Управління фахівцями";
+            // 
+            // NewEmployeeMenuItem
+            // 
+            NewEmployeeMenuItem.Name = "NewEmployeeMenuItem";
+            NewEmployeeMenuItem.ShortcutKeys = Keys.Control | Keys.N;
+            NewEmployeeMenuItem.Size = new Size(301, 26);
+            NewEmployeeMenuItem.Text = "Новий фахівець";
+            // 
+            // EditEmployeeMenuItem
+            // 
+            EditEmployeeMenuItem.Name = "EditEmployeeMenuItem";
+            EditEmployeeMenuItem.Size = new Size(301, 26);
+            EditEmployeeMenuItem.Text = "Редагувати фахівця";
+            // 
+            // DeleteEmployeeMenuItem
+            // 
+            DeleteEmployeeMenuItem.Name = "DeleteEmployeeMenuItem";
+            DeleteEmployeeMenuItem.ShortcutKeys = Keys.Control | Keys.F;
+            DeleteEmployeeMenuItem.Size = new Size(301, 26);
+            DeleteEmployeeMenuItem.Text = "Видалити фахівця";
+            // 
             // AllStatisticMenuItem
             // 
-            AllStatisticMenuItem.DropDownItems.AddRange(new ToolStripItem[] { StatisticsMenuItem, ZvitMenuItem });
             AllStatisticMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             AllStatisticMenuItem.Name = "AllStatisticMenuItem";
-            AllStatisticMenuItem.Size = new Size(178, 22);
+            AllStatisticMenuItem.Size = new Size(178, 24);
             AllStatisticMenuItem.Text = "Аналіз та звітність";
             AllStatisticMenuItem.Click += reportsMenuItem_Click;
             // 
-            // StatisticsMenuItem
+            // menuStrip
             // 
-            StatisticsMenuItem.Name = "StatisticsMenuItem";
-            StatisticsMenuItem.ShortcutKeys = Keys.Control | Keys.R;
-            StatisticsMenuItem.Size = new Size(386, 26);
-            StatisticsMenuItem.Text = "Статистика по замовленням";
+            menuStrip.BackColor = Color.Ivory;
+            menuStrip.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { FileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, AllStatisticMenuItem });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new Size(928, 28);
+            menuStrip.TabIndex = 11;
+            menuStrip.TabStop = true;
+            menuStrip.Text = "menuStrip";
             // 
-            // ZvitMenuItem
+            // NewClientToolStripButton
             // 
-            ZvitMenuItem.Name = "ZvitMenuItem";
-            ZvitMenuItem.ShortcutKeys = Keys.Control | Keys.I;
-            ZvitMenuItem.Size = new Size(386, 26);
-            ZvitMenuItem.Text = "Звіт по доходах";
+            NewClientToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
+            NewClientToolStripButton.Image = (Image)resources.GetObject("NewClientToolStripButton.Image");
+            NewClientToolStripButton.ImageTransparentColor = Color.Magenta;
+            NewClientToolStripButton.Name = "NewClientToolStripButton";
+            NewClientToolStripButton.Size = new Size(87, 24);
+            NewClientToolStripButton.Text = "Додати";
+            NewClientToolStripButton.ToolTipText = "Додати новий поліс (Ctrl+N)";
+            NewClientToolStripButton.Click += newPolicyToolStripButton_Click;
             // 
-            // dataGridView
+            // DeleteClientToolStripButton
             // 
-            dataGridView.AllowUserToAddRows = false;
-            dataGridView.AllowUserToDeleteRows = false;
-            dataGridView.BackgroundColor = Color.SeaShell;
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { BirthDate, EmployeeName, EmployeeNumber, EmployeeSalary, CompletedOrders });
-            dataGridView.Location = new Point(0, 90);
-            dataGridView.Name = "dataGridView";
-            dataGridView.RowHeadersWidth = 51;
-            dataGridView.Size = new Size(929, 321);
-            dataGridView.TabIndex = 10;
+            DeleteClientToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
+            DeleteClientToolStripButton.Image = (Image)resources.GetObject("DeleteClientToolStripButton.Image");
+            DeleteClientToolStripButton.ImageTransparentColor = Color.Magenta;
+            DeleteClientToolStripButton.Name = "DeleteClientToolStripButton";
+            DeleteClientToolStripButton.Size = new Size(103, 24);
+            DeleteClientToolStripButton.Text = "Видалити";
+            DeleteClientToolStripButton.ToolTipText = "Видалити вибраний поліс";
+            DeleteClientToolStripButton.Click += deletePolicyToolStripButton_Click;
             // 
-            // BirthDate
+            // EditClientToolStripButton
             // 
-            BirthDate.HeaderText = "Дата народження";
-            BirthDate.MinimumWidth = 6;
-            BirthDate.Name = "BirthDate";
-            BirthDate.Width = 125;
+            EditClientToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
+            EditClientToolStripButton.Image = (Image)resources.GetObject("EditClientToolStripButton.Image");
+            EditClientToolStripButton.ImageTransparentColor = Color.Magenta;
+            EditClientToolStripButton.Name = "EditClientToolStripButton";
+            EditClientToolStripButton.Size = new Size(118, 24);
+            EditClientToolStripButton.Text = "Редагувати";
+            EditClientToolStripButton.ToolTipText = "Редагувати вибраний поліс";
+            EditClientToolStripButton.Click += editPolicyToolStripButton_Click;
             // 
-            // EmployeeName
+            // SaveFileToolStripButton
             // 
-            EmployeeName.DataPropertyName = "EmployeeName";
-            EmployeeName.HeaderText = "ПІБ";
-            EmployeeName.MinimumWidth = 6;
-            EmployeeName.Name = "EmployeeName";
-            EmployeeName.Width = 230;
+            SaveFileToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
+            SaveFileToolStripButton.Image = (Image)resources.GetObject("SaveFileToolStripButton.Image");
+            SaveFileToolStripButton.ImageTransparentColor = Color.Magenta;
+            SaveFileToolStripButton.Name = "SaveFileToolStripButton";
+            SaveFileToolStripButton.Size = new Size(100, 24);
+            SaveFileToolStripButton.Text = "Зберегти";
+            SaveFileToolStripButton.ToolTipText = "Зберегти дані (Ctrl+S)";
             // 
-            // EmployeeNumber
+            // LoadFileToolStripButton
             // 
-            EmployeeNumber.DataPropertyName = "EmployeeNumber";
-            EmployeeNumber.HeaderText = "Номер телефону";
-            EmployeeNumber.MinimumWidth = 6;
-            EmployeeNumber.Name = "EmployeeNumber";
-            EmployeeNumber.Width = 160;
+            LoadFileToolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
+            LoadFileToolStripButton.Image = (Image)resources.GetObject("LoadFileToolStripButton.Image");
+            LoadFileToolStripButton.ImageTransparentColor = Color.Magenta;
+            LoadFileToolStripButton.Name = "LoadFileToolStripButton";
+            LoadFileToolStripButton.Size = new Size(91, 24);
+            LoadFileToolStripButton.Text = "Зчитати";
+            LoadFileToolStripButton.ToolTipText = "Зчитати дані (Ctrl+O)";
             // 
-            // EmployeeSalary
+            // toolStrip
             // 
-            EmployeeSalary.DataPropertyName = "EmployeeSalary";
-            EmployeeSalary.HeaderText = "Зарплата";
-            EmployeeSalary.MinimumWidth = 6;
-            EmployeeSalary.Name = "EmployeeSalary";
-            EmployeeSalary.Width = 140;
-            // 
-            // CompletedOrders
-            // 
-            CompletedOrders.DataPropertyName = "CompletedOrders";
-            CompletedOrders.HeaderText = "Кількість виконаних замовлень";
-            CompletedOrders.MinimumWidth = 6;
-            CompletedOrders.Name = "CompletedOrders";
-            CompletedOrders.Width = 220;
+            toolStrip.BackColor = Color.Ivory;
+            toolStrip.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            toolStrip.GripStyle = ToolStripGripStyle.Hidden;
+            toolStrip.ImageScalingSize = new Size(20, 20);
+            toolStrip.Items.AddRange(new ToolStripItem[] { NewClientToolStripButton, DeleteClientToolStripButton, EditClientToolStripButton, SaveFileToolStripButton, LoadFileToolStripButton });
+            toolStrip.Location = new Point(0, 28);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(928, 27);
+            toolStrip.TabIndex = 12;
+            toolStrip.Text = "toolStrip1";
             // 
             // EmployeeMainForm
             // 
@@ -378,29 +361,23 @@
             Name = "EmployeeMainForm";
             Text = "Таблиця фахівців";
             Load += EmployeeMainForm_Load;
-            toolStrip.ResumeLayout(false);
-            toolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ToolStripButton NewClientToolStripButton;
-        private ToolStripButton EditClientToolStripButton;
-        private ToolStripButton SaveFileToolStripButton;
-        private ToolStripButton LoadFileToolStripButton;
-        private ToolStripButton DeleteClientToolStripButton;
         private TextBox SearchBox;
-        private ToolStripMenuItem OrderEmployeeMenuItem;
-        private ToolStripMenuItem NewEmployeeMenuItem;
-        private ToolStripMenuItem EditEmployeeMenuItem;
-        private ToolStripMenuItem DeleteEmployeeMenuItem;
-        private ToolStrip toolStrip;
-        private MenuStrip menuStrip;
+        private DataGridView dataGridView;
+        private DataGridViewTextBoxColumn BirthDate;
+        private DataGridViewTextBoxColumn EmployeeName;
+        private DataGridViewTextBoxColumn EmployeeNumber;
+        private DataGridViewTextBoxColumn EmployeeSalary;
+        private DataGridViewTextBoxColumn CompletedOrders;
         private ToolStripMenuItem FileMenuItem;
         private ToolStripMenuItem SaveMenuItem;
         private ToolStripMenuItem LoadMenuItem;
@@ -415,14 +392,17 @@
         private ToolStripMenuItem fHalfOplatchenoMenuItem;
         private ToolStripMenuItem fWaitOplataMenuItem;
         private ToolStripMenuItem fAnyOplataMenuItem;
+        private ToolStripMenuItem OrderEmployeeMenuItem;
+        private ToolStripMenuItem NewEmployeeMenuItem;
+        private ToolStripMenuItem EditEmployeeMenuItem;
+        private ToolStripMenuItem DeleteEmployeeMenuItem;
         private ToolStripMenuItem AllStatisticMenuItem;
-        private ToolStripMenuItem StatisticsMenuItem;
-        private ToolStripMenuItem ZvitMenuItem;
-        private DataGridView dataGridView;
-        private DataGridViewTextBoxColumn BirthDate;
-        private DataGridViewTextBoxColumn EmployeeName;
-        private DataGridViewTextBoxColumn EmployeeNumber;
-        private DataGridViewTextBoxColumn EmployeeSalary;
-        private DataGridViewTextBoxColumn CompletedOrders;
+        private MenuStrip menuStrip;
+        private ToolStripButton NewClientToolStripButton;
+        private ToolStripButton DeleteClientToolStripButton;
+        private ToolStripButton EditClientToolStripButton;
+        private ToolStripButton SaveFileToolStripButton;
+        private ToolStripButton LoadFileToolStripButton;
+        private ToolStrip toolStrip;
     }
 }

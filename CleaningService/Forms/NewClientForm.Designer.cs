@@ -279,7 +279,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(488, 203);
+            textBox5.Location = new Point(491, 230);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(10, 34);
             textBox5.TabIndex = 30;

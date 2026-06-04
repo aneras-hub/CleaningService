@@ -17,6 +17,7 @@ namespace CleaningService
         private string path = "orders.json";
         private ContextMenuStrip gridContextMenu;
         private OrderEmployee employeeManager = new OrderEmployee();
+
         public ClientMainForm()
         {
             InitializeComponent();
@@ -30,113 +31,83 @@ namespace CleaningService
             InitContextMenu();
             InitEmployees();
             ApplyStyle();
-            searchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
-            //щоб текст в колонках автоматично підлаштовувався
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            // посередині текст
-            dataGridView1.Columns["Column3"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["Column5"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["Column6"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["Column1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            // прибрати першу колонку
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            LoadDataOnStartup();
-            // Розтягуємо колонки на всю ширину
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Вирівнюємо заголовки по центру (обов'язково вимкнути візуальні стилі заголовків)
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory; // можна додати колір як у меню
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            // Прибрати візуальний індикатор (маленький трикутник) зліва
-            dataGridView1.RowHeadersVisible = false;
+            SearchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
+
+            LoadDataOnStartup();
         }
 
         private void InitMenu()
         {
-            SaveMenuItem.Click += saveToolStripButton_Click;
-            LoadMenuItem.Click += loadToolStripButton_Click;
-            ExitMenuItem.Click += (s, e) => Application.Exit();
-
-            newPolicyMenuItem.Click += newPolicyToolStripButton_Click_1;
-            changeStatusMenuItem.Click += editPolicyToolStripButton_Click;
-
-            statisticsMenuItem.Click += statisticsMenuItem_Click;
-            incomeReportMenuItem.Click += incomeReportMenuItem_Click;
-
-            filterAllMenuItem.Click += (s, e) => RefreshGrid();
-            filterActiveMenuItem.Click += (s, e) => FilterOrders("Оплачено");
-            filterExpiredMenuItem.Click += (s, e) => FilterOrders("Частково сплачено");
-            очікуєОплатиToolStripMenuItem.Click += (s, e) => FilterOrders("Очікує оплати");
-            filterCancelledMenuItem.Click += (s, e) => FilterOrders("Неоплачено");
+            fAllMenuItem.Click += (s, e) => RefreshGrid();
+            fOplachenoMenuItem.Click += (s, e) => FilterOrders("Оплачено");
+            fHalfOplatchenoMenuItem.Click += (s, e) => FilterOrders("Частково сплачено");
+            fWaitOplataMenuItem.Click += (s, e) => FilterOrders("Очікує оплати");
+            fAnyOplataMenuItem.Click += (s, e) => FilterOrders("Неоплачено");
         }
 
         private void InitToolStrip()
         {
-            deletePolicyToolStripButton.Click += deletePolicyToolStripButton_Click;
-            editPolicyToolStripButton.Click += editPolicyToolStripButton_Click;
-            saveToolStripButton.Click += saveToolStripButton_Click;
-            loadToolStripButton.Click += loadToolStripButton_Click;
         }
 
         private void InitGrid()
         {
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
+
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font =
-                new Font(dataGridView1.Font, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
 
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dataGridView1.GridColor = Color.Gray;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+
+            dataGridView1.Columns["Column1"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column2"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column3"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column4"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column5"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column6"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column7"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Column8"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void InitContextMenu()
         {
             gridContextMenu = new ContextMenuStrip();
-            gridContextMenu.Items.Add("Редагувати", null, editPolicyToolStripButton_Click);
-            gridContextMenu.Items.Add("Видалити", null, deletePolicyToolStripButton_Click);
+            gridContextMenu.Items.Add("Редагувати", null, EditOrderToolStripButton_Click);
+            gridContextMenu.Items.Add("Видалити", null, DeleteOrderToolStripButton_Click);
 
             dataGridView1.ContextMenuStrip = gridContextMenu;
         }
 
         private void InitEmployees()
         {
-            employeeManager.AddEmployee(new Employee(1, "Вербицький Артем Олександрович", "0990000001", new DateTime(1988, 10, 27)));
-            employeeManager.AddEmployee(new Employee(2, "Зима Марія Віталіївна", "0990000002", new DateTime(1995, 3, 12)));
-            employeeManager.AddEmployee(new Employee(3, "Мельниченко Владислав Ігорович", "0990000003", new DateTime(1992, 7, 5)));
-            employeeManager.AddEmployee(new Employee(4, "Озерська Анна Костянтинівна", "0990000004", new DateTime(1998, 12, 18)));
-            employeeManager.AddEmployee(new Employee(5, "Яворівський Максим Юрійович", "0990000005", new DateTime(1991, 1, 30)));
+            employeeManager.AddEmployee(new Employee(1, "Вербицький Артем Олександрович", "+38 099 000 0001", new DateTime(1988, 10, 27)));
+            employeeManager.AddEmployee(new Employee(2, "Зима Марія Віталіївна", "+38 099 000 0002", new DateTime(1995, 3, 12)));
+            employeeManager.AddEmployee(new Employee(3, "Мельниченко Владислав Ігорович", "+38 099 000 0003", new DateTime(1992, 7, 5)));
+            employeeManager.AddEmployee(new Employee(4, "Озерська Анна Костянтинівна", "+38 099 000 0004", new DateTime(1998, 12, 18)));
+            employeeManager.AddEmployee(new Employee(5, "Яворівський Максим Юрійович", "+38 099 000 0005", new DateTime(1991, 1, 30)));
         }
+
         private void ApplyStyle()
         {
             Font mainFont = new Font("Georgia", 10, FontStyle.Regular);
 
-            foreach (Control c in this.Controls)
+            foreach (Control c in Controls)
             {
                 c.Font = mainFont;
             }
@@ -213,10 +184,7 @@ namespace CleaningService
 
             RefreshGrid();
         }
-
-        // --- ОБРОБНИКИ ---
-
-        private void loadToolStripButton_Click(object sender, EventArgs e)
+        private void LoadToolStripButton_Click(object sender, EventArgs e)
         {
             using OpenFileDialog ofd = new OpenFileDialog
             {
@@ -244,8 +212,11 @@ namespace CleaningService
                 MessageBox.Show($"Помилка читання:\n{ex.Message}");
             }
         }
-
-        private void saveToolStripButton_Click(object sender, EventArgs e)
+        private void LoadMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadToolStripButton_Click(sender, e);
+        }
+        private void SaveToolStripButton_Click(object sender, EventArgs e)
         {
             using SaveFileDialog sfd = new SaveFileDialog
             {
@@ -260,8 +231,12 @@ namespace CleaningService
 
             MessageBox.Show("Дані збережено!", "Успіх");
         }
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveToolStripButton_Click(sender, e);
+        }
         //створення нового замовлення
-        private void newPolicyToolStripButton_Click_1(object sender, EventArgs e)
+        private void NewOrderToolStripButton_Click(object sender, EventArgs e)
         {
             while (true)
             {
@@ -272,8 +247,12 @@ namespace CleaningService
                     break;
             }
         }
+        private void NewOrderMenuItem_Click(object sender, EventArgs e)
+        {
+            NewOrderToolStripButton_Click(sender, e);
+        }
         //редагування вибраного замовлення
-        private void editPolicyToolStripButton_Click(object sender, EventArgs e)
+        private void EditOrderToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
 
@@ -284,8 +263,12 @@ namespace CleaningService
             if (form.ShowDialog() == DialogResult.OK)
                 RefreshGrid();
         }
-        //видалення вибраного замовлення
-        private void deletePolicyToolStripButton_Click(object sender, EventArgs e)
+        private void EditOrdertoolStrip_Click(object sender, EventArgs e)
+        {
+            EditOrderToolStripButton_Click(sender, e);
+        }
+        // видалення вибраного замовлення
+        private void DeleteOrderToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null) return;
 
@@ -303,22 +286,12 @@ namespace CleaningService
             company.RemoveOrder(order);
             RefreshGrid();
         }
-        //статистика по замовленням
-        private void statisticsMenuItem_Click(object sender, EventArgs e)
+        private void DeletetoolStrip_Click(object sender, EventArgs e)
         {
-            int total = company.Orders.Count;
-            int paid = company.Orders.Count(o => o.PaymentStatus == "Оплачено");
-
-            MessageBox.Show($"Всього: {total}\nОплачено: {paid}", "Статистика");
-        }
-        //загальний дохід
-        private void incomeReportMenuItem_Click(object sender, EventArgs e)
-        {
-            double income = company.Orders.Sum(o => o.Price);
-            MessageBox.Show($"Дохід: {income:F2} грн", "Звіт");
+            DeleteOrderToolStripButton_Click(sender, e);
         }
         //зміна статусу оплати
-        private void changeStatusToolStripButton_Click(object sender, EventArgs e)
+        private void ChangeOplataToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null)
             {
@@ -406,9 +379,9 @@ namespace CleaningService
             RefreshGrid(result);
         }
         // пошук в реальному часі
-        private void searchBox_TextChanged(object sender, EventArgs e)
+        private void SearchBox_TextChanged(object sender, EventArgs e)
         {
-            string search = searchBox.Text.Trim().ToLower();
+            string search = SearchBox.Text.Trim().ToLower();
 
             var filtered = company.Orders
                 .Where(o =>
@@ -464,20 +437,6 @@ namespace CleaningService
                 e.Cancel = true;
             }
         }
-
-        private void reportsMenuItem_Click(object sender, EventArgs e)
-        {
-            Statistics form = new Statistics(employeeManager, company, path);
-            this.Hide();
-            form.ShowDialog();
-            this.Show();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void OrderEmployeeMenuItem_Click(object sender, EventArgs e)
         {
             EmployeeMainForm form = new EmployeeMainForm(employeeManager, company, path);
@@ -487,15 +446,18 @@ namespace CleaningService
             this.Show();
             RefreshGrid();
         }
-
-        private void policiesMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ClientMainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void StatisticsMenuItem_Click(object sender, EventArgs e)
+        {
+            Statistics form = new Statistics(employeeManager, company, path);
+
+            Hide();
+            form.ShowDialog();
+            Show();
         }
     }
 }
