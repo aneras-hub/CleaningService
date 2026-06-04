@@ -45,13 +45,7 @@ namespace CleaningService
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            pictureBox.Location = new Point((this.ClientSize.Width - pictureBox.Width) / 2, 20);
-            pictureBox.Anchor = AnchorStyles.Top;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void label_Click(object sender, EventArgs e)
         {
             this.Text = "бу╡д б яхярелс";
             this.BackColor = Color.Teal;
@@ -59,22 +53,17 @@ namespace CleaningService
 
         int attempts = 0;
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_Click(object sender, EventArgs e)
         {
             ClientMainForm form = new ClientMainForm();
             form.Show();
 
             this.Hide();
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void pictureBox_Click_1(object sender, EventArgs e)
         {
-            this.BackColor = Color.Honeydew;
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-            this.BackColor = Color.Honeydew;
+            pictureBox.Location = new Point((this.ClientSize.Width - pictureBox.Width) / 2, 20);
+            pictureBox.Anchor = AnchorStyles.Top;
         }
     }
 }

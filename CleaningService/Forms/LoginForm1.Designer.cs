@@ -55,6 +55,7 @@
             pictureBox.Size = new Size(176, 188);
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
+            pictureBox.Click += pictureBox_Click_1;
             // 
             // label
             // 
@@ -66,7 +67,7 @@
             label.Size = new Size(308, 39);
             label.TabIndex = 1;
             label.Text = "ВХІД В СИСТЕМУ";
-            label.Click += label1_Click;
+            label.Click += label_Click;
             // 
             // pictureBox3
             // 
@@ -101,7 +102,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(334, 42);
             panel1.TabIndex = 5;
-            panel1.Paint += panel1_Paint;
             // 
             // LoginName
             // 
@@ -119,7 +119,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(342, 49);
             panel2.TabIndex = 6;
-            panel2.Paint += panel2_Paint;
             // 
             // LoginPassword
             // 
@@ -147,7 +146,7 @@
             button.TabIndex = 0;
             button.Text = "Вхід";
             button.UseVisualStyleBackColor = false;
-            button.Click += button1_Click;
+            button.Click += button_Click;
             // 
             // LoginForm1
             // 
