@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientMainForm));
             menuStrip = new MenuStrip();
-            fileMenuItem = new ToolStripMenuItem();
-            saveMenuItem = new ToolStripMenuItem();
-            loadMenuItem = new ToolStripMenuItem();
-            exitMenuItem = new ToolStripMenuItem();
-            policiesMenuItem = new ToolStripMenuItem();
+            FileMenuItem = new ToolStripMenuItem();
+            SaveMenuItem = new ToolStripMenuItem();
+            LoadMenuItem = new ToolStripMenuItem();
+            ExitMenuItem = new ToolStripMenuItem();
+            OrderEmployeeMenuItem = new ToolStripMenuItem();
             newPolicyMenuItem = new ToolStripMenuItem();
             searchMenuItem = new ToolStripMenuItem();
             changeStatusMenuItem = new ToolStripMenuItem();
@@ -79,7 +79,7 @@
             menuStrip.BackColor = Color.Ivory;
             menuStrip.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, policiesMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { FileMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1337, 26);
@@ -89,44 +89,44 @@
             // 
             // fileMenuItem
             // 
-            fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveMenuItem, loadMenuItem, exitMenuItem });
-            fileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
-            fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(66, 22);
-            fileMenuItem.Text = "Файл";
+            FileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { SaveMenuItem, LoadMenuItem, ExitMenuItem });
+            FileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
+            FileMenuItem.Name = "fileMenuItem";
+            FileMenuItem.Size = new Size(66, 22);
+            FileMenuItem.Text = "Файл";
             // 
             // saveMenuItem
             // 
-            saveMenuItem.Image = (Image)resources.GetObject("saveMenuItem.Image");
-            saveMenuItem.Name = "saveMenuItem";
-            saveMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-            saveMenuItem.Size = new Size(291, 26);
-            saveMenuItem.Text = "Зберегти";
+            SaveMenuItem.Image = (Image)resources.GetObject("saveMenuItem.Image");
+            SaveMenuItem.Name = "saveMenuItem";
+            SaveMenuItem.ShortcutKeys = Keys.Control | Keys.S;
+            SaveMenuItem.Size = new Size(291, 26);
+            SaveMenuItem.Text = "Зберегти";
             // 
             // loadMenuItem
             // 
-            loadMenuItem.Name = "loadMenuItem";
-            loadMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            loadMenuItem.Size = new Size(291, 26);
-            loadMenuItem.Text = "Зчитати з файлу";
+            LoadMenuItem.Name = "loadMenuItem";
+            LoadMenuItem.ShortcutKeys = Keys.Control | Keys.O;
+            LoadMenuItem.Size = new Size(291, 26);
+            LoadMenuItem.Text = "Зчитати з файлу";
             // 
             // exitMenuItem
             // 
-            exitMenuItem.Name = "exitMenuItem";
-            exitMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
-            exitMenuItem.Size = new Size(291, 26);
-            exitMenuItem.Text = "Вихід";
-            exitMenuItem.Click += exitMenuItem_Click;
+            ExitMenuItem.Name = "exitMenuItem";
+            ExitMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
+            ExitMenuItem.Size = new Size(291, 26);
+            ExitMenuItem.Text = "Вихід";
+            ExitMenuItem.Click += exitMenuItem_Click;
             // 
-            // policiesMenuItem
+            // OrderEmployeeMenuItem
             // 
-            policiesMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            policiesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
-            policiesMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
-            policiesMenuItem.Name = "policiesMenuItem";
-            policiesMenuItem.Size = new Size(244, 22);
-            policiesMenuItem.Text = "Управління замовленнями";
-            policiesMenuItem.Click += policiesMenuItem_Click;
+            OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, searchMenuItem, changeStatusMenuItem, filterMenuItem });
+            OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
+            OrderEmployeeMenuItem.Name = "policiesMenuItem";
+            OrderEmployeeMenuItem.Size = new Size(244, 22);
+            OrderEmployeeMenuItem.Text = "Управління замовленнями";
+            OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
             // 
             // newPolicyMenuItem
             // 
@@ -438,11 +438,10 @@
 
         #endregion
         private MenuStrip menuStrip;
-        private ToolStripMenuItem fileMenuItem;
-        private ToolStripMenuItem saveMenuItem;
-        private ToolStripMenuItem loadMenuItem;
-        private ToolStripMenuItem exitMenuItem;
-        private ToolStripMenuItem policiesMenuItem;
+        private ToolStripMenuItem FileMenuItem;
+        private ToolStripMenuItem SaveMenuItem;
+        private ToolStripMenuItem LoadMenuItem;
+        private ToolStripMenuItem ExitMenuItem;
         private ToolStripMenuItem newPolicyMenuItem;
         private ToolStripMenuItem переглядВсіхToolStripMenuItem;
         private ToolStripMenuItem searchMenuItem;

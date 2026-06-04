@@ -62,9 +62,9 @@ namespace CleaningService
 
         private void InitMenu()
         {
-            saveMenuItem.Click += saveToolStripButton_Click;
-            loadMenuItem.Click += loadToolStripButton_Click;
-            exitMenuItem.Click += (s, e) => Application.Exit();
+            SaveMenuItem.Click += saveToolStripButton_Click;
+            LoadMenuItem.Click += loadToolStripButton_Click;
+            ExitMenuItem.Click += (s, e) => Application.Exit();
 
             newPolicyMenuItem.Click += newPolicyToolStripButton_Click_1;
             changeStatusMenuItem.Click += editPolicyToolStripButton_Click;

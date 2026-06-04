@@ -24,7 +24,7 @@ namespace CleaningService.Forms
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Управління фахівцями";
 
-            searchBox.PlaceholderText = "Пошук по ПІБ або номеру";
+            SearchBox.PlaceholderText = "Пошук по ПІБ або номеру";
 
             InitGrid();
             InitControls();
@@ -34,10 +34,10 @@ namespace CleaningService.Forms
 
         private void InitGrid()
         {
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.Columns.Clear();
+            dataGridView.AutoGenerateColumns = false;
+            dataGridView.Columns.Clear();
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "BirthDate",
                 HeaderText = "Дата народження",
@@ -46,7 +46,7 @@ namespace CleaningService.Forms
                 FillWeight = 90
             });
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "EmployeeName",
                 HeaderText = "ПІБ фахівця",
@@ -54,7 +54,7 @@ namespace CleaningService.Forms
                 FillWeight = 200
             });
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "EmployeeNumber",
                 HeaderText = "Телефон",
@@ -62,33 +62,33 @@ namespace CleaningService.Forms
                 FillWeight = 110
             });
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "OrdersCount",
                 HeaderText = "Замовлень",
                 FillWeight = 70
             });
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "Salary",
                 HeaderText = "Зарплата (грн)",
                 FillWeight = 100
             });
 
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            dataGridView.EnableHeadersVisualStyles = false;
+            dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Ivory;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView.Font, FontStyle.Bold);
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            foreach (DataGridViewColumn col in dataGridView.Columns)
             {
                 if (col.Name != "EmployeeName")
                 {
@@ -96,28 +96,28 @@ namespace CleaningService.Forms
                 }
             }
 
-            dataGridView1.CellFormatting -= DataGridView1_CellFormatting;
-            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+            dataGridView.CellFormatting -= DataGridView1_CellFormatting;
+            dataGridView.CellFormatting += DataGridView1_CellFormatting;
 
-            dataGridView1.DataError -= DataGridView1_DataError;
-            dataGridView1.DataError += DataGridView1_DataError;
+            dataGridView.DataError -= DataGridView1_DataError;
+            dataGridView.DataError += DataGridView1_DataError;
         }
 
         private void InitControls()
         {
-            toolStripMenuItem2.Click -= newPolicyToolStripButton_Click;
-            toolStripMenuItem2.Click += newPolicyToolStripButton_Click;
+            NewEmployeeMenuItem.Click -= newPolicyToolStripButton_Click;
+            NewEmployeeMenuItem.Click += newPolicyToolStripButton_Click;
 
-            редагуватиФахівцяToolStripMenuItem.Click -= editPolicyToolStripButton_Click;
-            редагуватиФахівцяToolStripMenuItem.Click += editPolicyToolStripButton_Click;
+            EditEmployeeMenuItem.Click -= editPolicyToolStripButton_Click;
+            EditEmployeeMenuItem.Click += editPolicyToolStripButton_Click;
 
-            toolStripMenuItem3.Click -= deletePolicyToolStripButton_Click;
-            toolStripMenuItem3.Click += deletePolicyToolStripButton_Click;
+            DeleteEmployeeMenuItem.Click -= deletePolicyToolStripButton_Click;
+            DeleteEmployeeMenuItem.Click += deletePolicyToolStripButton_Click;
 
             ExitMenuItem.Click += (s, e) => Close();
 
-            searchBox.TextChanged -= searchBox_TextChanged;
-            searchBox.TextChanged += searchBox_TextChanged;
+            SearchBox.TextChanged -= searchBox_TextChanged;
+            SearchBox.TextChanged += searchBox_TextChanged;
 
             FormClosing -= EmployeeMainForm_FormClosing;
             FormClosing += EmployeeMainForm_FormClosing;
@@ -125,8 +125,8 @@ namespace CleaningService.Forms
 
         private void RefreshGrid(IEnumerable<Employee> data = null)
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = (data ?? employeeManager.Employees).ToList();
+            dataGridView.DataSource = null;
+            dataGridView.DataSource = (data ?? employeeManager.Employees).ToList();
         }
 
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -136,9 +136,9 @@ namespace CleaningService.Forms
                 return;
             }
 
-            if (dataGridView1.Rows[e.RowIndex].DataBoundItem is Employee emp)
+            if (dataGridView.Rows[e.RowIndex].DataBoundItem is Employee emp)
             {
-                string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+                string columnName = dataGridView.Columns[e.ColumnIndex].Name;
 
                 if (columnName == "OrdersCount")
                 {
@@ -181,7 +181,7 @@ namespace CleaningService.Forms
 
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            string search = searchBox.Text.Trim();
+            string search = SearchBox.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(search))
             {
@@ -247,7 +247,7 @@ namespace CleaningService.Forms
 
         private void deletePolicyToolStripButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow?.DataBoundItem is Employee employee)
+            if (dataGridView.CurrentRow?.DataBoundItem is Employee employee)
             {
                 if (employee.GetOrdersCount() > 0)
                 {
@@ -276,7 +276,7 @@ namespace CleaningService.Forms
 
         private void editPolicyToolStripButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow?.DataBoundItem is Employee employee)
+            if (dataGridView.CurrentRow?.DataBoundItem is Employee employee)
             {
                 string oldPhone = employee.EmployeeNumber;
 
