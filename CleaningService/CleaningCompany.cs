@@ -10,6 +10,7 @@ namespace CleaningService
 {
     public class CleaningCompany
     {
+        [JsonIgnore]
         public List<Order> Orders { get; set; } = new List<Order>();
         public void AddOrder(Order order)
         {
@@ -80,17 +81,23 @@ namespace CleaningService
                 return 0;
             return emp.GetSalary();
         }
-        public void WriteToFile(string fileName)
+        public void WriteToFile(string fileName, OrderEmployee employeeManager)
         {
             try
             {
+                var data = new AppData
+                {
+                    Orders = Orders,
+                    Employees = employeeManager.Employees
+                };
+
                 var options = new JsonSerializerOptions
                 {
                     WriteIndented = true,
-                    // Це налаштування виправляє помилку циклу:
                     ReferenceHandler = ReferenceHandler.IgnoreCycles
                 };
-                string jsonString = JsonSerializer.Serialize(Orders, options);
+
+                string jsonString = JsonSerializer.Serialize(data, options);
                 File.WriteAllText(fileName, jsonString);
             }
             catch (Exception ex)
@@ -98,27 +105,40 @@ namespace CleaningService
                 MessageBox.Show($"Помилка при збереженні JSON: {ex.Message}");
             }
         }
-        public void ReadFromFile(string fileName)
+
+        public void ReadFromFile(string fileName, OrderEmployee employeeManager)
         {
             if (!File.Exists(fileName)) return;
-            FileInfo info = new FileInfo(fileName);
-            if (info.Length == 0) return;
+
             try
             {
                 string jsonString = File.ReadAllText(fileName);
+
                 var options = new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.IgnoreCycles
                 };
-                Orders = JsonSerializer.Deserialize<List<Order>>(jsonString, options) ?? new List<Order>();
+
+                var data = JsonSerializer.Deserialize<AppData>(jsonString, options);
+
+                Orders = data?.Orders ?? new List<Order>();
+                employeeManager.Employees = data?.Employees ?? new List<Employee>();
+
+                foreach (var emp in employeeManager.Employees)
+                    emp.Orders = new List<Order>();
+
                 foreach (var order in Orders)
                 {
-                    if (order.Employee != null)
-                    {
-                        if (order.Employee.Orders == null)
-                            order.Employee.Orders = new List<Order>();
+                    order.Services ??= new List<CleaningService>();
+                    order.Price = order.CalculatePrice();
 
-                        order.Employee.Orders.Add(order);
+                    var realEmployee = employeeManager.Employees
+                        .FirstOrDefault(e => e.Id == order.Employee?.Id);
+
+                    if (realEmployee != null)
+                    {
+                        order.Employee = realEmployee;
+                        realEmployee.Orders.Add(order);
                     }
                 }
             }
@@ -126,10 +146,6 @@ namespace CleaningService
             {
                 MessageBox.Show($"Помилка при читанні JSON: {ex.Message}");
             }
-        }
-        public void Load(string path)
-        {
-            ReadFromFile(path);
         }
     }
 }

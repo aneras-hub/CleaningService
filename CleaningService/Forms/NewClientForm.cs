@@ -197,6 +197,7 @@ namespace CleaningService
                 NewOrder.Employee = selectedEmployee;
                 NewOrder.PaymentStatus = StanOplatu.Text;
                 NewOrder.OrderDate = dateTimePicker.Value;
+                NewOrder.TimeSlot = TimeCleaning.Text;
                 NewOrder.Price = NewOrder.CalculatePrice();
             }
                 var result = MessageBox.Show(

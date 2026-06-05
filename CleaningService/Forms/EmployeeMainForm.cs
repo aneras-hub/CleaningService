@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -105,22 +106,7 @@ namespace CleaningService.Forms
 
         private void InitControls()
         {
-            NewEmployeeMenuItem.Click -= newPolicyToolStripButton_Click;
-            NewEmployeeMenuItem.Click += newPolicyToolStripButton_Click;
 
-            EditEmployeeMenuItem.Click -= editPolicyToolStripButton_Click;
-            EditEmployeeMenuItem.Click += editPolicyToolStripButton_Click;
-
-            DeleteEmployeeMenuItem.Click -= deletePolicyToolStripButton_Click;
-            DeleteEmployeeMenuItem.Click += deletePolicyToolStripButton_Click;
-
-            ExitMenuItem.Click += (s, e) => Close();
-
-            SearchBox.TextChanged -= searchBox_TextChanged;
-            SearchBox.TextChanged += searchBox_TextChanged;
-
-            FormClosing -= EmployeeMainForm_FormClosing;
-            FormClosing += EmployeeMainForm_FormClosing;
         }
 
         private void RefreshGrid(IEnumerable<Employee> data = null)
@@ -170,15 +156,6 @@ namespace CleaningService.Forms
         {
             Close();
         }
-
-        private void reportsMenuItem_Click(object sender, EventArgs e)
-        {
-            Statistics form = new Statistics(employeeManager, _company, _savePath);
-            Hide();
-            form.ShowDialog();
-            Show();
-        }
-
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
             string search = SearchBox.Text.Trim();
@@ -193,88 +170,33 @@ namespace CleaningService.Forms
             }
         }
 
-        private void newPolicyToolStripButton_Click(object sender, EventArgs e)
+        private void NewEmployeeToolStripButton_Click(object sender, EventArgs e)
         {
             using (NewEmployeeForm form = new NewEmployeeForm())
             {
                 DialogResult result = form.ShowDialog();
-
                 if (result != DialogResult.OK)
                 {
                     return;
                 }
-
                 if (form.NewEmployee == null)
                 {
-                    MessageBox.Show(
-                        "Фахівця не створено. Перевірте форму додавання.",
-                        "Помилка",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
+                    MessageBox.Show("Фахівця не створено. Перевірте форму додавання.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                if (employeeManager.Employees.Any(emp =>
-                    emp.EmployeeNumber == form.NewEmployee.EmployeeNumber))
+                if (employeeManager.Employees.Any(emp => emp.EmployeeNumber == form.NewEmployee.EmployeeNumber))
                 {
-                    MessageBox.Show(
-                        "Працівник з таким номером телефону вже існує.",
-                        "Помилка",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
+                    MessageBox.Show("Працівник з таким номером телефону вже існує.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                int newId = employeeManager.Employees.Count > 0
-                    ? employeeManager.Employees.Max(emp => emp.Id) + 1
-                    : 1;
-
+                int newId = employeeManager.Employees.Count > 0 ? employeeManager.Employees.Max(emp => emp.Id) + 1 : 1;
                 form.NewEmployee.Id = newId;
-
                 employeeManager.AddEmployee(form.NewEmployee);
-
                 RefreshGrid();
-
-                MessageBox.Show(
-                    "Фахівця успішно додано.",
-                    "Готово",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                MessageBox.Show("Фахівця успішно додано.", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void deletePolicyToolStripButton_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.CurrentRow?.DataBoundItem is Employee employee)
-            {
-                if (employee.GetOrdersCount() > 0)
-                {
-                    MessageBox.Show(
-                        "Неможливо видалити працівника, який має замовлення.",
-                        "Помилка",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-
-                DialogResult result = MessageBox.Show(
-                    $"Видалити працівника {employee.EmployeeName}?",
-                    "Підтвердження",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    employeeManager.RemoveEmployee(employee.Id);
-                    RefreshGrid();
-                }
-            }
-        }
-
-        private void editPolicyToolStripButton_Click(object sender, EventArgs e)
+        private void EditEmployeeToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataGridView.CurrentRow?.DataBoundItem is Employee employee)
             {
@@ -290,36 +212,125 @@ namespace CleaningService.Forms
                         {
                             employee.EmployeeNumber = oldPhone;
 
-                            MessageBox.Show(
-                                "Працівник з таким номером телефону вже існує.",
-                                "Помилка",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-
+                            MessageBox.Show("Працівник з таким номером телефону вже існує.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
-
                         RefreshGrid();
                     }
                 }
             }
         }
-
-        private void searchBox_TextChanged_1(object sender, EventArgs e)
+        private void DeleteEmployeeToolStripButton_Click(object sender, EventArgs e)
         {
+            if (dataGridView.CurrentRow?.DataBoundItem is Employee employee)
+            {
+                if (employee.GetOrdersCount() > 0)
+                {
+                    MessageBox.Show("Неможливо видалити працівника, який має замовлення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                DialogResult result = MessageBox.Show($"Видалити працівника {employee.EmployeeName}?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    employeeManager.RemoveEmployee(employee.Id);
+                    RefreshGrid();
+                }
+            }
+        }
+        private void SaveToolStripButton_Click(object sender, EventArgs e)
+        {
+            using SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "JSON файли (*.json)|*.json",
+                FileName = "orders.json"
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+
+            _company.WriteToFile(sfd.FileName, employeeManager);
+            _savePath = sfd.FileName;
+
+            MessageBox.Show("Дані збережено!", "Успіх");
         }
 
-        private void EmployeeMainForm_FormClosing(object sender, EventArgs e)
+        private void LoadToolStripButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(_savePath))
+            using OpenFileDialog ofd = new OpenFileDialog
             {
-                _company?.WriteToFile(_savePath);
+                Filter = "JSON файли (*.json)|*.json|Усі файли (*.*)|*.*"
+            };
+
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+
+            try
+            {
+                _savePath = ofd.FileName;
+                _company.ReadFromFile(_savePath, employeeManager);
+
+                foreach (var order in _company.Orders)
+                {
+                    order.Services ??= new List<CleaningService>();
+                    order.Price = order.CalculatePrice();
+                }
+
+                RefreshGrid();
+                MessageBox.Show("Дані зчитано!", "Успіх");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка читання:\n{ex.Message}");
             }
         }
 
-        private void EmployeeMainForm_Load(object sender, EventArgs e)
+        private void SaveMenuItem_Click(object sender, EventArgs e)
         {
+            SaveToolStripButton_Click(sender, e);
+        }
 
+        private void LoadMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadToolStripButton_Click(sender, e);
+        }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void NewOrderMenuItem_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                using NewClientForm form = new NewClientForm(employeeManager);
+                form.Owner = this;
+
+                if (form.ShowDialog() != DialogResult.OK)
+                    break;
+            }
+        }
+        private void StatisticsMenuItem_Click(object sender, EventArgs e)
+        {
+            Statistics form = new Statistics(employeeManager, _company, _savePath);
+            Hide();
+            form.ShowDialog();
+            Show();
+        }
+        private void NewEmployeeMenuItem_Click(object sender, EventArgs e)
+        {
+            NewEmployeeToolStripButton_Click(sender, e);
+        }
+        private void EditEmployeeMenuItem_Click(object sender, EventArgs e)
+        {
+            EditEmployeeToolStripButton_Click(sender, e);
+        }
+        private void DeleteEmployeeMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteEmployeeToolStripButton_Click(sender, e);
+        }
+
+        private void OrderAdministrationMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 } 

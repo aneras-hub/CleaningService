@@ -77,9 +77,6 @@
             exitMenuItem = new ToolStripMenuItem();
             OrderAdministrationMenuItem = new ToolStripMenuItem();
             OrderEmployeeMenuItem = new ToolStripMenuItem();
-            newPolicyMenuItem = new ToolStripMenuItem();
-            редагуватиФахівцяToolStripMenuItem = new ToolStripMenuItem();
-            searchMenuItem = new ToolStripMenuItem();
             reportsMenuItem = new ToolStripMenuItem();
             tabPage2.SuspendLayout();
             panel3.SuspendLayout();
@@ -460,7 +457,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, reportsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1377, 26);
+            menuStrip.Size = new Size(1377, 28);
             menuStrip.TabIndex = 3;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -470,7 +467,7 @@
             fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveMenuItem, loadMenuItem, exitMenuItem });
             fileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(66, 22);
+            fileMenuItem.Size = new Size(66, 24);
             fileMenuItem.Text = "Файл";
             // 
             // saveMenuItem
@@ -498,45 +495,24 @@
             // OrderAdministrationMenuItem
             // 
             OrderAdministrationMenuItem.Name = "OrderAdministrationMenuItem";
-            OrderAdministrationMenuItem.Size = new Size(244, 22);
+            OrderAdministrationMenuItem.Size = new Size(244, 24);
             OrderAdministrationMenuItem.Text = "Управління замовленнями";
             OrderAdministrationMenuItem.Click += OrderAdministrationMenuItem_Click;
             // 
             // OrderEmployeeMenuItem
             // 
             OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newPolicyMenuItem, редагуватиФахівцяToolStripMenuItem, searchMenuItem });
             OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
-            OrderEmployeeMenuItem.Size = new Size(212, 22);
+            OrderEmployeeMenuItem.Size = new Size(212, 24);
             OrderEmployeeMenuItem.Text = "Управління фахівцями";
             OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
-            // 
-            // newPolicyMenuItem
-            // 
-            newPolicyMenuItem.Name = "newPolicyMenuItem";
-            newPolicyMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            newPolicyMenuItem.Size = new Size(301, 26);
-            newPolicyMenuItem.Text = "Новий фахівець";
-            // 
-            // редагуватиФахівцяToolStripMenuItem
-            // 
-            редагуватиФахівцяToolStripMenuItem.Name = "редагуватиФахівцяToolStripMenuItem";
-            редагуватиФахівцяToolStripMenuItem.Size = new Size(301, 26);
-            редагуватиФахівцяToolStripMenuItem.Text = "Редагувати фахівця";
-            // 
-            // searchMenuItem
-            // 
-            searchMenuItem.Name = "searchMenuItem";
-            searchMenuItem.ShortcutKeys = Keys.Control | Keys.F;
-            searchMenuItem.Size = new Size(301, 26);
-            searchMenuItem.Text = "Видалити фахівця";
             // 
             // reportsMenuItem
             // 
             reportsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             reportsMenuItem.Name = "reportsMenuItem";
-            reportsMenuItem.Size = new Size(178, 22);
+            reportsMenuItem.Size = new Size(178, 24);
             reportsMenuItem.Text = "Аналіз та звітність";
             // 
             // Statistics
@@ -604,12 +580,9 @@
         private ToolStripMenuItem loadMenuItem;
         private ToolStripMenuItem exitMenuItem;
         private ToolStripMenuItem OrderEmployeeMenuItem;
-        private ToolStripMenuItem newPolicyMenuItem;
-        private ToolStripMenuItem searchMenuItem;
         private ToolStripMenuItem reportsMenuItem;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart4;
         private Label label22;
-        private ToolStripMenuItem редагуватиФахівцяToolStripMenuItem;
         private ToolStripMenuItem OrderAdministrationMenuItem;
         private Panel panel1;
         private Panel panel3;

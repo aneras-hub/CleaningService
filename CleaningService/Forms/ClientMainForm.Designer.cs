@@ -45,9 +45,6 @@
             fWaitOplataMenuItem = new ToolStripMenuItem();
             fAnyOplataMenuItem = new ToolStripMenuItem();
             OrderEmployeeMenuItem = new ToolStripMenuItem();
-            NewEmployeeMenuItem = new ToolStripMenuItem();
-            EditEmployeeMenuItem = new ToolStripMenuItem();
-            DeleteEmployeeMenuItem = new ToolStripMenuItem();
             StatisticsMenuItem = new ToolStripMenuItem();
             toolStrip = new ToolStrip();
             NewOrderToolStripButton = new ToolStripButton();
@@ -192,32 +189,11 @@
             // OrderEmployeeMenuItem
             // 
             OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            OrderEmployeeMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewEmployeeMenuItem, EditEmployeeMenuItem, DeleteEmployeeMenuItem });
             OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
             OrderEmployeeMenuItem.Size = new Size(212, 24);
             OrderEmployeeMenuItem.Text = "Управління фахівцями";
             OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
-            // 
-            // NewEmployeeMenuItem
-            // 
-            NewEmployeeMenuItem.Name = "NewEmployeeMenuItem";
-            NewEmployeeMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            NewEmployeeMenuItem.Size = new Size(301, 26);
-            NewEmployeeMenuItem.Text = "Новий фахівець";
-            // 
-            // EditEmployeeMenuItem
-            // 
-            EditEmployeeMenuItem.Name = "EditEmployeeMenuItem";
-            EditEmployeeMenuItem.Size = new Size(301, 26);
-            EditEmployeeMenuItem.Text = "Редагувати фахівця";
-            // 
-            // DeleteEmployeeMenuItem
-            // 
-            DeleteEmployeeMenuItem.Name = "DeleteEmployeeMenuItem";
-            DeleteEmployeeMenuItem.ShortcutKeys = Keys.Control | Keys.F;
-            DeleteEmployeeMenuItem.Size = new Size(301, 26);
-            DeleteEmployeeMenuItem.Text = "Видалити фахівця";
             // 
             // StatisticsMenuItem
             // 
@@ -313,7 +289,7 @@
             dataGridView1.BackgroundColor = Color.SeaShell;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column7, Column1, Column2, Column9, Column8, Column3, Column4, Column5, Column6 });
-            dataGridView1.Location = new Point(0, 93);
+            dataGridView1.Location = new Point(0, 97);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1337, 443);
@@ -395,7 +371,7 @@
             SearchBox.BorderStyle = BorderStyle.FixedSingle;
             SearchBox.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SearchBox.ForeColor = Color.DarkOliveGreen;
-            SearchBox.Location = new Point(12, 59);
+            SearchBox.Location = new Point(12, 61);
             SearchBox.Name = "SearchBox";
             SearchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
             SearchBox.Size = new Size(324, 28);
@@ -461,9 +437,6 @@
         private ToolStripMenuItem fWaitOplataMenuItem;
         private ToolStripMenuItem fAnyOplataMenuItem;
         private ToolStripMenuItem OrderEmployeeMenuItem;
-        private ToolStripMenuItem NewEmployeeMenuItem;
-        private ToolStripMenuItem EditEmployeeMenuItem;
-        private ToolStripMenuItem DeleteEmployeeMenuItem;
         private ToolStripMenuItem StatisticsMenuItem;
     }
 }

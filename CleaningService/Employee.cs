@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace CleaningService
 {
@@ -21,32 +22,34 @@ namespace CleaningService
         }
         public int GetOrdersCount()
         {
-            return Orders.Count;
+            return Orders?.Count(o => o != null) ?? 0;
         }
         public double GetSalary()
         {
-            return Orders.Sum(o => o.Price) * 0.4;
+            return Orders?
+                .Where(o => o != null)
+                .Sum(o => o.Price * 0.4) ?? 0;
         }
-        public static List<Employee> FilterByOrdersCount(List<Employee> employees, int minOrders)
-        {
-            return employees
-                .Where(e => e.GetOrdersCount() >= minOrders)
-                .ToList();
-        }
+        [JsonIgnore]
         public int CompletedOrdersPerMonth
         {
             get
             {
-                return Orders.Count(o =>
-                    o.OrderDate.Month == DateTime.Now.Month &&
-                    o.OrderDate.Year == DateTime.Now.Year);
+                return Orders?
+                    .Where(o => o != null)
+                    .Count(o =>
+                        o.OrderDate.Month == DateTime.Now.Month &&
+                        o.OrderDate.Year == DateTime.Now.Year) ?? 0;
             }
         }
+        [JsonIgnore]
         public double Salary
         {
             get
             {
-                return Orders.Sum(o => o.Price * 0.4);
+                return Orders?
+                    .Where(o => o != null)
+                    .Sum(o => o.Price * 0.4) ?? 0;
             }
         }
         public override string ToString()
