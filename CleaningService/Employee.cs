@@ -27,7 +27,7 @@ namespace CleaningService
         public double GetSalary()
         {
             return Orders?
-                .Where(o => o != null)
+                .Where(o => o != null && o.ExecutionStatus != "Скасовано")
                 .Sum(o => o.Price * 0.4) ?? 0;
         }
         [JsonIgnore]
@@ -48,8 +48,8 @@ namespace CleaningService
             get
             {
                 return Orders?
-                    .Where(o => o != null)
-                    .Sum(o => o.Price * 0.4) ?? 0;
+                    .Where(o => o != null && o.ExecutionStatus != "Скасовано")
+                    .Sum(o => o.Price * 0.3) ?? 0;
             }
         }
         public override string ToString()

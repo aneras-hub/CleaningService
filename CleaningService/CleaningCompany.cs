@@ -34,6 +34,12 @@ namespace CleaningService
         }
         public void ClearAll()
         {
+            foreach (var order in Orders)
+            {
+                if (order.Employee != null)
+                    order.Employee.Orders.Remove(order);
+            }
+
             Orders.Clear();
         }
         public List<Order> GetAll()

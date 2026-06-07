@@ -18,6 +18,7 @@ namespace CleaningService
         public string PaymentStatus { get; set; }
         public double Price { get; set; }
         public string TimeSlot { get; set; }
+        public string ExecutionStatus { get; set; } = "Заплановано";
 
         public Order()
         {
@@ -38,6 +39,7 @@ namespace CleaningService
             PaymentStatus = paymentStatus;
             TimeSlot = timeSlot;
             Price = CalculatePrice();
+            ExecutionStatus = "Заплановано";
         }
 
         public double CalculatePrice()

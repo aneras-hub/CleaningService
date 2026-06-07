@@ -133,8 +133,8 @@ namespace CleaningService
                 return ShowError("Оберіть час прибирання.");
             if (StanOplatu.SelectedIndex <= 0)
                 return ShowError("Оберіть стан оплати.");
-            if (dateTimePicker.Value.Date < DateTime.Today)
-                return ShowError("Дата замовлення не може бути в минулому.");
+        //    if (dateTimePicker.Value.Date < DateTime.Today)
+         //       return ShowError("Дата замовлення не може бути в минулому.");
             return true;
         }
         private bool ShowError(string message)

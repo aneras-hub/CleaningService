@@ -44,6 +44,7 @@
             fHalfOplatchenoMenuItem = new ToolStripMenuItem();
             fWaitOplataMenuItem = new ToolStripMenuItem();
             fAnyOplataMenuItem = new ToolStripMenuItem();
+            ClearAllMenuItem = new ToolStripMenuItem();
             OrderEmployeeMenuItem = new ToolStripMenuItem();
             StatisticsMenuItem = new ToolStripMenuItem();
             toolStrip = new ToolStrip();
@@ -63,7 +64,9 @@
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
+            Column10 = new DataGridViewTextBoxColumn();
             SearchBox = new TextBox();
+            ChangeExecutionStatustoolStripButton = new ToolStripButton();
             menuStrip.SuspendLayout();
             toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -77,7 +80,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { FileMenuItem, OrderAdministrationMenuItem, OrderEmployeeMenuItem, StatisticsMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1337, 28);
+            menuStrip.Size = new Size(1462, 26);
             menuStrip.TabIndex = 2;
             menuStrip.TabStop = true;
             menuStrip.Text = "menuStrip";
@@ -87,7 +90,7 @@
             FileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { SaveMenuItem, LoadMenuItem, ExitMenuItem });
             FileMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             FileMenuItem.Name = "FileMenuItem";
-            FileMenuItem.Size = new Size(66, 24);
+            FileMenuItem.Size = new Size(66, 22);
             FileMenuItem.Text = "Файл";
             // 
             // SaveMenuItem
@@ -118,10 +121,10 @@
             // OrderAdministrationMenuItem
             // 
             OrderAdministrationMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            OrderAdministrationMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewOrderMenuItem, EditOrdertoolStrip, DeletetoolStrip, FiltertoolStrip });
+            OrderAdministrationMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewOrderMenuItem, EditOrdertoolStrip, DeletetoolStrip, FiltertoolStrip, ClearAllMenuItem });
             OrderAdministrationMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             OrderAdministrationMenuItem.Name = "OrderAdministrationMenuItem";
-            OrderAdministrationMenuItem.Size = new Size(244, 24);
+            OrderAdministrationMenuItem.Size = new Size(244, 22);
             OrderAdministrationMenuItem.Text = "Управління замовленнями";
             // 
             // NewOrderMenuItem
@@ -186,12 +189,19 @@
             fAnyOplataMenuItem.Size = new Size(254, 26);
             fAnyOplataMenuItem.Text = "Неоплачено";
             // 
+            // ClearAllMenuItem
+            // 
+            ClearAllMenuItem.Name = "ClearAllMenuItem";
+            ClearAllMenuItem.Size = new Size(364, 26);
+            ClearAllMenuItem.Text = "Очистити таблицю";
+            ClearAllMenuItem.Click += ClearAllMenuItem_Click;
+            // 
             // OrderEmployeeMenuItem
             // 
             OrderEmployeeMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
             OrderEmployeeMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             OrderEmployeeMenuItem.Name = "OrderEmployeeMenuItem";
-            OrderEmployeeMenuItem.Size = new Size(212, 24);
+            OrderEmployeeMenuItem.Size = new Size(212, 22);
             OrderEmployeeMenuItem.Text = "Управління фахівцями";
             OrderEmployeeMenuItem.Click += OrderEmployeeMenuItem_Click;
             // 
@@ -199,7 +209,7 @@
             // 
             StatisticsMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             StatisticsMenuItem.Name = "StatisticsMenuItem";
-            StatisticsMenuItem.Size = new Size(114, 24);
+            StatisticsMenuItem.Size = new Size(114, 22);
             StatisticsMenuItem.Text = "Статистика";
             StatisticsMenuItem.Click += StatisticsMenuItem_Click;
             // 
@@ -209,10 +219,10 @@
             toolStrip.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             toolStrip.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip.ImageScalingSize = new Size(20, 20);
-            toolStrip.Items.AddRange(new ToolStripItem[] { NewOrderToolStripButton, DeleteOrderToolStripButton, EditOrderToolStripButton, ChangeOplataToolStripButton, SaveToolStripButton, LoadToolStripButton });
-            toolStrip.Location = new Point(0, 28);
+            toolStrip.Items.AddRange(new ToolStripItem[] { NewOrderToolStripButton, DeleteOrderToolStripButton, EditOrderToolStripButton, ChangeOplataToolStripButton, ChangeExecutionStatustoolStripButton, SaveToolStripButton, LoadToolStripButton });
+            toolStrip.Location = new Point(0, 26);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1337, 27);
+            toolStrip.Size = new Size(1462, 27);
             toolStrip.TabIndex = 7;
             toolStrip.Text = "toolStrip1";
             // 
@@ -288,11 +298,11 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = Color.SeaShell;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column7, Column1, Column2, Column9, Column8, Column3, Column4, Column5, Column6 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column7, Column1, Column2, Column9, Column8, Column3, Column4, Column5, Column6, Column10 });
             dataGridView1.Location = new Point(0, 97);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1337, 443);
+            dataGridView1.Size = new Size(1462, 443);
             dataGridView1.TabIndex = 1;
             // 
             // Column7
@@ -365,6 +375,14 @@
             Column6.Name = "Column6";
             Column6.Width = 120;
             // 
+            // Column10
+            // 
+            Column10.HeaderText = "Статус виконання";
+            Column10.DataPropertyName = "ExecutionStatus";
+            Column10.MinimumWidth = 6;
+            Column10.Name = "Column10";
+            Column10.Width = 130;
+            // 
             // SearchBox
             // 
             SearchBox.BackColor = Color.Ivory;
@@ -378,12 +396,23 @@
             SearchBox.TabIndex = 9;
             SearchBox.TextChanged += SearchBox_TextChanged;
             // 
+            // ChangeExecutionStatustoolStripButton
+            // 
+            ChangeExecutionStatustoolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
+            ChangeExecutionStatustoolStripButton.Image = (Image)resources.GetObject("ChangeExecutionStatustoolStripButton.Image");
+            ChangeExecutionStatustoolStripButton.ImageTransparentColor = Color.Magenta;
+            ChangeExecutionStatustoolStripButton.Name = "ChangeExecutionStatustoolStripButton";
+            ChangeExecutionStatustoolStripButton.Size = new Size(213, 24);
+            ChangeExecutionStatustoolStripButton.Text = "Змінити стан виконання";
+            ChangeExecutionStatustoolStripButton.ToolTipText = "Змінити стан оплати";
+            ChangeExecutionStatustoolStripButton.Click += ChangeExecutionStatustoolStripButton_Click;
+            // 
             // ClientMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Honeydew;
-            ClientSize = new Size(1337, 536);
+            ClientSize = new Size(1462, 536);
             Controls.Add(SearchBox);
             Controls.Add(toolStrip);
             Controls.Add(menuStrip);
@@ -438,5 +467,8 @@
         private ToolStripMenuItem fAnyOplataMenuItem;
         private ToolStripMenuItem OrderEmployeeMenuItem;
         private ToolStripMenuItem StatisticsMenuItem;
+        private ToolStripMenuItem ClearAllMenuItem;
+        private DataGridViewTextBoxColumn Column10;
+        private ToolStripButton ChangeExecutionStatustoolStripButton;
     }
 }

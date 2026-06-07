@@ -17,7 +17,7 @@ namespace CleaningService
         private string path = "orders.json";
         private ContextMenuStrip gridContextMenu;
         private OrderEmployee employeeManager = new OrderEmployee();
-
+        private System.Windows.Forms.Timer statusTimer;
         public ClientMainForm()
         {
             InitializeComponent();
@@ -29,6 +29,7 @@ namespace CleaningService
             InitToolStrip();
             InitGrid();
             InitContextMenu();
+            StartStatusTimer();
             ApplyStyle();
 
             SearchBox.PlaceholderText = "Пошук по ПІБ, номеру, стану оплати";
@@ -102,6 +103,70 @@ namespace CleaningService
             employeeManager.AddEmployee(new Employee(5, "Яворівський Максим Юрійович", "+38 099 000 0005", new DateTime(1991, 1, 30)));
         }
 
+        private void StartStatusTimer()
+        {
+            statusTimer = new System.Windows.Forms.Timer();
+            statusTimer.Interval = 10000; // 10 секунд
+            statusTimer.Tick += StatusTimer_Tick;
+            statusTimer.Start();
+        }
+
+        private void StatusTimer_Tick(object sender, EventArgs e)
+        {
+            bool changed = false;
+
+            foreach (var order in company.Orders)
+            {
+                if (order.OrderDate.Date != DateTime.Today)
+                    continue;
+
+                if (order.PaymentStatus == "Очікує оплати" &&
+                    order.ExecutionStatus == "Заплановано")
+                {
+                    order.PaymentStatus = "Неоплачено";
+                    order.ExecutionStatus = "Скасовано";
+                    changed = true;
+                    continue;
+                }
+
+                if ((order.PaymentStatus == "Оплачено" ||
+                     order.PaymentStatus == "Частково сплачено") &&
+                    order.ExecutionStatus == "Заплановано" &&
+                    IsTimeSlotNow(order.TimeSlot))
+                {
+                    order.ExecutionStatus = "Виконується";
+                    changed = true;
+                }
+
+                if (order.PaymentStatus == "Частково сплачено" &&
+                    order.ExecutionStatus == "Виконується")
+                {
+                    order.ExecutionStatus = "Виконано";
+                    order.PaymentStatus = "Оплачено";
+                    changed = true;
+                }
+            }
+
+            if (changed)
+                RefreshGrid();
+        }
+
+        private bool IsTimeSlotNow(string timeSlot)
+        {
+            int hour = DateTime.Now.Hour;
+
+            if (timeSlot == "Ранок")
+                return hour >= 6 && hour < 12;
+
+            if (timeSlot == "Обід")
+                return hour >= 12 && hour < 17;
+
+            if (timeSlot == "Вечір")
+                return hour >= 17 && hour < 23;
+
+            return false;
+        }
+
         private void ApplyStyle()
         {
             Font mainFont = new Font("Georgia", 10, FontStyle.Regular);
@@ -116,8 +181,7 @@ namespace CleaningService
         {
             foreach (var order in company.Orders)
             {
-                if (order.PaymentStatus == "Очікує оплати" &&
-                    DateTime.Now.Date > order.OrderDate.Date)
+                if (order.PaymentStatus == "Очікує оплати" && DateTime.Today > order.OrderDate.Date)
                 {
                     order.PaymentStatus = "Неоплачено";
                 }
@@ -258,13 +322,34 @@ namespace CleaningService
 
             if (MessageBox.Show($"Видалити замовлення {order.FullNameClient}?", "Увага", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
-            if (order.Employee != null)
             company.RemoveOrder(order);
             RefreshGrid();
         }
         private void DeletetoolStrip_Click(object sender, EventArgs e)
         {
             DeleteOrderToolStripButton_Click(sender, e);
+        }
+        private void ClearAllOrders()
+        {
+            if (company.Orders.Count == 0)
+            {
+                MessageBox.Show("Список замовлень уже порожній.");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                "Видалити всі замовлення?",
+                "Підтвердження",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+                return;
+
+            company.ClearAll();
+            RefreshGrid();
+
+            MessageBox.Show("Усі замовлення видалено.");
         }
         //зміна статусу оплати
         private void ChangeOplataToolStripButton_Click(object sender, EventArgs e)
@@ -297,6 +382,21 @@ namespace CleaningService
                     {
                         row.DefaultCellStyle.BackColor = Color.LightCoral;
                         row.DefaultCellStyle.ForeColor = Color.White;
+                    }
+                    if (order.ExecutionStatus == "Виконано")
+                    {
+                        row.DefaultCellStyle.BackColor = Color.LightGreen;
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                    }
+                    else if (order.ExecutionStatus == "Не виконано")
+                    {
+                        row.DefaultCellStyle.BackColor = Color.LightCoral;
+                        row.DefaultCellStyle.ForeColor = Color.White;
+                    }
+                    else if (order.ExecutionStatus == "Скасовано")
+                    {
+                        row.DefaultCellStyle.BackColor = Color.LightGray;
+                        row.DefaultCellStyle.ForeColor = Color.Black;
                     }
                 }
             }
@@ -355,9 +455,12 @@ namespace CleaningService
                     // Фахівець
                     (o.Employee != null &&
                      o.Employee.EmployeeName.ToLower().Contains(search)) ||
-                    // Статус
-                    (o.PaymentStatus != null &&
-                     o.PaymentStatus.ToLower().Contains(search))
+                     // Статус
+                     (o.PaymentStatus != null &&
+                     o.PaymentStatus.ToLower().Contains(search)) ||
+                     //Виконання
+                     (o.ExecutionStatus != null &&
+                     o.ExecutionStatus.ToLower().Contains(search))
                 )
                 .ToList();
             RefreshGrid(filtered);
@@ -405,6 +508,28 @@ namespace CleaningService
             Hide();
             form.ShowDialog();
             Show();
+        }
+        private void ClearAllMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearAllOrders();
+        }
+
+        private void ChangeExecutionStatustoolStripButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Оберіть замовлення!");
+                return;
+            }
+
+            Order order = (Order)dataGridView1.CurrentRow.DataBoundItem;
+
+            ChangeExecutionStatus form = new ChangeExecutionStatus(order);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                RefreshGrid();
+            }
         }
     }
 }
