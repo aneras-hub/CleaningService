@@ -259,7 +259,6 @@ namespace CleaningService
             if (MessageBox.Show($"Видалити замовлення {order.FullNameClient}?", "Увага", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             if (order.Employee != null)
-                order.Employee.Orders.Remove(order);
             company.RemoveOrder(order);
             RefreshGrid();
         }
@@ -369,9 +368,9 @@ namespace CleaningService
         }
         private void ClientMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ви дійсно хочете вийти?\nУсі незбережені зміни будуть втрачені.", "Підтвердження виходу",
+            DialogResult result = MessageBox.Show("Ви дійсно хочете вийти?\nЗберегти зміни перед виходом?", "Підтвердження виходу",
                     MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button3 // Фокус на "Скасувати" для безпеки
+                    MessageBoxDefaultButton.Button3
                 );
 
             if (result == DialogResult.Yes)

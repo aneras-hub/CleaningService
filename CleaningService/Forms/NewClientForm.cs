@@ -27,7 +27,7 @@ namespace CleaningService
         private void InitPlaceholders()
         {
             NameClient.PlaceholderText = "Петренко Петра Петрівна";
-            NumberClient.PlaceholderText = "+380997908190";
+            NumberClient.PlaceholderText = "+38 099 790 8190";
             AdressClient.PlaceholderText = "вул. Петра, 14";
             AreaRoom.PlaceholderText = "10";
         }
@@ -35,7 +35,7 @@ namespace CleaningService
         {
             Posluga.Items.AddRange(new[]
             {
-                "Генеральне прибирання"," Підтримувальне прибирання", "Прибирання після ремонту", "Прибирання будинку", "Прибирання котеджу", "Прибирання офісу", "Прибирання ресторану", "Прибирання магазинів"
+                "Генеральне прибирання","Підтримувальне прибирання", "Прибирання після ремонту", "Прибирання будинку", "Прибирання котеджу", "Прибирання офісу", "Прибирання ресторану", "Прибирання магазинів"
             });
             EmployeeClean.DataSource = employeeManager.Employees;
             EmployeeClean.DisplayMember = "EmployeeName";

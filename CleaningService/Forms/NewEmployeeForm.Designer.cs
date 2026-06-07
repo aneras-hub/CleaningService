@@ -56,7 +56,6 @@
             label14.Size = new Size(180, 24);
             label14.TabIndex = 48;
             label14.Text = "Дата народження:";
-            label14.Click += label14_Click;
             // 
             // button
             // 

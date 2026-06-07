@@ -26,56 +26,18 @@ namespace CleaningService.Forms
             Text = "Управління фахівцями";
 
             SearchBox.PlaceholderText = "Пошук по ПІБ або номеру";
-
+            SearchBox.TextChanged += searchBox_TextChanged;
             InitGrid();
-            InitControls();
             RefreshGrid();
             ApplyStyle();
         }
-
         private void InitGrid()
         {
             dataGridView.AutoGenerateColumns = false;
-            dataGridView.Columns.Clear();
 
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "BirthDate",
-                HeaderText = "Дата народження",
-                DataPropertyName = "BirthDate",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd.MM.yyyy" },
-                FillWeight = 90
-            });
-
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "EmployeeName",
-                HeaderText = "ПІБ фахівця",
-                DataPropertyName = "EmployeeName",
-                FillWeight = 200
-            });
-
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "EmployeeNumber",
-                HeaderText = "Телефон",
-                DataPropertyName = "EmployeeNumber",
-                FillWeight = 110
-            });
-
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "OrdersCount",
-                HeaderText = "Замовлень",
-                FillWeight = 70
-            });
-
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "Salary",
-                HeaderText = "Зарплата (грн)",
-                FillWeight = 100
-            });
+            dataGridView.ReadOnly = true;
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
 
             dataGridView.RowHeadersVisible = false;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -97,46 +59,14 @@ namespace CleaningService.Forms
                 }
             }
 
-            dataGridView.CellFormatting -= DataGridView1_CellFormatting;
-            dataGridView.CellFormatting += DataGridView1_CellFormatting;
-
             dataGridView.DataError -= DataGridView1_DataError;
             dataGridView.DataError += DataGridView1_DataError;
-        }
-
-        private void InitControls()
-        {
-
         }
 
         private void RefreshGrid(IEnumerable<Employee> data = null)
         {
             dataGridView.DataSource = null;
             dataGridView.DataSource = (data ?? employeeManager.Employees).ToList();
-        }
-
-        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
-            {
-                return;
-            }
-
-            if (dataGridView.Rows[e.RowIndex].DataBoundItem is Employee emp)
-            {
-                string columnName = dataGridView.Columns[e.ColumnIndex].Name;
-
-                if (columnName == "OrdersCount")
-                {
-                    e.Value = emp.GetOrdersCount().ToString();
-                    e.FormattingApplied = true;
-                }
-                else if (columnName == "Salary")
-                {
-                    e.Value = $"{emp.GetSalary():0.00}";
-                    e.FormattingApplied = true;
-                }
-            }
         }
         private void ApplyStyle()
         {
@@ -296,18 +226,6 @@ namespace CleaningService.Forms
         {
             Close();
         }
-
-        private void NewOrderMenuItem_Click(object sender, EventArgs e)
-        {
-            while (true)
-            {
-                using NewClientForm form = new NewClientForm(employeeManager);
-                form.Owner = this;
-
-                if (form.ShowDialog() != DialogResult.OK)
-                    break;
-            }
-        }
         private void StatisticsMenuItem_Click(object sender, EventArgs e)
         {
             Statistics form = new Statistics(employeeManager, _company, _savePath);
@@ -326,11 +244,6 @@ namespace CleaningService.Forms
         private void DeleteEmployeeMenuItem_Click(object sender, EventArgs e)
         {
             DeleteEmployeeToolStripButton_Click(sender, e);
-        }
-
-        private void OrderAdministrationMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 } 

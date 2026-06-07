@@ -55,7 +55,6 @@
             pictureBox.Size = new Size(176, 188);
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
-            pictureBox.Click += pictureBox_Click_1;
             // 
             // label
             // 

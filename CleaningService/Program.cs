@@ -11,6 +11,11 @@ namespace CleaningService
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
            ApplicationConfiguration.Initialize();
+            using (FlashForm flash = new FlashForm())
+            {
+                flash.ShowDialog();
+            }
+
             Application.Run(new LoginForm1());
         }
     }

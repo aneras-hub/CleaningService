@@ -20,14 +20,13 @@ namespace CleaningService.Forms
             dateTimePicker.MinDate = DateTime.Today.AddYears(-100);
             ApplyStyle();
         }
-        private void label14_Click(object sender, EventArgs e)
-        {        }
         public Employee NewEmployee { get; set; }
         public NewEmployeeForm(Employee employee) : this()
         {
             this.NewEmployee = employee;
             FullNameBox.Text = employee.EmployeeName;
             NumberBox.Text = employee.EmployeeNumber;
+            dateTimePicker.Value = employee.BirthDate;
             button.Text = "Зберегти зміни";
         }
         private void ApplyStyle()
@@ -100,7 +99,7 @@ namespace CleaningService.Forms
                 !phoneDigits.Substring(1).All(char.IsDigit))
             {
                 MessageBox.Show(
-                    "Номер телефону повинен бути у форматі +380991234567.",
+                    "Номер телефону повинен бути у форматі +38 099 123 4567.",
                     "Помилка",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);

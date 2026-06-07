@@ -55,15 +55,49 @@ namespace CleaningService
 
         private void button_Click(object sender, EventArgs e)
         {
-            ClientMainForm form = new ClientMainForm();
-            form.Show();
+            // Перевірка, чи не вичерпано лічильник спроб (про всяк випадок)
+            if (attempts >= 3)
+            {
+                MessageBox.Show("Доступ заблоковано. Ви використали всі спроби.");
+                return;
+            }
 
-            this.Hide();
+            if (LoginName.Text == "admin" || LoginName.Text == "фвьшт" && LoginPassword.Text == "1234")
+            {
+                // Успішний вхід
+                button.BackColor = Color.DarkSeaGreen;
+                this.Text = "Вхід";
+
+                ClientMainForm form = new ClientMainForm();
+                form.Show();
+
+                this.Hide();
+            }
+            else
+            {
+                attempts++;
+                int remaining = 3 - attempts;
+
+                if (attempts >= 3)
+                {
+                    MessageBox.Show("Ви 3 рази ввели невірний пароль! Кнопка входу заблокована.");
+                    button.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show($"Невірний логін або пароль! Залишилося спроб: {remaining}");
+                    LoginPassword.Clear();
+                    LoginPassword.Focus();
+                }
+            }
         }
-        private void pictureBox_Click_1(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            pictureBox.Location = new Point((this.ClientSize.Width - pictureBox.Width) / 2, 20);
-            pictureBox.Anchor = AnchorStyles.Top;
+            this.BackColor = Color.Honeydew;
+        }
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            this.BackColor = Color.Honeydew;
         }
     }
 }

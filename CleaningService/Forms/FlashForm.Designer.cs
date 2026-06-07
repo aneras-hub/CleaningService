@@ -54,7 +54,6 @@
             label1.Size = new Size(409, 46);
             label1.TabIndex = 2;
             label1.Text = "Клінінгова компанія";
-            label1.Click += label1_Click;
             // 
             // FlashForm
             // 

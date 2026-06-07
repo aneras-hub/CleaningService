@@ -12,17 +12,38 @@ namespace CleaningService
 {
     public partial class FlashForm : Form
     {
+        private System.Windows.Forms.Timer fadeTimer;
+        private int waitCounter = 0;
+
         public FlashForm()
         {
             InitializeComponent();
-            this.BackColor = Color.Honeydew;
+
+            this.Opacity = 0;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "";
+
+            fadeTimer = new System.Windows.Forms.Timer();
+            fadeTimer.Interval = 40;
+            fadeTimer.Tick += FadeTimer_Tick;
+            fadeTimer.Start();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void FadeTimer_Tick(object sender, EventArgs e)
         {
+            if (this.Opacity < 1)
+            {
+                this.Opacity += 0.05;
+            }
+            else
+            {
+                waitCounter++;
 
+                if (waitCounter >= 15)
+                {
+                    fadeTimer.Stop();
+                    this.Close();
+                }
+            }
         }
     }
 }

@@ -85,10 +85,10 @@
             // 
             // BirthDate
             // 
+            BirthDate.DataPropertyName = "BirthDate";
+            BirthDate.DefaultCellStyle.Format = "dd.MM.yyyy";
             BirthDate.HeaderText = "Дата народження";
-            BirthDate.MinimumWidth = 6;
             BirthDate.Name = "BirthDate";
-            BirthDate.Width = 125;
             // 
             // EmployeeName
             // 
@@ -108,17 +108,15 @@
             // 
             // EmployeeSalary
             // 
-            EmployeeSalary.DataPropertyName = "EmployeeSalary";
+            EmployeeSalary.DataPropertyName = "Salary";
             EmployeeSalary.HeaderText = "Зарплата";
-            EmployeeSalary.MinimumWidth = 6;
             EmployeeSalary.Name = "EmployeeSalary";
             EmployeeSalary.Width = 140;
             // 
             // CompletedOrders
             // 
-            CompletedOrders.DataPropertyName = "CompletedOrders";
+            CompletedOrders.DataPropertyName = "CompletedOrdersPerMonth";
             CompletedOrders.HeaderText = "Кількість виконаних замовлень";
-            CompletedOrders.MinimumWidth = 6;
             CompletedOrders.Name = "CompletedOrders";
             CompletedOrders.Width = 220;
             // 
@@ -208,7 +206,7 @@
             OrderAdministrationMenuItem.Name = "OrderAdministrationMenuItem";
             OrderAdministrationMenuItem.Size = new Size(244, 24);
             OrderAdministrationMenuItem.Text = "Управління замовленнями";
-            OrderAdministrationMenuItem.Click += OrderAdministrationMenuItem_Click_1;
+            OrderAdministrationMenuItem.Click += OrderAdministrationMenuItem_Click;
             // 
             // StatisticsMenuItem
             // 
