@@ -36,6 +36,17 @@ namespace CleaningService.Forms
             StanStatusu.SelectedItem = CurrentOrder.ExecutionStatus;
 
             button.Text = "Зберегти";
+            ApplyStyle();
+        }
+        private void ApplyStyle()
+        {
+            Font mainFont = new Font("Georgia", 12, FontStyle.Regular);
+            Font buttonFont = new Font("Georgia", 12, FontStyle.Regular);
+
+            this.Font = mainFont;
+
+            StanStatusu.Font = mainFont;
+            button.Font = buttonFont;
         }
 
         private void button_Click(object sender, EventArgs e)

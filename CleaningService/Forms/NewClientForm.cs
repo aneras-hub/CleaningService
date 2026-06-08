@@ -97,19 +97,20 @@ namespace CleaningService
             string fullName = NameClient.Text.Trim();
             string phone = NumberClient.Text.Trim();
             string address = AdressClient.Text.Trim();
+
+            if (fullName.Contains("  "))
+                return ShowError("ПІБ не може містити декілька пробілів підряд.");
+
+            if (address.Contains("  "))
+                return ShowError("Адреса не може містити декілька пробілів підряд.");
+            if (fullName.EndsWith(" "))
+                return ShowError("ПІБ не може закінчуватися пробілом.");
+
+            if (address.EndsWith(" "))
+                return ShowError("Адреса не може закінчуватися пробілом.");
             string[] nameParts = fullName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             if (nameParts.Length != 3)
                 return ShowError("ПІБ має містити рівно 3 слова: прізвище, ім’я та по батькові.");
-            foreach (string part in nameParts)
-            {
-                if (part.Length < 2)
-                    return ShowError("Кожна частина ПІБ повинна містити мінімум 2 символи.");
-                foreach (char c in part)
-                {
-                    if (!char.IsLetter(c) && c != '\'' && c != '’' && c != '-')
-                        return ShowError("ПІБ може містити лише літери, дефіс та апостроф.");
-                }
-            }
             string phonePattern = @"^\+38\s0\d{2}\s\d{3}\s\d{4}$";
             if (!Regex.IsMatch(NumberClient.Text.Trim(), phonePattern))
                 return ShowError("Телефон у форматі +38 099 790 8190");

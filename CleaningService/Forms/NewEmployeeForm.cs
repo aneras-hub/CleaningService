@@ -19,6 +19,10 @@ namespace CleaningService.Forms
             dateTimePicker.MaxDate = DateTime.Today.AddYears(-18);
             dateTimePicker.MinDate = DateTime.Today.AddYears(-100);
             this.StartPosition = FormStartPosition.CenterScreen;
+            FullNameBox.MaxLength = 100;
+            NumberBox.MaxLength = 16;
+            FullNameBox.PlaceholderText = "Петренко Петра Петрівна";
+            NumberBox.PlaceholderText = "+38 099 790 8190";
             ApplyStyle();
         }
         public Employee NewEmployee { get; set; }
@@ -34,11 +38,6 @@ namespace CleaningService.Forms
         {
             label1.Font = new Font("Georgia", 14, FontStyle.Regular); // Клінінгова служба
             label2.Font = new Font("Georgia", 11, FontStyle.Regular); // Дані фахівця
-
-            label3.Font = new Font("Georgia", 10, FontStyle.Regular);
-            label4.Font = new Font("Georgia", 10, FontStyle.Regular);
-            label14.Font = new Font("Georgia", 10, FontStyle.Regular);
-
             FullNameBox.Font = new Font("Georgia", 10);
             NumberBox.Font = new Font("Georgia", 10);
             dateTimePicker.Font = new Font("Georgia", 10);
@@ -51,9 +50,25 @@ namespace CleaningService.Forms
             string phone = NumberBox.Text.Trim();
             DateTime birthDate = dateTimePicker.Value.Date;
 
-            string[] parts = fullName.Split(
-                new char[] { ' ' },
-                StringSplitOptions.RemoveEmptyEntries);
+            if (fullName.Contains("  "))
+            {
+                MessageBox.Show(
+                    "ПІБ не може містити декілька пробілів підряд.",
+                    "Помилка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+            if (phone.Contains("  "))
+            {
+                MessageBox.Show(
+                    "Номер телефону не може містити декілька пробілів підряд.",
+                    "Помилка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+            string[] parts = fullName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length != 3)
             {
