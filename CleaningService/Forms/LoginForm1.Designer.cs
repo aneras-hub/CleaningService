@@ -123,6 +123,7 @@
             // 
             LoginPassword.Location = new Point(7, 9);
             LoginPassword.Name = "LoginPassword";
+            LoginPassword.PasswordChar = '*';
             LoginPassword.Size = new Size(273, 28);
             LoginPassword.TabIndex = 8;
             // 
@@ -163,6 +164,8 @@
             Font = new Font("Georgia", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LoginForm1";
             Text = "Вхід в систему";
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();

@@ -30,7 +30,7 @@ namespace CleaningService.Forms
                 "Виконується",
                 "Виконано",
                 "Скасовано",
-                "Прострочено"
+                "Не виконано"
             });
 
             StanStatusu.SelectedItem = CurrentOrder.ExecutionStatus;

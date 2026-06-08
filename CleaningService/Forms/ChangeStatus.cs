@@ -57,10 +57,5 @@ namespace CleaningService
             DialogResult = DialogResult.OK;
             Close();
         }
-
-        private void StanOplatu_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

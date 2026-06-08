@@ -18,6 +18,7 @@ namespace CleaningService.Forms
             InitializeComponent();
             dateTimePicker.MaxDate = DateTime.Today.AddYears(-18);
             dateTimePicker.MinDate = DateTime.Today.AddYears(-100);
+            this.StartPosition = FormStartPosition.CenterScreen;
             ApplyStyle();
         }
         public Employee NewEmployee { get; set; }

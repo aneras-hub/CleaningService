@@ -110,6 +110,7 @@
             NumberClient.Name = "NumberClient";
             NumberClient.Size = new Size(282, 34);
             NumberClient.TabIndex = 5;
+            NumberClient.KeyPress += NumberClient_KeyPress;
             // 
             // label5
             // 
@@ -318,8 +319,11 @@
             Font = new Font("Georgia", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "NewClientForm";
-            Text = "Новий клієнт";
+            Text = "Клієнт";
+            KeyPress += NewClientForm_KeyPress;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -36,10 +36,6 @@ namespace CleaningService.Forms
             label10.Cursor = Cursors.Hand;
             label11.Cursor = Cursors.Hand;
             label12.Cursor = Cursors.Hand;
-            label13.Cursor = Cursors.Hand;
-            label14.Cursor = Cursors.Hand;
-            label15.Cursor = Cursors.Hand;
-            label16.Cursor = Cursors.Hand;
         }
         private void Statistics_Load(object sender, EventArgs e)
         {
@@ -61,8 +57,12 @@ namespace CleaningService.Forms
         }
         private void LoadGeneralStatistics()
         {
-            double totalIncome = _company.GetTotalIncome();
-            int totalOrders = _company.Orders.Count;
+            var activeOrders = _company.Orders
+                .Where(o => o.ExecutionStatus != "Скасовано")
+                .ToList();
+
+            double totalIncome = activeOrders.Sum(o => o.Price);
+            int totalOrders = activeOrders.Count;
             double average = totalOrders > 0 ? totalIncome / totalOrders : 0;
             label10.Text = $"{totalIncome:0.00} грн";
             label11.Text = $"{average:0.00} грн";
@@ -125,8 +125,8 @@ namespace CleaningService.Forms
             series["PixelPointWidth"] = "45";
             var data = _company.Orders
                 .Where(o => o.OrderDate != DateTime.MinValue)
+                .Where(o => o.ExecutionStatus != "Скасовано")
                 .GroupBy(o => new DateTime(o.OrderDate.Year, o.OrderDate.Month, 1))
-                .OrderBy(g => g.Key)
                 .Select(g => new
                 {
                     MonthDate = g.Key,
@@ -172,6 +172,7 @@ namespace CleaningService.Forms
                 var ordersInWeek = _company.Orders
                     .Where(o => o.OrderDate.Date >= weekStart.Date &&
                                 o.OrderDate.Date <= weekEnd.Date)
+                    .Where(o => o.ExecutionStatus != "Скасовано")
                     .ToList();
                 double average = ordersInWeek.Count > 0
                     ? ordersInWeek.Average(o => o.Price)
@@ -210,6 +211,7 @@ namespace CleaningService.Forms
             series.Font = new Font("Georgia", 8, FontStyle.Bold);
             var data = _company.Orders
                 .Where(o => o.OrderDate != DateTime.MinValue)
+                .Where(o => o.ExecutionStatus != "Скасовано")
                 .GroupBy(o => new DateTime(o.OrderDate.Year, o.OrderDate.Month, 1))
                 .OrderBy(g => g.Key)
                 .Select(g => new
@@ -293,6 +295,7 @@ namespace CleaningService.Forms
                 Color.DodgerBlue, Color.MediumSeaGreen, Color.Orange, Color.MediumPurple, Color.Crimson, Color.Teal, Color.Goldenrod,  Color.CornflowerBlue
             };
             var services = _company.Orders
+                .Where(o => o.ExecutionStatus != "Скасовано")
                 .Where(o => o.Services != null)
                 .SelectMany(o => o.Services.SelectMany(s => new[]
                 {
@@ -566,31 +569,6 @@ namespace CleaningService.Forms
             label20.Text = emp.GetOrdersCount().ToString();
             label21.Text = $"{emp.GetSalary():0.00} грн";
             LoadEmployeeChart(emp);
-        }
-
-        private void label22_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

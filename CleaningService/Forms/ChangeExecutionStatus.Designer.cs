@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangeExecutionStatus));
             button = new Button();
             StanStatusu = new ComboBox();
             label12 = new Label();
@@ -71,8 +72,11 @@
             Controls.Add(button);
             Controls.Add(StanStatusu);
             Controls.Add(label12);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "ChangeExecutionStatus";
-            Text = "ChangeExecutionStatus";
+            Text = "Зміна виконання замовлень";
             ResumeLayout(false);
             PerformLayout();
         }

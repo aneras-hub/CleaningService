@@ -138,8 +138,10 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "NewEmployeeForm";
-            Text = "Новий фахівець";
+            Text = "Фахівець";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -44,6 +44,9 @@
             fHalfOplatchenoMenuItem = new ToolStripMenuItem();
             fWaitOplataMenuItem = new ToolStripMenuItem();
             fAnyOplataMenuItem = new ToolStripMenuItem();
+            сортуванняToolStripMenuItem = new ToolStripMenuItem();
+            sAreaToolStripMenuItem = new ToolStripMenuItem();
+            sPriceToolStripMenuItem = new ToolStripMenuItem();
             ClearAllMenuItem = new ToolStripMenuItem();
             OrderEmployeeMenuItem = new ToolStripMenuItem();
             StatisticsMenuItem = new ToolStripMenuItem();
@@ -52,6 +55,7 @@
             DeleteOrderToolStripButton = new ToolStripButton();
             EditOrderToolStripButton = new ToolStripButton();
             ChangeOplataToolStripButton = new ToolStripButton();
+            ChangeExecutionStatustoolStripButton = new ToolStripButton();
             SaveToolStripButton = new ToolStripButton();
             LoadToolStripButton = new ToolStripButton();
             dataGridView1 = new DataGridView();
@@ -66,7 +70,6 @@
             Column6 = new DataGridViewTextBoxColumn();
             Column10 = new DataGridViewTextBoxColumn();
             SearchBox = new TextBox();
-            ChangeExecutionStatustoolStripButton = new ToolStripButton();
             menuStrip.SuspendLayout();
             toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -97,31 +100,30 @@
             // 
             SaveMenuItem.Image = (Image)resources.GetObject("SaveMenuItem.Image");
             SaveMenuItem.Name = "SaveMenuItem";
-            SaveMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-            SaveMenuItem.Size = new Size(291, 26);
+            SaveMenuItem.Size = new Size(228, 26);
             SaveMenuItem.Text = "Зберегти";
             SaveMenuItem.Click += SaveMenuItem_Click;
             // 
             // LoadMenuItem
             // 
+            LoadMenuItem.Image = (Image)resources.GetObject("LoadMenuItem.Image");
             LoadMenuItem.Name = "LoadMenuItem";
-            LoadMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            LoadMenuItem.Size = new Size(291, 26);
+            LoadMenuItem.Size = new Size(228, 26);
             LoadMenuItem.Text = "Зчитати з файлу";
             LoadMenuItem.Click += LoadMenuItem_Click;
             // 
             // ExitMenuItem
             // 
+            ExitMenuItem.Image = (Image)resources.GetObject("ExitMenuItem.Image");
             ExitMenuItem.Name = "ExitMenuItem";
-            ExitMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
-            ExitMenuItem.Size = new Size(291, 26);
+            ExitMenuItem.Size = new Size(228, 26);
             ExitMenuItem.Text = "Вихід";
             ExitMenuItem.Click += exitMenuItem_Click;
             // 
             // OrderAdministrationMenuItem
             // 
             OrderAdministrationMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            OrderAdministrationMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewOrderMenuItem, EditOrdertoolStrip, DeletetoolStrip, FiltertoolStrip, ClearAllMenuItem });
+            OrderAdministrationMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewOrderMenuItem, EditOrdertoolStrip, DeletetoolStrip, FiltertoolStrip, сортуванняToolStripMenuItem, ClearAllMenuItem });
             OrderAdministrationMenuItem.ForeColor = Color.FromArgb(26, 26, 46);
             OrderAdministrationMenuItem.Name = "OrderAdministrationMenuItem";
             OrderAdministrationMenuItem.Size = new Size(244, 22);
@@ -129,25 +131,25 @@
             // 
             // NewOrderMenuItem
             // 
+            NewOrderMenuItem.Image = (Image)resources.GetObject("NewOrderMenuItem.Image");
             NewOrderMenuItem.Name = "NewOrderMenuItem";
-            NewOrderMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            NewOrderMenuItem.Size = new Size(364, 26);
+            NewOrderMenuItem.Size = new Size(304, 26);
             NewOrderMenuItem.Text = "Нове замовлення";
             NewOrderMenuItem.Click += NewOrderMenuItem_Click;
             // 
             // EditOrdertoolStrip
             // 
+            EditOrdertoolStrip.Image = (Image)resources.GetObject("EditOrdertoolStrip.Image");
             EditOrdertoolStrip.Name = "EditOrdertoolStrip";
-            EditOrdertoolStrip.ShortcutKeys = Keys.Control | Keys.T;
-            EditOrdertoolStrip.Size = new Size(364, 26);
+            EditOrdertoolStrip.Size = new Size(304, 26);
             EditOrdertoolStrip.Text = "Редагування замовлення";
             EditOrdertoolStrip.Click += EditOrdertoolStrip_Click;
             // 
             // DeletetoolStrip
             // 
+            DeletetoolStrip.Image = (Image)resources.GetObject("DeletetoolStrip.Image");
             DeletetoolStrip.Name = "DeletetoolStrip";
-            DeletetoolStrip.ShortcutKeys = Keys.Control | Keys.F;
-            DeletetoolStrip.Size = new Size(364, 26);
+            DeletetoolStrip.Size = new Size(304, 26);
             DeletetoolStrip.Text = "Видалення замовлення";
             DeletetoolStrip.Click += DeletetoolStrip_Click;
             // 
@@ -156,43 +158,73 @@
             FiltertoolStrip.DropDownItems.AddRange(new ToolStripItem[] { fAllMenuItem, fOplachenoMenuItem, fHalfOplatchenoMenuItem, fWaitOplataMenuItem, fAnyOplataMenuItem });
             FiltertoolStrip.Image = (Image)resources.GetObject("FiltertoolStrip.Image");
             FiltertoolStrip.Name = "FiltertoolStrip";
-            FiltertoolStrip.Size = new Size(364, 26);
+            FiltertoolStrip.Size = new Size(304, 26);
             FiltertoolStrip.Text = "Фільтрація";
             // 
             // fAllMenuItem
             // 
+            fAllMenuItem.Image = (Image)resources.GetObject("fAllMenuItem.Image");
             fAllMenuItem.Name = "fAllMenuItem";
             fAllMenuItem.Size = new Size(254, 26);
             fAllMenuItem.Text = "усі";
             // 
             // fOplachenoMenuItem
             // 
+            fOplachenoMenuItem.Image = (Image)resources.GetObject("fOplachenoMenuItem.Image");
             fOplachenoMenuItem.Name = "fOplachenoMenuItem";
             fOplachenoMenuItem.Size = new Size(254, 26);
             fOplachenoMenuItem.Text = "Оплачено";
             // 
             // fHalfOplatchenoMenuItem
             // 
+            fHalfOplatchenoMenuItem.Image = (Image)resources.GetObject("fHalfOplatchenoMenuItem.Image");
             fHalfOplatchenoMenuItem.Name = "fHalfOplatchenoMenuItem";
             fHalfOplatchenoMenuItem.Size = new Size(254, 26);
             fHalfOplatchenoMenuItem.Text = "Частково сплачено";
             // 
             // fWaitOplataMenuItem
             // 
+            fWaitOplataMenuItem.Image = (Image)resources.GetObject("fWaitOplataMenuItem.Image");
             fWaitOplataMenuItem.Name = "fWaitOplataMenuItem";
             fWaitOplataMenuItem.Size = new Size(254, 26);
             fWaitOplataMenuItem.Text = "Очікує оплати";
             // 
             // fAnyOplataMenuItem
             // 
+            fAnyOplataMenuItem.Image = (Image)resources.GetObject("fAnyOplataMenuItem.Image");
             fAnyOplataMenuItem.Name = "fAnyOplataMenuItem";
             fAnyOplataMenuItem.Size = new Size(254, 26);
             fAnyOplataMenuItem.Text = "Неоплачено";
             // 
+            // сортуванняToolStripMenuItem
+            // 
+            сортуванняToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sAreaToolStripMenuItem, sPriceToolStripMenuItem });
+            сортуванняToolStripMenuItem.Image = (Image)resources.GetObject("сортуванняToolStripMenuItem.Image");
+            сортуванняToolStripMenuItem.Name = "сортуванняToolStripMenuItem";
+            сортуванняToolStripMenuItem.Size = new Size(304, 26);
+            сортуванняToolStripMenuItem.Text = "Сортування";
+            // 
+            // sAreaToolStripMenuItem
+            // 
+            sAreaToolStripMenuItem.Image = (Image)resources.GetObject("sAreaToolStripMenuItem.Image");
+            sAreaToolStripMenuItem.Name = "sAreaToolStripMenuItem";
+            sAreaToolStripMenuItem.Size = new Size(189, 26);
+            sAreaToolStripMenuItem.Text = "За площею";
+            sAreaToolStripMenuItem.Click += sAreaToolStripMenuItem_Click;
+            // 
+            // sPriceToolStripMenuItem
+            // 
+            sPriceToolStripMenuItem.Image = (Image)resources.GetObject("sPriceToolStripMenuItem.Image");
+            sPriceToolStripMenuItem.Name = "sPriceToolStripMenuItem";
+            sPriceToolStripMenuItem.Size = new Size(189, 26);
+            sPriceToolStripMenuItem.Text = "За вартістю";
+            sPriceToolStripMenuItem.Click += sPriceToolStripMenuItem_Click;
+            // 
             // ClearAllMenuItem
             // 
+            ClearAllMenuItem.Image = (Image)resources.GetObject("ClearAllMenuItem.Image");
             ClearAllMenuItem.Name = "ClearAllMenuItem";
-            ClearAllMenuItem.Size = new Size(364, 26);
+            ClearAllMenuItem.Size = new Size(304, 26);
             ClearAllMenuItem.Text = "Очистити таблицю";
             ClearAllMenuItem.Click += ClearAllMenuItem_Click;
             // 
@@ -269,6 +301,17 @@
             ChangeOplataToolStripButton.Text = "Змінити стан оплати";
             ChangeOplataToolStripButton.ToolTipText = "Змінити стан оплати";
             ChangeOplataToolStripButton.Click += ChangeOplataToolStripButton_Click;
+            // 
+            // ChangeExecutionStatustoolStripButton
+            // 
+            ChangeExecutionStatustoolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
+            ChangeExecutionStatustoolStripButton.Image = (Image)resources.GetObject("ChangeExecutionStatustoolStripButton.Image");
+            ChangeExecutionStatustoolStripButton.ImageTransparentColor = Color.Magenta;
+            ChangeExecutionStatustoolStripButton.Name = "ChangeExecutionStatustoolStripButton";
+            ChangeExecutionStatustoolStripButton.Size = new Size(213, 24);
+            ChangeExecutionStatustoolStripButton.Text = "Змінити стан виконання";
+            ChangeExecutionStatustoolStripButton.ToolTipText = "Змінити стан оплати";
+            ChangeExecutionStatustoolStripButton.Click += ChangeExecutionStatustoolStripButton_Click;
             // 
             // SaveToolStripButton
             // 
@@ -377,8 +420,8 @@
             // 
             // Column10
             // 
-            Column10.HeaderText = "Статус виконання";
             Column10.DataPropertyName = "ExecutionStatus";
+            Column10.HeaderText = "Статус виконання";
             Column10.MinimumWidth = 6;
             Column10.Name = "Column10";
             Column10.Width = 130;
@@ -396,17 +439,6 @@
             SearchBox.TabIndex = 9;
             SearchBox.TextChanged += SearchBox_TextChanged;
             // 
-            // ChangeExecutionStatustoolStripButton
-            // 
-            ChangeExecutionStatustoolStripButton.ForeColor = Color.FromArgb(26, 26, 46);
-            ChangeExecutionStatustoolStripButton.Image = (Image)resources.GetObject("ChangeExecutionStatustoolStripButton.Image");
-            ChangeExecutionStatustoolStripButton.ImageTransparentColor = Color.Magenta;
-            ChangeExecutionStatustoolStripButton.Name = "ChangeExecutionStatustoolStripButton";
-            ChangeExecutionStatustoolStripButton.Size = new Size(213, 24);
-            ChangeExecutionStatustoolStripButton.Text = "Змінити стан виконання";
-            ChangeExecutionStatustoolStripButton.ToolTipText = "Змінити стан оплати";
-            ChangeExecutionStatustoolStripButton.Click += ChangeExecutionStatustoolStripButton_Click;
-            // 
             // ClientMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -418,6 +450,9 @@
             Controls.Add(menuStrip);
             Controls.Add(dataGridView1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "ClientMainForm";
             Text = "Таблиця клієнтів";
             FormClosing += ClientMainForm_FormClosing;
@@ -470,5 +505,8 @@
         private ToolStripMenuItem ClearAllMenuItem;
         private DataGridViewTextBoxColumn Column10;
         private ToolStripButton ChangeExecutionStatustoolStripButton;
+        private ToolStripMenuItem сортуванняToolStripMenuItem;
+        private ToolStripMenuItem sAreaToolStripMenuItem;
+        private ToolStripMenuItem sPriceToolStripMenuItem;
     }
 }

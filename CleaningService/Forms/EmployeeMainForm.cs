@@ -159,7 +159,7 @@ namespace CleaningService.Forms
                     MessageBox.Show("Неможливо видалити працівника, який має замовлення.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                DialogResult result = MessageBox.Show($"Видалити працівника {employee.EmployeeName}?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Видалити працівника {employee.EmployeeName}?", "Підтвердження", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     employeeManager.RemoveEmployee(employee.Id);
@@ -244,6 +244,21 @@ namespace CleaningService.Forms
         private void DeleteEmployeeMenuItem_Click(object sender, EventArgs e)
         {
             DeleteEmployeeToolStripButton_Click(sender, e);
+        }
+
+        private void sFullNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshGrid(employeeManager.SortByName());
+        }
+
+        private void sKilkistOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshGrid(employeeManager.SortByOrdersCount());
+        }
+
+        private void sSalaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshGrid(employeeManager.SortBySalary());
         }
     }
 } 

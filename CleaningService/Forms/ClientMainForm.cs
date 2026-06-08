@@ -110,40 +110,58 @@ namespace CleaningService
             statusTimer.Tick += StatusTimer_Tick;
             statusTimer.Start();
         }
-
+        // АВТОМАТИЧНІ ОПЛАТИ ТА ВИКОНАННЯ
         private void StatusTimer_Tick(object sender, EventArgs e)
         {
             bool changed = false;
 
             foreach (var order in company.Orders)
             {
-                if (order.OrderDate.Date != DateTime.Today)
+                if (order.ExecutionStatus == "Скасовано")
                     continue;
-
-                if (order.PaymentStatus == "Очікує оплати" &&
-                    order.ExecutionStatus == "Заплановано")
+                // Якщо дата замовлення вже минула
+                if (order.OrderDate.Date < DateTime.Today)
                 {
-                    order.PaymentStatus = "Неоплачено";
-                    order.ExecutionStatus = "Скасовано";
+                    if (order.PaymentStatus == "Очікує оплати" ||
+                        order.PaymentStatus == "Неоплачено")
+                    {
+                        order.PaymentStatus = "Неоплачено";
+                        order.ExecutionStatus = "Скасовано";
+                    }
+                    else
+                    {
+                        order.ExecutionStatus = "Виконано";
+
+                        if (order.PaymentStatus == "Частково сплачено")
+                            order.PaymentStatus = "Оплачено";
+                    }
+
                     changed = true;
                     continue;
                 }
 
-                if ((order.PaymentStatus == "Оплачено" ||
-                     order.PaymentStatus == "Частково сплачено") &&
-                    order.ExecutionStatus == "Заплановано" &&
-                    IsTimeSlotNow(order.TimeSlot))
+                // Якщо замовлення на сьогодні
+                if (order.OrderDate.Date == DateTime.Today)
                 {
-                    order.ExecutionStatus = "Виконується";
-                    changed = true;
-                }
+                    if ((order.PaymentStatus == "Очікує оплати" ||
+                         order.PaymentStatus == "Неоплачено") &&
+                        order.ExecutionStatus == "Заплановано" &&
+                        IsTimeSlotNow(order.TimeSlot))
+                    {
+                        order.PaymentStatus = "Неоплачено";
+                        order.ExecutionStatus = "Скасовано";
+                        changed = true;
+                        continue;
+                    }
 
-                if (order.PaymentStatus == "Частково сплачено" &&
-                    order.ExecutionStatus == "Виконується")
-                {
-                    order.ExecutionStatus = "Виконано";
-                    order.PaymentStatus = "Оплачено";
-                    changed = true;
+                    if ((order.PaymentStatus == "Оплачено" ||
+                         order.PaymentStatus == "Частково сплачено") &&
+                        order.ExecutionStatus == "Заплановано" &&
+                        IsTimeSlotNow(order.TimeSlot))
+                    {
+                        order.ExecutionStatus = "Виконується";
+                        changed = true;
+                    }
                 }
             }
 
@@ -179,13 +197,6 @@ namespace CleaningService
         // таблиця
         private void RefreshGrid(IEnumerable<Order> data = null)
         {
-            foreach (var order in company.Orders)
-            {
-                if (order.PaymentStatus == "Очікує оплати" && DateTime.Today > order.OrderDate.Date)
-                {
-                    order.PaymentStatus = "Неоплачено";
-                }
-            }
             var list = (data ?? company.Orders).ToList();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = list;
@@ -289,7 +300,8 @@ namespace CleaningService
             {
                 using NewClientForm form = new NewClientForm(employeeManager);
                 form.Owner = this;
-                if (form.ShowDialog() != DialogResult.OK)
+                if (form.ShowDialog() == DialogResult.OK)
+                    form.Close();
                     break;
             }
         }
@@ -320,7 +332,7 @@ namespace CleaningService
 
             var order = (Order)dataGridView1.CurrentRow.DataBoundItem;
 
-            if (MessageBox.Show($"Видалити замовлення {order.FullNameClient}?", "Увага", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            if (MessageBox.Show($"Видалити замовлення {order.FullNameClient}?", "Увага", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             company.RemoveOrder(order);
             RefreshGrid();
@@ -340,7 +352,7 @@ namespace CleaningService
             DialogResult result = MessageBox.Show(
                 "Видалити всі замовлення?",
                 "Підтвердження",
-                MessageBoxButtons.YesNo,
+                MessageBoxButtons.YesNoCancel,
                 MessageBoxIcon.Warning);
 
             if (result != DialogResult.Yes)
@@ -387,11 +399,6 @@ namespace CleaningService
                     {
                         row.DefaultCellStyle.BackColor = Color.LightGreen;
                         row.DefaultCellStyle.ForeColor = Color.Black;
-                    }
-                    else if (order.ExecutionStatus == "Не виконано")
-                    {
-                        row.DefaultCellStyle.BackColor = Color.LightCoral;
-                        row.DefaultCellStyle.ForeColor = Color.White;
                     }
                     else if (order.ExecutionStatus == "Скасовано")
                     {
@@ -530,6 +537,16 @@ namespace CleaningService
             {
                 RefreshGrid();
             }
+        }
+
+        private void sAreaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshGrid(company.SortByArea());
+        }
+
+        private void sPriceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshGrid(company.SortByPrice());
         }
     }
 }

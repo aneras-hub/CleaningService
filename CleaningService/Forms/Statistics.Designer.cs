@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Statistics));
             tabPage2 = new TabPage();
             panel3 = new Panel();
@@ -116,7 +116,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(590, 151);
             panel3.TabIndex = 7;
-            panel3.Paint += panel3_Paint;
             // 
             // label17
             // 
@@ -174,18 +173,17 @@
             // 
             // chart1
             // 
-            chartArea9.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea9);
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
             chart1.Location = new Point(683, 39);
             chart1.Name = "chart1";
             chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series9.ChartArea = "ChartArea1";
-            series9.Name = "Series1";
-            chart1.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
             chart1.Size = new Size(614, 230);
             chart1.TabIndex = 4;
             chart1.Text = "chart1";
-            chart1.Click += chart1_Click;
             // 
             // tabControl1
             // 
@@ -277,7 +275,6 @@
             label13.Size = new Size(58, 20);
             label13.TabIndex = 13;
             label13.Text = "label13";
-            label13.Click += label13_Click;
             // 
             // label14
             // 
@@ -373,7 +370,6 @@
             label12.Size = new Size(58, 20);
             label12.TabIndex = 12;
             label12.Text = "label12";
-            label12.Click += label12_Click;
             // 
             // label22
             // 
@@ -383,19 +379,18 @@
             label22.Size = new Size(272, 20);
             label22.TabIndex = 20;
             label22.Text = "ГРАФІКИ ПО ЗАГАЛЬНІЙ СТАТИСТИЦІ";
-            label22.Click += label22_Click;
             // 
             // chart4
             // 
             chart4.BackColor = Color.AliceBlue;
-            chartArea10.Name = "ChartArea1";
-            chart4.ChartAreas.Add(chartArea10);
+            chartArea2.Name = "ChartArea1";
+            chart4.ChartAreas.Add(chartArea2);
             chart4.Location = new Point(475, 220);
             chart4.Name = "chart4";
             chart4.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series10.ChartArea = "ChartArea1";
-            series10.Name = "Series1";
-            chart4.Series.Add(series10);
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series1";
+            chart4.Series.Add(series2);
             chart4.Size = new Size(869, 193);
             chart4.TabIndex = 18;
             chart4.Text = "chart4";
@@ -403,14 +398,14 @@
             // chart3
             // 
             chart3.BackColor = Color.AliceBlue;
-            chartArea11.Name = "ChartArea1";
-            chart3.ChartAreas.Add(chartArea11);
+            chartArea3.Name = "ChartArea1";
+            chart3.ChartAreas.Add(chartArea3);
             chart3.Location = new Point(921, 41);
             chart3.Name = "chart3";
             chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series11.ChartArea = "ChartArea1";
-            series11.Name = "Series1";
-            chart3.Series.Add(series11);
+            series3.ChartArea = "ChartArea1";
+            series3.Name = "Series1";
+            chart3.Series.Add(series3);
             chart3.Size = new Size(423, 166);
             chart3.TabIndex = 17;
             chart3.Text = "chart3";
@@ -437,14 +432,14 @@
             // 
             chart2.BackColor = Color.AliceBlue;
             chart2.BackSecondaryColor = Color.White;
-            chartArea12.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea12);
+            chartArea4.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea4);
             chart2.Location = new Point(475, 41);
             chart2.Name = "chart2";
             chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series12.ChartArea = "ChartArea1";
-            series12.Name = "Series1";
-            chart2.Series.Add(series12);
+            series4.ChartArea = "ChartArea1";
+            series4.Name = "Series1";
+            chart2.Series.Add(series4);
             chart2.Size = new Size(423, 166);
             chart2.TabIndex = 4;
             chart2.Text = "chart2";
@@ -474,22 +469,21 @@
             // 
             saveMenuItem.Image = (Image)resources.GetObject("saveMenuItem.Image");
             saveMenuItem.Name = "saveMenuItem";
-            saveMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-            saveMenuItem.Size = new Size(291, 26);
+            saveMenuItem.Size = new Size(228, 26);
             saveMenuItem.Text = "Зберегти";
             // 
             // loadMenuItem
             // 
+            loadMenuItem.Image = (Image)resources.GetObject("loadMenuItem.Image");
             loadMenuItem.Name = "loadMenuItem";
-            loadMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            loadMenuItem.Size = new Size(291, 26);
+            loadMenuItem.Size = new Size(228, 26);
             loadMenuItem.Text = "Зчитати з файлу";
             // 
             // exitMenuItem
             // 
+            exitMenuItem.Image = (Image)resources.GetObject("exitMenuItem.Image");
             exitMenuItem.Name = "exitMenuItem";
-            exitMenuItem.ShortcutKeys = Keys.Control | Keys.Q;
-            exitMenuItem.Size = new Size(291, 26);
+            exitMenuItem.Size = new Size(228, 26);
             exitMenuItem.Text = "Вихід";
             // 
             // OrderAdministrationMenuItem
@@ -523,6 +517,9 @@
             ClientSize = new Size(1377, 496);
             Controls.Add(menuStrip);
             Controls.Add(tabControl1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Statistics";
             Text = "Статистика";
             tabPage2.ResumeLayout(false);

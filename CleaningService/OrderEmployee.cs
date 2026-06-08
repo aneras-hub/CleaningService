@@ -55,5 +55,23 @@ namespace CleaningService
                 .Where(e => e.GetOrdersCount() == 0)
                 .ToList();
         }
+        public List<Employee> SortByName()
+        {
+            return Employees
+                .OrderBy(e => e.EmployeeName)
+                .ToList();
+        }
+        public List<Employee> SortByOrdersCount()
+        {
+            return Employees
+                .OrderByDescending(e => e.GetOrdersCount())
+                .ToList();
+        }
+        public List<Employee> SortBySalary()
+        {
+            return Employees
+                .OrderByDescending(e => e.GetSalary())
+                .ToList();
+        }
     }
 }

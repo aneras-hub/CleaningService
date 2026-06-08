@@ -27,8 +27,8 @@ namespace CleaningService
         public double GetSalary()
         {
             return Orders?
-                .Where(o => o != null && o.ExecutionStatus != "Скасовано")
-                .Sum(o => o.Price * 0.4) ?? 0;
+                .Where(o => o != null && o.ExecutionStatus == "Виконано")
+                .Sum(o => o.Price * 0.3) ?? 0;
         }
         [JsonIgnore]
         public int CompletedOrdersPerMonth
@@ -36,7 +36,7 @@ namespace CleaningService
             get
             {
                 return Orders?
-                    .Where(o => o != null)
+                    .Where(o => o != null && o.ExecutionStatus == "Виконано")
                     .Count(o =>
                         o.OrderDate.Month == DateTime.Now.Month &&
                         o.OrderDate.Year == DateTime.Now.Year) ?? 0;
@@ -47,9 +47,7 @@ namespace CleaningService
         {
             get
             {
-                return Orders?
-                    .Where(o => o != null && o.ExecutionStatus != "Скасовано")
-                    .Sum(o => o.Price * 0.3) ?? 0;
+                return GetSalary();
             }
         }
         public override string ToString()

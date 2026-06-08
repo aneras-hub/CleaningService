@@ -112,7 +112,7 @@ namespace CleaningService
             }
             string phonePattern = @"^\+38\s0\d{2}\s\d{3}\s\d{4}$";
             if (!Regex.IsMatch(NumberClient.Text.Trim(), phonePattern))
-                return ShowError("Телефон у форматі +380 99 790 8190");
+                return ShowError("Телефон у форматі +38 099 790 8190");
             if (string.IsNullOrWhiteSpace(AdressClient.Text))
                 return ShowError("Введіть адресу.");
             if (Posluga.SelectedIndex < 0)
@@ -125,7 +125,7 @@ namespace CleaningService
                 return ShowError("Оберіть тип послуги.");
             if (!double.TryParse(AreaRoom.Text.Trim(), out double area) || area <= 0)
                 return ShowError("Площа має бути числом більше 0.");
-            if (area > 10000)
+            if (area > 120)
                 return ShowError("Площа приміщення занадто велика.");
             if (EmployeeClean.SelectedIndex < 0 || EmployeeClean.SelectedItem == null)
                 return ShowError("Оберіть фахівця.");
@@ -133,8 +133,8 @@ namespace CleaningService
                 return ShowError("Оберіть час прибирання.");
             if (StanOplatu.SelectedIndex <= 0)
                 return ShowError("Оберіть стан оплати.");
-        //    if (dateTimePicker.Value.Date < DateTime.Today)
-         //       return ShowError("Дата замовлення не може бути в минулому.");
+            //    if (dateTimePicker.Value.Date < DateTime.Today)
+            //       return ShowError("Дата замовлення не може бути в минулому.");
             return true;
         }
         private bool ShowError(string message)
@@ -200,27 +200,26 @@ namespace CleaningService
                 NewOrder.TimeSlot = TimeCleaning.Text;
                 NewOrder.Price = NewOrder.CalculatePrice();
             }
-                var result = MessageBox.Show(
-                    $"Ціна: {NewOrder.Price} грн\n\nДодати ще клієнта?",
-                    "Готово",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-                if (result == DialogResult.Yes)
-                {
-                    ClearForm();
-                }
-                else
-                {
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
+            var result = MessageBox.Show(
+                $"Ціна: {NewOrder.Price} грн\n\nДодати ще клієнта?",
+                "Готово",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question
+            );
+            if (result == DialogResult.Yes)
+            {
+                ClearForm();
+            }
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+            }
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
             if (!double.TryParse(AreaRoom.Text, out double area))
             {
-                textBox5.Text = "0 грн"; 
+                textBox5.Text = "0 грн";
                 return;
             }
             double pricePerMeter = Posluga.Text.Contains("ремонту") ? 180.0 : 100.0;
@@ -243,6 +242,24 @@ namespace CleaningService
             StanOplatu.SelectedIndex = 0;
             TimeCleaning.SelectedIndex = 0;
             dateTimePicker.Value = DateTime.Now;
+        }
+
+        private void NewClientForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void NumberClient_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Заборона двох пробілів підряд
+            if (e.KeyChar == ' ' &&
+                textBox.Text.Length > 0 &&
+                textBox.Text[textBox.Text.Length - 1] == ' ')
+            {
+                e.Handled = true;
+            }
         }
     }
 }

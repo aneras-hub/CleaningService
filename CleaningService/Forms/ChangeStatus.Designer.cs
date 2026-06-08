@@ -42,7 +42,6 @@
             StanOplatu.Name = "StanOplatu";
             StanOplatu.Size = new Size(282, 28);
             StanOplatu.TabIndex = 29;
-            StanOplatu.SelectedIndexChanged += StanOplatu_SelectedIndexChanged;
             // 
             // label12
             // 
@@ -73,6 +72,9 @@
             Controls.Add(StanOplatu);
             Controls.Add(label12);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "ChangePayment";
             Text = "Зміна оплати";
             ResumeLayout(false);

@@ -62,7 +62,7 @@ namespace CleaningService
                 return;
             }
 
-            if (LoginName.Text == "admin" || LoginName.Text == "фвьшт" && LoginPassword.Text == "1234")
+            if (LoginName.Text == "admin" && LoginPassword.Text == "1234")
             {
                 // Успішний вхід
                 button.BackColor = Color.DarkSeaGreen;
